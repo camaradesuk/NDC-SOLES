@@ -50,9 +50,6 @@ for (file in all_files) {
   assign(sub("\\.fst$", "", file), read_fst(file.path(dir_path, file)), envir = .GlobalEnv)
 }
 
-# Get latest search date - based on latest included studies
-latest_date <- include_by_date$date[1]
-
 # Get today
 today <- format(Sys.Date(), format="%B %d %Y")
 

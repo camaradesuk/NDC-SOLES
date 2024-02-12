@@ -317,7 +317,7 @@ app_deploy <- try({
                  "fst_files/",
                  "www/"),
     account = "camarades",
-    appName  = "stroke-soles",
+    appName  = "NDC-SOLES",
     logLevel = "verbose",
     launch.browser = T, 
     forceUpdate = T)

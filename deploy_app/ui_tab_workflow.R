@@ -24,7 +24,7 @@ ui_tab_workflow <- tabItem(tabName = "workflow-accordion-dc",
                                p("Newly retieved citations are screened using a machine learning algorithm trained to identify animal in vivo experiments of focal cerebral ischaemia.
                              In validation tests, this algorithm", strong(" includes >95% "), "of papers which",
                              strong("should"), "be included. All included citations are added to the Stroke-SOLES database.",
-                             "This application was last updated on", strong(latest_date))
+                             "This application was last updated on", (include_by_date$date[1]))
                              ),
                              
                              accordionItem(
