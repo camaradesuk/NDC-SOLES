@@ -1,5 +1,5 @@
 # ==============================================================================
-# Stroke-SOLES Workflow
+# NDC-SOLES Workflow
 # ==============================================================================
 
 # This code is used to run the SOLES workflow for the NDC-SOLES project.
@@ -45,7 +45,7 @@ query_scopus <- "(TITLE-ABS-KEY(\"neurodevelopmental disorder*\" OR \"neurodevel
 
 # Retrieve database search results
 pubmed <- pubmed_search(query_pubmed, timespan = "1week")
-scopus <- scopus_search(query_scopus, api_key= Sys.getenv("SCOPUS_API_TOKEN"), retMax = 300)
+scopus <- scopus_search(query_scopus, api_key= Sys.getenv("SCOPUS_API_TOKEN"), retMax = 500)
 wos    <- wos_search(query_wos, timespan = "1week")
 
 # Workaround for wos API issue
@@ -53,7 +53,7 @@ wos <- read.csv("wos.csv", stringsAsFactors = F)
 wos <- wos %>% 
   mutate(source = "wos",
          url = NA,
-         date = "070723",
+         date = as.character(format(Sys.Date(), "%d%m%y")),
          ptype = NA,
          author_country = NA) %>%
   select(uid = "UT..Unique.WOS.ID.", source, author = Authors, year = Publication.Year,
@@ -111,7 +111,7 @@ unscreened_set <- get_studies_to_screen(con,
                                         classifier_name = "in_vivo")
 
 # Read in training data for ML
-screening_decisions <- read.csv("screening/ndc-soles_set_2.csv", 
+screening_decisions <- read.csv("screening/training/NDC-SOLES_ml_training.csv", 
                                 stringsAsFactors = F)
 
 # Run machine learning and write results to database table
@@ -123,29 +123,45 @@ run_ml(con, project_name="ndc-soles", classifier_name="in_vivo",
 # ------------------------------------------------------------------------------
 
 # Retrieve full texts, save files to folder, and update database table
+source("get_ft.R")
 get_ft(con, path="full_texts")
 
 # ------------------------------------------------------------------------------
 # Tag Study Characteristics Using RegEx
 # ------------------------------------------------------------------------------
-pico_tag(con, tag_type = "model", tag_method = "tiabkw", ignoreCase = FALSE)
-pico_tag(con, tag_type = "intervention", tag_method = "tiabkw", ignoreCase = FALSE)
-pico_tag(con, tag_type = "outcome", tag_method = "tiabkw", ignoreCase = FALSE)
+pico_tag(con, tag_type = "species", tag_method = "tiabkw", ignore_case = TRUE, extract_strings = TRUE)
+pico_tag(con, tag_type = "model", tag_method = "tiabkw", ignore_case = TRUE, extract_strings = TRUE)
+pico_tag(con, tag_type = "intervention", tag_method = "tiabkw", ignore_case = TRUE, extract_strings = FALSE)
+pico_tag(con, tag_type = "intervention", tag_method = "tiabkw", ignore_case = TRUE, extract_strings = FALSE)
+pico_tag(con, tag_type = "intervention", tag_method = "tiabkw", ignore_case = TRUE, extract_strings = FALSE)
+pico_tag(con, tag_type = "intervention", tag_method = "tiabkw", ignore_case = TRUE, extract_strings = FALSE)
+pico_tag(con, tag_type = "outcome", tag_method = "tiabkw", ignore_case = TRUE, extract_strings = TRUE)
 
-pico_tag(con, tag_type = "model", tag_method = "fulltext", ignoreCase = FALSE)
-pico_tag(con, tag_type = "intervention", tag_method = "fulltext", ignoreCase = FALSE)
-pico_tag(con, tag_type = "outcome", tag_method = "fulltext", ignoreCase = FALSE)
+pico_tag(con, tag_type = "species", tag_method = "fulltext", ignore_case = TRUE, extract_strings = TRUE)
+pico_tag(con, tag_type = "model", tag_method = "fulltext", ignore_case = TRUE, extract_strings = TRUE)
+pico_tag(con, tag_type = "intervention", tag_method = "fulltext", ignore_case = TRUE, extract_strings = FALSE)
+pico_tag(con, tag_type = "outcome", tag_method = "fulltext", ignore_case = TRUE, extract_strings = TRUE)
 
 # ------------------------------------------------------------------------------
 # Tag Risk of Bias Reporting Using Qianying's Tool
 # ------------------------------------------------------------------------------
-rob_tag(con)
+
+source("rob_tag.R")
+setwd("/home/ewilson/SOLES/NDC-SOLES")
+rob_tag(con, max_file_size = 200000, num_cores = 10)
 
 # ------------------------------------------------------------------------------
 # Tag Open Research Practices Using ODDPub
 # ------------------------------------------------------------------------------
 
 # Tag for open data and code availablity statements and write to database table
+source("ods_tag.R")
+source("functions/odd_pub.R")
 ods_tag(con, path="full_texts")
 
-oa_tag(con, Sys.getenv("email"))
+source("oa_tag.R")
+oa_tag(con, "emma.wilson@ed.ac.uk") 
+
+# Open Alex
+source("openalex_tag.R")
+openalex_tag(con)
