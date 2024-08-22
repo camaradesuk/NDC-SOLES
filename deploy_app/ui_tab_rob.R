@@ -1,10 +1,10 @@
 ui_tab_rob <- tabItem(tabName = "data-summary-rob",
                       
                       bs4Jumbotron(
-                        title = "Risk of bias reporting",
-                        lead = "This summary shows the overall percentages of publications
+                        title = tags$h1("Risk of bias reporting"),
+                        lead = tags$p("This summary shows the overall percentages of publications
                 reporting measures to redue the risk of bias in animal studies. You can
-                also benchmark improvements by viewing the number of publications in each category over time",
+                also benchmark improvements by viewing the number of publications in each category over time"),
                 status = "primary",
                 btnName = NULL
                       ),
@@ -13,31 +13,31 @@ ui_tab_rob <- tabItem(tabName = "data-summary-rob",
                   
                   valueBox(
                     width=4,
-                    subtitle = tags$p("Randomisation", style = "font-size: 150%; color: black;"),
+                    subtitle = tags$p("Randomisation", style = "font-size: 150%; color: white;"),
                     color = "secondary",
                     value = tags$p(round(length(rob$uid[which(rob$is_random=="reported")])/
                                            length(rob$uid[which(!is.na(rob$is_random))])*100,1), "%",
-                                   style = "font-size: 200%; color: black;"),
+                                   style = "font-size: 200%; color: white;"),
                     icon = icon("asterisk")
                   ),
                   
                   valueBox(
                     width=4,
-                    subtitle = tags$p("Blinded outcome assessment", style = "font-size: 150%; color: black;"),
+                    subtitle = tags$p("Blinded outcome assessment", style = "font-size: 150%; color: white;"),
                     color = "secondary",
                     value = tags$p(round(length(rob$uid[which(rob$is_blind=="reported")])/
                                            length(rob$uid[which(!is.na(rob$is_blind))])*100,1), "%",
-                                   style = "font-size: 200%; color: black;"),
+                                   style = "font-size: 200%; color: white;"),
                     icon = icon("eye-slash", verify_fa = FALSE)
                   ),
                   
                   valueBox(
                     width=4,
-                    subtitle = tags$p("Conflicts of interest statement", style = "font-size: 150%; color: black;"),
+                    subtitle = tags$p("Conflicts of interest statement", style = "font-size: 150%; color: white;"),
                     color = "secondary",
                     value =tags$p(round(length(rob$uid[which(rob$is_interest=="reported")])/
                                           length(rob$uid[which(!is.na(rob$is_interest))])*100,1), "%",
-                                  style = "font-size: 200%; color: black;"),
+                                  style = "font-size: 200%; color: white;"),
                     icon = icon("money-check-alt")
                   )
                 ),
@@ -46,21 +46,21 @@ ui_tab_rob <- tabItem(tabName = "data-summary-rob",
                   
                   valueBox(
                     width=6,
-                    subtitle = tags$p("Welfare approval", style = "font-size: 150%; color: black;"),
+                    subtitle = tags$p("Welfare approval", style = "font-size: 150%; color: white;"),
                     color = "secondary",
                     value = tags$p(round(length(rob$uid[which(rob$is_welfare == "reported")])/
                                            length(rob$uid[which(!is.na(rob$is_welfare))])*100,1), "%",
-                                   style = "font-size: 200%; color: black;"),
+                                   style = "font-size: 200%; color: white;"),
                     icon = icon("paw")
                   ),
                   
                   valueBox(
                     width=6,
-                    subtitle = tags$p("Exclusion criteria", style = "font-size: 150%; color: black;"),
+                    subtitle = tags$p("Exclusion criteria", style = "font-size: 150%; color: white;"),
                     color = "secondary",
                     value = tags$p(round(length(rob$uid[which(rob$is_exclusion == "reported")])/
                                            length(rob$uid[which(!is.na(rob$is_exclusion))])*100,1), "%",
-                                   style = "font-size: 200%; color: black;"),
+                                   style = "font-size: 200%; color: white;"),
                     icon = icon("ban")
                   )
                 ),
@@ -79,31 +79,31 @@ ui_tab_rob <- tabItem(tabName = "data-summary-rob",
                               title = "Randomisation over time",
                               theme = "danger",
                               table = rob,
-                              spinner_colour = "#9CAF88"),
+                              spinner_colour = "#76A8C1"),
                     
                     yearBarUI("blind_per_year",
                               title = "Blinding over time",
                               theme = "danger",
                               table = rob,
-                              spinner_colour = "#9CAF88"),
+                              spinner_colour = "#76A8C1"),
                     
                     yearBarUI("coi_per_year",
                               title = "COI statements over time",
                               theme = "danger",
                               table = rob,
-                              spinner_colour = "#9CAF88"),
+                              spinner_colour = "#76A8C1"),
                     
                     yearBarUI("exclusion_per_year",
                               title = "Exclusions over time",
                               theme = "danger",
                               table = rob,
-                              spinner_colour = "#9CAF88"),
+                              spinner_colour = "#76A8C1"),
                     
                     yearBarUI("welfare_per_year",
                               title = "Welfare approval over time",
                               theme = "danger",
                               table = rob,
-                              spinner_colour = "#9CAF88")
+                              spinner_colour = "#76A8C1")
                   ),
                   
                   plot_interpret_UI("rob_interpret",

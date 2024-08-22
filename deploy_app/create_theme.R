@@ -1,7 +1,6 @@
 mytheme <- create_theme(
-  
   bs4dash_vars(
-    navbar_light_color = "#9CAF88",
+    navbar_light_color = "#76A8C1",
     navbar_light_active_color = "#000",
     navbar_light_hover_color = "#000"
   ),
@@ -14,13 +13,17 @@ mytheme <- create_theme(
     main_bg = "#FFF"
   ),
   bs4dash_sidebar_light(
-    bg = "#9CAF88",
+    bg = "#76A8C1",
     color = "#FFF",
-    hover_color = "#FFF"
+    hover_color = "#FFF",
   ),
   bs4dash_status(
-    primary = "#9CAF88", danger = "#F26177",  info = "#FFD251", secondary = "#CBD5C0"
+    primary = "#76A8C1", 
+    danger = "#C6804F",  
+    info = "#FFD251", 
+    secondary = "#344149"
   ),
   bs4dash_color(
-    gray_900 = "#333d44")
+    gray_900 = "#344149"
+  )
 )

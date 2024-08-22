@@ -23,7 +23,7 @@ dataframes_for_app <- list()
 
 # Create unique_citations table
 unique_citations <- tbl(con, "unique_citations") %>% 
-  select(date, uid, title, journal, year, doi, uid, url, author, abstract, keywords)
+  select(date, uid, title, journal, year, doi, uid, url, author, abstract, keywords, isbn)
 
 #create included tbl
 included_with_metadata <- tbl(con, "study_classification")  %>%
@@ -277,6 +277,60 @@ data_for_bubble <- included_with_metadata_uid %>%
   rename(model = name)
 
 dataframes_for_app[["data_for_bubble"]] <- data_for_bubble
+
+# Create funder tag table
+funder_tag <- tbl(con, "funder_grant_tag") %>%
+  collect() %>%
+  # Duplicate DOIs - more than one funder
+  left_join(included_small, by = "doi", relationship = "many-to-many") %>%
+  mutate(year = as.numeric(year))
+
+dataframes_for_app[["funder_tag"]] <- funder_tag
+
+# Create institution tag table
+institution_tag <- tbl(con, "institution_tag") %>%
+  collect() %>%
+  # Duplicate DOIs - more than one institution
+  left_join(included_small, by = "doi", relationship = "many-to-many") %>%
+  mutate(year = as.numeric(year))
+
+dataframes_for_app[["institution_tag"]] <- institution_tag
+
+# Create retraction tag table
+retraction_tag <- tbl(con, "retraction_tag") %>%
+  collect() %>%
+  # Duplicate DOIs
+  left_join(included_small, by = "doi", relationship = "many-to-many") %>%
+  mutate(year = as.numeric(year))
+
+dataframes_for_app[["retraction_tag"]] <- retraction_tag
+
+# Create discipline tag table
+discipline_tag <- tbl(con, "discipline_tag") %>%
+  collect() %>%
+  # Duplicate DOIs
+  left_join(included_small, by = "doi", relationship = "many-to-many") %>%
+  mutate(year = as.numeric(year))
+
+dataframes_for_app[["discipline_tag"]] <- discipline_tag
+
+# Create article type tag table
+article_tag <- tbl(con, "article_type") %>%
+  collect() %>%
+  # Duplicate DOIs
+  left_join(included_small, by = "doi", relationship = "many-to-many") %>%
+  mutate(year = as.numeric(year))
+
+dataframes_for_app[["article_tag"]] <- article_tag
+
+# Create citation count tag table
+citation_count_tag <- tbl(con, "citation_count_tag") %>%
+  collect() %>%
+  # Duplicate DOIs
+  left_join(included_small, by = "doi", relationship = "many-to-many") %>%
+  mutate(year = as.numeric(year))
+
+dataframes_for_app[["citation_count_tag"]] <- citation_count_tag
 
 
 ## WRITE TO FST

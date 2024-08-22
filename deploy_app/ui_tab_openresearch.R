@@ -14,28 +14,28 @@ ui_tab_openresearch <- tabItem(tabName = "data-summary-openresearch",
           
           valueBox(
             width=4,
-            subtitle = tags$h2("Published open access", style = "color: black;"),
+            subtitle = tags$h2("Published open access", style = "color: white;"),
             color = "secondary",
             value = tags$p(round(length(oa_tag$uid[which(oa_tag$is_oa==TRUE)])/length(oa_tag$uid)*100,1), "%",
-                           style = "font-size: 300%; color: black;"),
+                           style = "font-size: 300%; color: white;"),
             icon = icon("lock-open")
           ),
           
           valueBox(
             width=4,
-            subtitle = tags$h2("Publications shared data", style = "color: black;"),
+            subtitle = tags$h2("Publications shared data", style = "color: white;"),
             color = "secondary",
             value = tags$p(round(length(transparency$uid[which(transparency$is_open_data==TRUE)])/length(transparency$uid)*100,1), "%",
-                           style = "font-size: 300%; color: black;"),
+                           style = "font-size: 300%; color: white;"),
             icon = icon("bar-chart", verify_fa = FALSE)
           ),
           
           valueBox(
             width=4,
-            subtitle = tags$h2("Publications shared code", style = "color: black;"),
+            subtitle = tags$h2("Publications shared code", style = "color: white;"),
             color = "secondary",
             value = tags$p(round(length(transparency$uid[which(transparency$is_open_code==TRUE)])/length(transparency$uid)*100,1), "%",
-                           style = "font-size: 300%; color: black;"),
+                           style = "font-size: 300%; color: white;"),
             icon = icon("code")
           )
         ),
@@ -53,25 +53,25 @@ ui_tab_openresearch <- tabItem(tabName = "data-summary-openresearch",
           yearBarUI("oa_pubs_per_year",
                     title = tags$p("Open access over time", style = " color: #1A465F;"),
                     theme = "primary",
-                    spinner_colour = "#9CAF88",
+                    spinner_colour = "#76A8C1",
                     table = oa_tag),
           
           yearBarUI("oa_pub_type_per_year",
                     title = tags$p("Open access type over time", style = " color: #1A465F;"),
                     theme = "primary",
-                    spinner_colour = "#9CAF88",
+                    spinner_colour = "#76A8C1",
                     table = oa_tag),
           
           yearBarUI("open_data_pubs_per_year",
                     title = tags$p("Open data availability over time", style = " color: #1A465F;"),
                     theme = "primary",
-                    spinner_colour = "#9CAF88",
+                    spinner_colour = "#76A8C1",
                     table = transparency),
           
           yearBarUI("open_code_pubs_per_year",
                     title = tags$p("Open code availability over time", style = " color: #1A465F;"),
                     theme = "primary",
-                    spinner_colour = "#9CAF88",
+                    spinner_colour = "#76A8C1",
                     table = transparency)
           
           

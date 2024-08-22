@@ -24,6 +24,7 @@ library(purrr)
 library(tidyr)
 library(openalexR)
 library(parallel)
+library(lubridate)
 
 # Set database connection
 con <- dbConnect(RPostgres::Postgres(),
@@ -118,12 +119,60 @@ screening_decisions <- read.csv("screening/training/NDC-SOLES_ml_training.csv",
 run_ml(con, project_name="ndc-soles", classifier_name="in_vivo", 
        screening_decisions, unscreened_set)
 
+
 # ------------------------------------------------------------------------------
 # Retrieve Full Text Documents
 # ------------------------------------------------------------------------------
 
 # Retrieve full texts, save files to folder, and update database table
-source("get_ft.R")
+get_ft(con, path="full_texts")
+Sys.sleep(500)
+get_ft(con, path="full_texts")
+Sys.sleep(500)
+get_ft(con, path="full_texts")
+Sys.sleep(500)
+get_ft(con, path="full_texts")
+Sys.sleep(500)
+get_ft(con, path="full_texts")
+Sys.sleep(500)
+get_ft(con, path="full_texts")
+Sys.sleep(500)
+get_ft(con, path="full_texts")
+Sys.sleep(500)
+get_ft(con, path="full_texts")
+Sys.sleep(500)
+get_ft(con, path="full_texts")
+Sys.sleep(500)
+get_ft(con, path="full_texts")
+Sys.sleep(500)
+get_ft(con, path="full_texts")
+Sys.sleep(500)
+get_ft(con, path="full_texts")
+Sys.sleep(500)
+get_ft(con, path="full_texts")
+Sys.sleep(500)
+get_ft(con, path="full_texts")
+Sys.sleep(500)
+get_ft(con, path="full_texts")
+Sys.sleep(500)
+get_ft(con, path="full_texts")
+Sys.sleep(500)
+get_ft(con, path="full_texts")
+Sys.sleep(500)
+get_ft(con, path="full_texts")
+Sys.sleep(500)
+get_ft(con, path="full_texts")
+Sys.sleep(500)
+get_ft(con, path="full_texts")
+Sys.sleep(500)
+get_ft(con, path="full_texts")
+Sys.sleep(500)
+get_ft(con, path="full_texts")
+Sys.sleep(500)
+get_ft(con, path="full_texts")
+Sys.sleep(500)
+get_ft(con, path="full_texts")
+Sys.sleep(500)
 get_ft(con, path="full_texts")
 
 # ------------------------------------------------------------------------------
@@ -131,9 +180,6 @@ get_ft(con, path="full_texts")
 # ------------------------------------------------------------------------------
 pico_tag(con, tag_type = "species", tag_method = "tiabkw", ignore_case = TRUE, extract_strings = TRUE)
 pico_tag(con, tag_type = "model", tag_method = "tiabkw", ignore_case = TRUE, extract_strings = TRUE)
-pico_tag(con, tag_type = "intervention", tag_method = "tiabkw", ignore_case = TRUE, extract_strings = FALSE)
-pico_tag(con, tag_type = "intervention", tag_method = "tiabkw", ignore_case = TRUE, extract_strings = FALSE)
-pico_tag(con, tag_type = "intervention", tag_method = "tiabkw", ignore_case = TRUE, extract_strings = FALSE)
 pico_tag(con, tag_type = "intervention", tag_method = "tiabkw", ignore_case = TRUE, extract_strings = FALSE)
 pico_tag(con, tag_type = "outcome", tag_method = "tiabkw", ignore_case = TRUE, extract_strings = TRUE)
 
@@ -146,22 +192,21 @@ pico_tag(con, tag_type = "outcome", tag_method = "fulltext", ignore_case = TRUE,
 # Tag Risk of Bias Reporting Using Qianying's Tool
 # ------------------------------------------------------------------------------
 
-source("rob_tag.R")
-setwd("/home/ewilson/SOLES/NDC-SOLES")
-rob_tag(con, max_file_size = 200000, num_cores = 10)
+rob_tag(con, num_cores = 10)
 
 # ------------------------------------------------------------------------------
 # Tag Open Research Practices Using ODDPub
 # ------------------------------------------------------------------------------
 
-# Tag for open data and code availablity statements and write to database table
-source("ods_tag.R")
-source("functions/odd_pub.R")
+# Tag for open data and code availability statements and write to database table
 ods_tag(con, path="full_texts")
 
-source("oa_tag.R")
 oa_tag(con, "emma.wilson@ed.ac.uk") 
 
 # Open Alex
 source("openalex_tag.R")
 openalex_tag(con)
+
+
+get_openalex_metadata(con)
+

@@ -16,7 +16,7 @@ ui_tab_outcome_trends <- tabItem(tabName = "data-trends-outcome",
                                                     label1 = "Select an outcome: (20 selections max)",
                                                     title = "Outcome",
                                                     theme = "danger",
-                                                    spinner_colour = "#9CAF88")
+                                                    spinner_colour = "#76A8C1")
                                
                              )
 )

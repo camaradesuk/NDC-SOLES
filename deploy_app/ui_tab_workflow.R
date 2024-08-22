@@ -36,6 +36,14 @@ ui_tab_workflow <- tabItem(tabName = "workflow-accordion-dc",
                              ),
                              
                              accordionItem(
+                               title = tags$p("Retrieving metadata from OpenAlex", style = "color:white;"),
+                               status = "primary",
+                               collapsed = TRUE,
+                               p("We use the ", tags$a(href="https://cran.r-project.org/web/packages/openalexR/index.html", strong("OpenAlex R package")), "to retrieve additional metadata for included studies, including funder details, open access article status, author institutions and country, 
+                                 article language, OpenAlex tagged disciplines, and retraction information.")
+                             ),
+                             
+                             accordionItem(
                                title = tags$p("Measuring open research and risk of bias reporting", style = "color:white;"),
                                status = "primary",
                                collapsed = TRUE,

@@ -8,7 +8,14 @@ ui_tab_about <- tabItem(tabName = "about",
                               solidHeader = TRUE,
                               p("Read our full methods in our ",
                                 strong(tags$a(href="https://osf.io/gftzp/", "project protocol.")), "Thank you to Tamsin Baxter, Sarah Bendova, Sarah Giachetti, Chloe Henley, Nawon Kim, Malcolm Macleod, Jessica Pierce, Fiona Ramage, and Eleni Tsoukala for providing data annotation to help train our machine-learning tools."),
-                              p("The NDC-SOLES Project is funded by a Simons Initiative for the Developing Brain (SIDB) PhD studentship.")),
+                              p("The NDC-SOLES Project is funded by a Simons Initiative for the Developing Brain (SIDB) PhD studentship.",
+                                br(),
+                                tags$img(
+                                  src = "sidb.jpg",
+                                  width = 200,
+                                  alt = "SIDB logo"
+                                ))
+                              ),
                           
                           
                           box(width = 6,
@@ -37,7 +44,8 @@ ui_tab_about <- tabItem(tabName = "about",
                             background="primary",
                             p("All data and information are provided under a
                       Creative Commons Attribution 4.0 International license (CC BY 4.0)"),
-                      p("If you have used the NDC-SOLES data for a research project or review, please cite our SOLES preprint:
-                      Hair, K., Wilson, E., Wong, C., Tsang, A., Macleod, M. R., & Bannach-Brown, A. (2022, August 18). Systematic Online
-                      Living Evidence Summaries: emerging tools to accelerate evidence synthesis. https://doi.org/10.31222/osf.io/nbe5q"))
+                      p("If you have used the NDC-SOLES data for a research project or review, please cite our SOLES paper:
+                      Hair, K., Wilson, E., Wong, C., Tsang, A., Macleod, M. R., & Bannach-Brown, A. (2023). Systematic online 
+                      living evidence summaries: emerging tools to accelerate evidence synthesis. Clinical science (London, 
+                      England : 1979), 137(10), 773–784. https://doi.org/10.1042/CS20220494"))
                       ))

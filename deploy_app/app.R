@@ -64,6 +64,7 @@ source("ui_included_studies.R")
 source("ui_tab_workflow.R")
 source("ui_tab_openresearch.R")
 source("ui_tab_rob.R")
+source("ui_tab_funder.R")
 source("ui_tab_model_trends.R")
 source("ui_tab_int_trends.R")
 source("ui_tab_outcome_trends.R")
@@ -127,6 +128,7 @@ ui <- bs4DashPage(
       # ui_tab_model,
       ui_tab_rob,
       ui_tab_openresearch,
+      ui_tab_funder,
       # ui_tab_int_summary,
       ui_tab_model_trends,
       ui_tab_int_trends,
@@ -144,13 +146,41 @@ ui <- bs4DashPage(
 server <- function(input, output, session) {
   
   shinyalert("Welcome", "Welcome to the NDC-SOLES Dashboard!
-             Please note this app is still under development and not all data has been processed yet.", type = "warning", confirmButtonCol = "#9CAF88")
+             Please note this app is still under development and not all data has been processed yet.", type = "warning", confirmButtonCol = "#76A8C1")
   
 
   yearBarServer_included_only("included_studies_over_time_bar", 
                               table = n_included_per_year_plot_data, 
                               column = "is_included",
-                              colour = "#9CAF88")
+                              colour = "#76A8C1")
+  
+  output$funderBarChart <- renderPlotly({
+    
+    # Funder plot - data format
+    top_funders <- funder_tag %>%
+      select(funder_name, uid) %>%
+      distinct() %>%
+      group_by(funder_name) %>%
+      count() %>%
+      arrange(desc(n)) %>%
+      head(11)
+    
+    # Funder plot - plot
+    plot_ly(
+      top_funders, 
+      x = ~n, 
+      y = ~funder_name, 
+      type = "bar", 
+      orientation = "h",
+      marker = list(color = "#76A8C1")
+    ) %>%
+      layout(
+        title = "Top 10 Funders by Number of Publications",
+        xaxis = list(title = "Number of Publications"),
+        yaxis = list(title = ""),
+        margin = list(l = 200)  # Adjust for long funder names
+      )
+  })
   
   pico_multi_select_Server("model",
                            multi_select = FALSE,
@@ -170,12 +200,13 @@ server <- function(input, output, session) {
                            column = "name",
                            text = "Tool: custom regex drug dictionary")
   
-  yearBarServer("oa_pubs_per_year", table=oa_tag, column="is_oa", display=TRUE, order=c(TRUE, FALSE), text="Source:CrossRef", colours = c("#9CAF88", "grey")) %>%
+  
+  yearBarServer("oa_pubs_per_year", table=oa_tag, column="is_oa", display=TRUE, order=c(TRUE, FALSE), text="Source:CrossRef", colours = c("#76A8C1", "grey")) %>%
     bindCache(nrow(transparency))
   yearBarServer("oa_pub_type_per_year", table=oa_tag, column="oa_status", display=c("closed", "hybrid", "bronze", "gold", "green"), order=c("closed", "hybrid", "bronze", "gold", "green"),
                 text="Source:CrossRef", colours = c("red", "lightblue", "orange", "gold", "green")) %>% bindCache(nrow(transparency))
-  yearBarServer("open_data_pubs_per_year", table=transparency, column="is_open_data", display=TRUE, order=c(TRUE, FALSE),  text="Tool: OddPub, Riedel, N, et al. (2020), DOI:10.5334/dsj-2020-042", colours = c("#9CAF88", "grey")) %>% bindCache(nrow(transparency))
-  yearBarServer("open_code_pubs_per_year", table=transparency, column="is_open_code", display=TRUE, order=c(TRUE, FALSE),  text="Tool: OddPub, Riedel, N, et al. (2020), DOI:10.5334/dsj-2020-042", colours = c("#9CAF88", "grey")) %>% bindCache(nrow(transparency))
+  yearBarServer("open_data_pubs_per_year", table=transparency, column="is_open_data", display=TRUE, order=c(TRUE, FALSE),  text="Tool: OddPub, Riedel, N, et al. (2020), DOI:10.5334/dsj-2020-042", colours = c("#76A8C1", "grey")) %>% bindCache(nrow(transparency))
+  yearBarServer("open_code_pubs_per_year", table=transparency, column="is_open_code", display=TRUE, order=c(TRUE, FALSE),  text="Tool: OddPub, Riedel, N, et al. (2020), DOI:10.5334/dsj-2020-042", colours = c("#76A8C1", "grey")) %>% bindCache(nrow(transparency))
   
   
   yearBarServer("random_per_year", table=rob, column="is_random", text="Tool: RobPredictor, Wang, Q., et al (2021), DOI:10.1002/jrsm.1533") %>% bindCache(nrow(rob))
@@ -200,7 +231,7 @@ server <- function(input, output, session) {
       count()
     
     data$key <- row.names(data)
-    data$col <- "#9CAF88"
+    data$col <- "#76A8C1"
     
     
     return(data)

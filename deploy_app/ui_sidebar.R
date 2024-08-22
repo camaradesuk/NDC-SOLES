@@ -6,6 +6,7 @@ ui_sidebar <- sidebarMenu(
   #bs4SidebarMenuItem("Data collection old", tabName = "workflow", icon = icon("database", verify_fa = FALSE)),
   bs4SidebarMenuItem("Risk of bias", tabName = "data-summary-rob", icon = icon("check", verify_fa = FALSE)),
   bs4SidebarMenuItem("Open research", tabName = "data-summary-openresearch", icon = icon("lock-open", verify_fa = FALSE)),
+  bs4SidebarMenuItem("Funders", tabName = "data-summary-funder", icon = icon("landmark", verify_fa = FALSE)),
   bs4SidebarMenuItem("Animal models", tabName = "data-trends-model", icon = icon("paw"), startExpanded = FALSE),
   bs4SidebarMenuItem("Interventions", tabName = "data-trends-int", icon = icon("pills"), startExpanded = FALSE),
                      #bs4SidebarMenuSubItem("Intervention summary", tabName = "data-summary-int"),

@@ -16,7 +16,7 @@ ui_tab_model_trends  <- tabItem(tabName = "data-trends-model",
                                                         label1 = "Select a model type:",
                                                         title = "Model",
                                                         theme = "danger",
-                                                        spinner_colour = "#9CAF88")
+                                                        spinner_colour = "#76A8C1")
                                    
                                  )
 )

@@ -16,7 +16,7 @@ ui_tab_int_trends <- tabItem(tabName = "data-trends-int",
                                                     label1 = "Select an Intervention: (20 selections max)",
                                                     title = "Interventions",
                                                     theme = "danger",
-                                                    spinner_colour = "#9CAF88")
+                                                    spinner_colour = "#76A8C1")
 
                              )
                              )

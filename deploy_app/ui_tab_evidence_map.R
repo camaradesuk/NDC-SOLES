@@ -83,7 +83,7 @@ ui_tab_evidence_map <-    tabItem(tabName = "pico-bubble",
                                           id = "intervention_outcome_datatable",
                                           status = "primary",
                                           
-                                          DT::dataTableOutput("pop_table") %>% withSpinner(color="#391171")
+                                          DT::dataTableOutput("pop_table") %>% withSpinner(color="#76A8C1")
                                           
                                           
                                         ))

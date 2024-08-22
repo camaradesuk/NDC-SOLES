@@ -9,7 +9,7 @@
 #' @param table The input data table.
 #'
 #' @export
-yearBarUI <- function(id, title = "", theme = "", spinner_colour = "#9CAF88", table) {
+yearBarUI <- function(id, title = "", theme = "", spinner_colour = "#76A8C1", table) {
   
   ns <- NS(id)
   
@@ -59,7 +59,7 @@ yearBarUI <- function(id, title = "", theme = "", spinner_colour = "#9CAF88", ta
 #'
 #' @export
 yearBarServer <- function(id, table, column, order = c("reported", "not reported"), 
-                          display="reported", text="", colours = c("#9CAF88", "grey")){
+                          display="reported", text="", colours = c("#76A8C1", "grey")){
   moduleServer(
     id,
     function(input, output, session) {
@@ -194,7 +194,7 @@ yearBarServer <- function(id, table, column, order = c("reported", "not reported
 #' @param table The input data table.
 #'
 #' @export
-yearBarUI_included_only <- function(id, title = "", theme = "", spinner_colour = "#9CAF88", table) {
+yearBarUI_included_only <- function(id, title = "", theme = "", spinner_colour = "#76A8C1", table) {
   
   ns <- NS(id)
   
@@ -242,7 +242,7 @@ yearBarUI_included_only <- function(id, title = "", theme = "", spinner_colour =
 #' @export
 yearBarServer_included_only <- function(id, table, column, 
                                         text="", 
-                                        colour = "#9CAF88"
+                                        colour = "#76A8C1"
 ){
   moduleServer(
     id,
@@ -315,7 +315,7 @@ completionPieServer <- function(id, table, con, identifier, included_studies, re
       
       output$plot <- renderPlotly({
         
-        colors <- c("#9CAF88", '#808080')
+        colors <- c("#76A8C1", '#808080')
         
         if(remove_failed == TRUE){
           
@@ -1113,7 +1113,7 @@ search_UI <- function(id, table) {
         ),
         
         
-        DT::dataTableOutput(ns("search_results_studies")) %>% withSpinner(color="#391171")
+        DT::dataTableOutput(ns("search_results_studies")) %>% withSpinner(color="#76A8C1")
         
     )
     
@@ -1323,6 +1323,7 @@ search_Server <- function(id,
             str_trim() %>%
             str_replace_all(pattern = ", ", repl = ",") %>%
             str_replace_all(pattern = " ,", repl = ",") %>%
+            str_replace_all(pattern = "[\r\n]", repl = "") %>%
             str_split("\\,") %>%
             unlist() %>%
             as.list() %>%
@@ -1347,6 +1348,7 @@ search_Server <- function(id,
             str_trim() %>%
             str_replace_all(pattern = ", ", repl = ",") %>%
             str_replace_all(pattern = " ,", repl = ",") %>%
+            str_replace_all(pattern = "[\r\n]", repl = "") %>%
             str_split("\\,") %>%
             unlist() %>%
             as.list() %>%
@@ -1367,6 +1369,7 @@ search_Server <- function(id,
             str_trim() %>%
             str_replace_all(pattern = ", ", repl = ",") %>%
             str_replace_all(pattern = " ,", repl = ",") %>%
+            str_replace_all(pattern = "[\r\n]", repl = "") %>%
             str_split("\\,") %>%
             unlist() %>%
             as.list() %>%
@@ -1776,39 +1779,39 @@ search_Server <- function(id,
                  Url = url,
                  Year = year,
                  DOI= doi,
-                 `Publication Name` = journal) %>%
-          mutate(`Alternate Name` = "",
-                 `Author Address` = "",
-                 `Reference Type` = "",
+                 PublicationName = journal) %>%
+          mutate(AlternateName = "",
+                 AuthorAddress = "",
+                 ReferenceType = "",
                  Keywords = keywords,
                  CustomId = uid,
-                 `PDF Relative Path` = paste0(uid, ".pdf")) %>%
+                 PdfRelativePath = paste0(uid, ".pdf")) %>%
           select(Title,
                  Authors,
-                 `Publication Name`,
-                 `Alternate Name`,
+                 PublicationName,
+                 AlternateName,
                  Abstract,
                  Url,
-                 `Author Address`,
+                 AuthorAddress,
                  Year,
                  DOI,
-                 `Reference Type`,
+                 ReferenceType,
                  Keywords,
                  CustomId,
-                 `PDF Relative Path`)
+                 PdfRelativePath)
         
         
       })
       
-      # download refs button server side - endnote
+      # download refs button server side
       output$download_syrf <- downloadHandler(
         filename = function() {
-          paste0("citations-srf-", Sys.Date(),
+          paste0("citations-syrf-", Sys.Date(),
                  ".csv", sep="")
         },
         content = function(file) {
           write.csv(search_results_download_syrf(), file,
-                    col.names=TRUE, row.names = F, quote=FALSE, na="")
+                    col.names=TRUE, row.names = F, na="")
         })
       
       search_results_download_endnote <- reactive({
@@ -1820,10 +1823,12 @@ search_Server <- function(id,
         results <- results %>%
           filter(uid %in% search_results()$uid) %>%
           mutate("Reference Type" = "Journal Article") %>%
-          mutate(isbn = gsub("\\r\\n|\\r|\\n", "", isbn)) %>%
+          mutate("ISBN/ISSN" = NA,
+                 "pages" = NA,
+                 "volume" = NA,
+                 "number" = NA) %>%
           rename("Custom 1" = uid,
-                 "Secondary Title" = journal,
-                 "ISBN/ISSN" = isbn) %>%
+                 "Secondary Title" = journal) %>%
           select("Reference Type", "author", "year",
                  "Secondary Title", "doi", "title",
                  "pages", "volume", "number", "abstract",
