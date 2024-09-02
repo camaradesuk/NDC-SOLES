@@ -297,7 +297,7 @@ institution_tag <- tbl(con, "institution_tag") %>%
 ror_coords <- tbl(con, "ror_coords")
 
 institution_tag <- merge(institution_tag, ror_coords, by = "ror", all = TRUE) %>%
-  rename(lat = latitude,
+  mutate(lat = latitude,
          long = longitude)
 
 country_codes <- dbReadTable(con, "country_code")
@@ -305,6 +305,11 @@ country_codes <- dbReadTable(con, "country_code")
 institution_tag <- merge(institution_tag, country_codes, by = "institution_country_code", all.x = TRUE)
 
 institution_tag[is.na(institution_tag)] <- "Unknown"
+
+institution_tag$latitude <- as.numeric(institution_tag$latitude)
+institution_tag$lat <- as.numeric(institution_tag$lat)
+institution_tag$longitude <- as.numeric(institution_tag$longitude)
+institution_tag$long <- as.numeric(institution_tag$long)
 
 dataframes_for_app[["institution_tag"]] <- institution_tag
 

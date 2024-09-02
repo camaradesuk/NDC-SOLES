@@ -37,7 +37,7 @@ ui_tab_location <- tabItem(tabName = "data-summary-location",
                          fluidRow(
                            box(
                              width = 12,
-                             title = "Instutitons conducting controlled studies evaluating interventions",
+                             title = "Research institutions world map",
                              status = "primary",
                              solidHeader = TRUE,
                              collapsable = FALSE,
@@ -47,18 +47,17 @@ ui_tab_location <- tabItem(tabName = "data-summary-location",
                                # First sidebar with filter icon
                                boxSidebar(
                                  width = 30,
-                                 background = "#64C296",
+                                 background = "#344149",
                                  id = "inst_loc_sidebar",
                                  icon = icon("info"),
                                  fluidRow(
                                    column(width = 11,
-                                          p("This map contains data on the location of first authors from across acticles represented in the iRISE database (including both controlled evaluations of interventions and other studies evaluating interventions). We were only able to obtain data
-                                               for article with a DOI and where the author's institutional information was present in OpenAlex. For more information on our methodology, please visit the methodology page."),
+                                          p("This map contains data on the location of first authors from across publications included in the NDC-SOLES database."),
                                           tags$div(
                                             style = "padding: 0px;",
                                             selectizeInput(inputId = "country_select",
                                                            label = tags$p("Select a Country", style = "color: #ffffff; font-family: KohinoorBangla, sans-serif;margin: 0; padding: 0;"),
-                                                           choices = sort(unique(ror_data$country)),
+                                                           choices = sort(unique(institution_tag$country)),
                                                            selected = NULL,
                                                            multiple = TRUE,
                                                            options = list(
@@ -68,8 +67,8 @@ ui_tab_location <- tabItem(tabName = "data-summary-location",
                                             pickerInput(
                                               inputId = "continent_select",
                                               label = tags$p("Select a Continent", style = "color: #ffffff; font-family: KohinoorBangla, sans-serif;margin: 0; padding: 0;"),
-                                              choices = sort(unique(ror_data$continent)),
-                                              selected = sort(unique(ror_data$continent)),
+                                              choices = sort(unique(institution_tag$continent)),
+                                              selected = sort(unique(institution_tag$continent)),
                                               multiple = TRUE,
                                               options = pickerOptions(
                                                 noneSelectedText = "Please Select",
@@ -81,8 +80,8 @@ ui_tab_location <- tabItem(tabName = "data-summary-location",
                                             pickerInput(
                                               inputId = "inst_type_select",
                                               label = tags$p("Select Institution Type", style = "color: #ffffff; font-family: KohinoorBangla, sans-serif;margin: 0; padding: 0;"),
-                                              choices = sort(unique(ror_data$type)),
-                                              selected = sort(unique(ror_data$type)),
+                                              choices = sort(unique(institution_tag$type)),
+                                              selected = sort(unique(institution_tag$type)),
                                               multiple = TRUE,
                                               options = pickerOptions(
                                                 noneSelectedText = "Please Select",
@@ -94,23 +93,11 @@ ui_tab_location <- tabItem(tabName = "data-summary-location",
                                           )
                                    )
                                  )
-                               ),
-                               
-                               # Second sidebar with info-circle icon
-                               boxSidebar(
-                                 id = "int_ac_dis_sidebar",
-                                 icon = icon("info-circle"),
-                                 tags$div(
-                                   style = "padding: 10px;",
-                                   tags$h4("Guidance for Evidence Map"),
-                                   tags$p("Use the map below to visualize evidence on interventions to improve different types of reproducibility and related outcomes. This visualization contains all articles which have been classified as controlled, primary research studies evaluating an intervention to improve reproducibility. Click a bubble to see all the relevant evidence in the table below."),
-                                   tags$p("You can select multiple outcome measures and subgroups to filter the data. The bubbles represent the number of studies, with larger bubbles indicating more studies.")
-                                 )
                                )
                              ),
                              fluidRow(
                                column(width = 12,
-                                      leafletOutput("institution_map", height = 500) %>% withSpinner(color="#96c296") ),
+                                      leafletOutput("institution_map", height = 500) %>% withSpinner(color="#76A8C1") ),
                                
                              )
                              

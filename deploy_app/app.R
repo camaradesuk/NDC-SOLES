@@ -66,6 +66,7 @@ source("ui_tab_workflow.R")
 source("ui_tab_openresearch.R")
 source("ui_tab_rob.R")
 source("ui_tab_funder.R")
+source("ui_tab_location.R")
 source("ui_tab_model_trends.R")
 source("ui_tab_int_trends.R")
 source("ui_tab_outcome_trends.R")
@@ -156,6 +157,7 @@ ui <- bs4DashPage(
       ui_tab_rob,
       ui_tab_openresearch,
       ui_tab_funder,
+      ui_tab_location,
       # ui_tab_int_summary,
       ui_tab_model_trends,
       ui_tab_int_trends,
@@ -459,10 +461,10 @@ server <- function(input, output, session) {
         opacity = 0.8
       ) %>%
       setView(lat = 0, lng = 0, zoom = 1) %>%
-      fitBounds(lng1 = min(filtered_data()$long, na.rm = TRUE) - 3,
-                lat1 = min(filtered_data()$lat, na.rm = TRUE) - 3,
-                lng2 = max(filtered_data()$long, na.rm = TRUE) + 3,
-                lat2 = max(filtered_data()$lat, na.rm = TRUE) + 3)
+      fitBounds(lng1 = min(filtered_map_data()$long, na.rm = TRUE) - 3,
+                lat1 = min(filtered_map_data()$lat, na.rm = TRUE) - 3,
+                lng2 = max(filtered_map_data()$long, na.rm = TRUE) + 3,
+                lat2 = max(filtered_map_data()$lat, na.rm = TRUE) + 3)
     
     
   })
