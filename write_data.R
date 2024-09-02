@@ -296,7 +296,9 @@ institution_tag <- tbl(con, "institution_tag") %>%
 
 ror_coords <- tbl(con, "ror_coords")
 
-institution_tag <- merge(institution_tag, ror_coords, by = "ror", all = TRUE)
+institution_tag <- merge(institution_tag, ror_coords, by = "ror", all = TRUE) %>%
+  rename(lat = latitude,
+         long = longitude)
 
 country_codes <- dbReadTable(con, "country_code")
 
