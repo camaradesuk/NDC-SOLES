@@ -46,7 +46,7 @@ query_scopus <- "(TITLE-ABS-KEY(\"neurodevelopmental disorder*\" OR \"neurodevel
 
 # Retrieve database search results
 pubmed <- pubmed_search(query_pubmed, timespan = "1week")
-scopus <- scopus_search(query_scopus, api_key= Sys.getenv("SCOPUS_API_TOKEN"), retMax = 500)
+scopus <- scopus_search(query_scopus, api_key= Sys.getenv("SCOPUS_API_TOKEN"), retMax = 10)
 wos    <- wos_search(query_wos, timespan = "1week")
 
 # Workaround for wos API issue
@@ -126,54 +126,6 @@ run_ml(con, project_name="ndc-soles", classifier_name="in_vivo",
 
 # Retrieve full texts, save files to folder, and update database table
 get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
-Sys.sleep(500)
-get_ft(con, path="full_texts")
 
 # ------------------------------------------------------------------------------
 # Tag Study Characteristics Using RegEx
@@ -201,12 +153,11 @@ rob_tag(con, num_cores = 10)
 # Tag for open data and code availability statements and write to database table
 ods_tag(con, path="full_texts")
 
-oa_tag(con, "emma.wilson@ed.ac.uk") 
+#oa_tag(con, "emma.wilson@ed.ac.uk") 
 
 # Open Alex
-source("openalex_tag.R")
-openalex_tag(con)
-
-
 get_openalex_metadata(con)
+get_openalex_update(con)
 
+source("get_institution_coords.R")
+get_ror_coords(con)

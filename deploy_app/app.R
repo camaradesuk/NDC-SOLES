@@ -32,6 +32,7 @@ library(tidyr)
 library(shinyalert)
 library(rsconnect)
 library(gtools)
+library(leaflet)
 
 # set wd
 #setwd("/home/ewilson/SOLES/NDC-SOLES/deploy_app")
@@ -95,6 +96,32 @@ pico_elements_list <- list(pico_element_1 = list(id = "dropdown_model",
                            pico_element_4 = list(id = "dropdown_outcome",
                                                  table = outcome_tagging,
                                                  label1 = "Filter by outcome:",
+                                                 column1 = "name",
+                                                 filter_no = 1),
+                           pico_element_5 = list(id = "dropdown_funder",
+                                                 table = funder_tag %>% rename(name = funder_name),
+                                                 label1 = "Filter by funder:",
+                                                 column1 = "name",
+                                                 filter_no = 1),
+                           pico_element_6 = list(id = "dropdown_institution",
+                                                 table = institution_tag,
+                                                 label1 = "Filter by institution:",
+                                                 column1 = "name",
+                                                 filter_no = 1),
+                           pico_element_7 = list(id = "dropdown_discipline",
+                                                 table = discipline_tag %>% rename(name = main_discipline),
+                                                 label1 = "Filter by OpenAlex discipline:",
+                                                 column1 = "name",
+                                                 filter_no = 1),
+                           pico_element_8 = list(id = "dropdown_language",
+                                                 table = article_tag %>% rename(name = language),
+                                                 label1 = "Filter by language:",
+                                                 column1 = "name",
+                                                 filter_no = 1),
+                           pico_element_9 = list(id = "dropdown_retraction",
+                                                 table = retraction_tag %>% 
+                                                   mutate(name = ifelse(is_retracted==FALSE, "Not retracted", "Retracted")),
+                                                 label1 = "Show or hide retracted articles:",
                                                  column1 = "name",
                                                  filter_no = 1))
 
@@ -350,6 +377,105 @@ server <- function(input, output, session) {
       )
       
     )
+  })
+  
+  # Location - server -----
+  scale_size <- function(num) {
+    scales::rescale(num, c(3, 15))  # Adjust size range as necessary
+  }
+  
+  # Create a reactive color palette
+  color_palette <- reactive({
+    colorFactor(palette = "Set2", domain = institution_tag$type)
+  })
+  
+  
+  # Location - filtered data -----
+  filtered_map_data <- reactive({
+    
+    
+    # If country is null
+    if (is.null(input$country_select)) {
+      
+      inst_locations_filter <- institution_tag %>%
+        filter(continent %in% input$continent_select,
+               type %in% input$inst_type_select) %>%
+        distinct()
+      
+    } else {
+      
+      inst_locations_filter <- institution_tag %>%
+        filter(country %in% input$country_select,
+               continent %in% input$continent_select,
+               type %in% input$inst_type_select) %>%
+        distinct()
+    }
+    
+    if (nrow(inst_locations_filter >= 1)){
+      inst_locations_filter <- inst_locations_filter %>%
+        distinct()
+      
+    } else {
+      
+      inst_locations_filter <- institution_tag %>%
+        distinct()
+      
+    }
+    
+    
+    return(inst_locations_filter)
+  })
+  
+  # Location - render leaflet map -----
+  output$institution_map <- renderLeaflet({
+    map_data <- filtered_map_data() %>%
+      group_by(name) %>%
+      mutate(filter_num_pubs = n_distinct(uid)) %>%
+      ungroup()
+    
+    leaflet(map_data) %>%
+      addProviderTiles(providers$Esri.WorldStreetMap
+      ) %>%
+      addCircleMarkers(
+        ~long,
+        ~lat,
+        popup = ~paste0("<b>", name, "</b><br>",
+                        "Institution Type: ", type, "<br>",
+                        "No. of Publications: ", filter_num_pubs),
+        radius = ~scale_size(filter_num_pubs),
+        color = "black",
+        fillColor = ~color_palette()(type),
+        fillOpacity = 1,
+        label = ~name,
+        weight = 1,
+        layerId = ~name
+        
+      ) %>%
+      addLegend(
+        position = "bottomleft",
+        pal = color_palette(),
+        values = ~type,
+        title = "Institution Type",
+        opacity = 0.8
+      ) %>%
+      setView(lat = 0, lng = 0, zoom = 1) %>%
+      fitBounds(lng1 = min(filtered_data()$long, na.rm = TRUE) - 3,
+                lat1 = min(filtered_data()$lat, na.rm = TRUE) - 3,
+                lng2 = max(filtered_data()$long, na.rm = TRUE) + 3,
+                lat2 = max(filtered_data()$lat, na.rm = TRUE) + 3)
+    
+    
+  })
+  
+  
+  observe({
+    leafletProxy("institution_map", data = filtered_map_data()) %>%
+      #clearShapes() %>%
+      fitBounds(lng1 = min(filtered_map_data()$long, na.rm = TRUE) - 3,
+                lat1 = min(filtered_map_data()$lat, na.rm = TRUE) - 3,
+                lng2 = max(filtered_map_data()$long, na.rm = TRUE) + 3,
+                lat2 = max(filtered_map_data()$lat, na.rm = TRUE) + 3)
+    
   })
 
   

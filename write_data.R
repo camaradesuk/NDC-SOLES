@@ -294,6 +294,16 @@ institution_tag <- tbl(con, "institution_tag") %>%
   left_join(included_small, by = "doi", relationship = "many-to-many") %>%
   mutate(year = as.numeric(year))
 
+ror_coords <- tbl(con, "ror_coords")
+
+institution_tag <- merge(institution_tag, ror_coords, by = "ror", all = TRUE)
+
+country_codes <- dbReadTable(con, "country_code")
+
+institution_tag <- merge(institution_tag, country_codes, by = "institution_country_code", all.x = TRUE)
+
+institution_tag[is.na(institution_tag)] <- "Unknown"
+
 dataframes_for_app[["institution_tag"]] <- institution_tag
 
 # Create retraction tag table
@@ -367,6 +377,7 @@ app_deploy <- try({
                  "ui_tab_int_trends.R",
                  "create_theme.R",
                  "ui_tab_database.R",
+                 "ui_tab_funder.R",
                  "create_theme.R",
                  "fst_files/",
                  "www/"),
