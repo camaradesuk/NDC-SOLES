@@ -46,7 +46,7 @@ query_scopus <- "(TITLE-ABS-KEY(\"neurodevelopmental disorder*\" OR \"neurodevel
 
 # Retrieve database search results
 pubmed <- pubmed_search(query_pubmed, timespan = "1week")
-scopus <- scopus_search(query_scopus, api_key= Sys.getenv("SCOPUS_API_TOKEN"), retMax = 10)
+scopus <- scopus_search(query_scopus, api_key= Sys.getenv("SCOPUS_API_TOKEN"), retMax = 500)
 wos    <- wos_search(query_wos, timespan = "1week")
 
 # Workaround for wos API issue
@@ -112,7 +112,7 @@ unscreened_set <- get_studies_to_screen(con,
                                         classifier_name = "in_vivo")
 
 # Read in training data for ML
-screening_decisions <- read.csv("screening/training/NDC-SOLES_ml_training.csv", 
+screening_decisions <- read.csv("screening/labelled_data/ndc_soles_labelled_data_corrected.csv", 
                                 stringsAsFactors = F)
 
 # Run machine learning and write results to database table
