@@ -68,8 +68,8 @@ source("ui_tab_rob.R")
 source("ui_tab_funder.R")
 source("ui_tab_location.R")
 source("ui_tab_model_trends.R")
-source("ui_tab_int_trends.R")
-source("ui_tab_outcome_trends.R")
+#source("ui_tab_int_trends.R")
+#source("ui_tab_outcome_trends.R")
 source("ui_tab_evidence_map.R")
 source("ui_tab_database.R")
 source("ui_tab_about.R")
@@ -160,8 +160,8 @@ ui <- bs4DashPage(
       ui_tab_location,
       # ui_tab_int_summary,
       ui_tab_model_trends,
-      ui_tab_int_trends,
-      ui_tab_outcome_trends,
+      #ui_tab_int_trends,
+      #ui_tab_outcome_trends,
       ui_tab_evidence_map,
       # ui_tab_matrix,
       ui_tab_database,

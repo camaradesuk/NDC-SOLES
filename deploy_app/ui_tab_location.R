@@ -1,35 +1,41 @@
 # Location info tab UI--------------------------------------------------------------------------------------------------------------------------
 ui_tab_location <- tabItem(tabName = "data-summary-location",
-                         
-                         bs4Jumbotron(
-                           title = tags$h1("Research around the world"),
-                           lead = tags$p("Using data from OpenAlex, we can visualise where around the world research is being produced."),
-                           status = "primary",
-                           btnName = NULL
-                         ),
+                           
+                           fluidRow(
+                             box(
+                              title = "Research around the world",
+                              collapsible = FALSE,
+                              width = 12,
+                              solidHeader = TRUE,
+                              status = "primary",
+                              p("The research publications included in the NDC-SOLES database come from 
+                                all around the world. Explore the map below to find out more about the 
+                                institutions producing research.")
+                             )
+                           ),
                          
                          fluidRow(valueBox(
                            width=4,
-                           subtitle = tags$h2("Institutions producing research", style = "color: white;"),
+                           subtitle = span("Institutions producing research", style = "color: white;"),
                            color = "secondary",
-                           value = tags$p(length(unique(institution_tag$name))-1,
+                           value = span(length(unique(institution_tag$name))-1,
                                           style = "font-size: 300%; color: white;"),
                            icon = icon("landmark")
                          ),
                          
                          valueBox(
                            width=4,
-                           subtitle = tags$h2("Countries producing research", style = "color: white;"),
+                           subtitle = span("Countries producing research", style = "color: white;"),
                            color = "secondary",
-                           value = tags$p(round(length(unique(institution_tag$institution_country_code[which(institution_tag$institution_country_code!="Unknown")]))/nrow(included_with_metadata)*100,1), "%",
+                           value = span(length(unique(institution_tag$country))-1,
                                           style = "font-size: 300%; color: white;"),
-                           icon = icon("bar-chart", verify_fa = FALSE)
+                           icon = icon("earth-europe", verify_fa = FALSE)
                          ),
                          valueBox(
                            width=4,
-                           subtitle = tags$h2("Publications tagged with institution", style = "color: white;"),
+                           subtitle = span("Publications tagged with institution", style = "color: white;"),
                            color = "secondary",
-                           value = tags$p(round(length(unique(institution_tag$name[which(institution_tag$name!="Unknown")]))/nrow(included_with_metadata)*100,1), "%",
+                           value = span(round(length(unique(institution_tag$name[which(institution_tag$name!="Unknown")]))/nrow(included_with_metadata)*100,1), "%",
                                           style = "font-size: 300%; color: white;"),
                            icon = icon("bar-chart", verify_fa = FALSE)
                          )
@@ -49,14 +55,13 @@ ui_tab_location <- tabItem(tabName = "data-summary-location",
                                  width = 30,
                                  background = "#344149",
                                  id = "inst_loc_sidebar",
-                                 icon = icon("info"),
+                                 icon = icon("angles-right"),
                                  fluidRow(
                                    column(width = 11,
-                                          p("This map contains data on the location of first authors from across publications included in the NDC-SOLES database."),
                                           tags$div(
                                             style = "padding: 0px;",
                                             selectizeInput(inputId = "country_select",
-                                                           label = tags$p("Select a Country", style = "color: #ffffff; font-family: KohinoorBangla, sans-serif;margin: 0; padding: 0;"),
+                                                           label = span("Select a Country", style = "color: #ffffff; font-family: KohinoorBangla, sans-serif;margin: 0; padding: 0;"),
                                                            choices = sort(unique(institution_tag$country)),
                                                            selected = NULL,
                                                            multiple = TRUE,
@@ -66,7 +71,7 @@ ui_tab_location <- tabItem(tabName = "data-summary-location",
                                             ),
                                             pickerInput(
                                               inputId = "continent_select",
-                                              label = tags$p("Select a Continent", style = "color: #ffffff; font-family: KohinoorBangla, sans-serif;margin: 0; padding: 0;"),
+                                              label = span("Select a Continent", style = "color: #ffffff; font-family: KohinoorBangla, sans-serif;margin: 0; padding: 0;"),
                                               choices = sort(unique(institution_tag$continent)),
                                               selected = sort(unique(institution_tag$continent)),
                                               multiple = TRUE,
@@ -79,7 +84,7 @@ ui_tab_location <- tabItem(tabName = "data-summary-location",
                                             ),
                                             pickerInput(
                                               inputId = "inst_type_select",
-                                              label = tags$p("Select Institution Type", style = "color: #ffffff; font-family: KohinoorBangla, sans-serif;margin: 0; padding: 0;"),
+                                              label = span("Select Institution Type", style = "color: #ffffff; font-family: KohinoorBangla, sans-serif;margin: 0; padding: 0;"),
                                               choices = sort(unique(institution_tag$type)),
                                               selected = sort(unique(institution_tag$type)),
                                               multiple = TRUE,
@@ -97,11 +102,23 @@ ui_tab_location <- tabItem(tabName = "data-summary-location",
                              ),
                              fluidRow(
                                column(width = 12,
-                                      leafletOutput("institution_map", height = 500) %>% withSpinner(color="#76A8C1") ),
+                                      leafletOutput("institution_map", height = 500) %>% withSpinner(color="#76A8C1") )
                                
                              )
                              
                            )
+                         ),
+                         
+                         fluidRow(
+                           box(title = "How to interpret this plot",
+                               collapsible = FALSE,
+                               solidHeader = TRUE,
+                               width = 12,
+                               background = "primary",
+                               p("This map contains data on the location of first authors from across publications 
+                                     included in the NDC-SOLES database. Data are from OpenAlex and the Research 
+                                     Organization Registry. Click on a dot on the map for more information. 
+                                 Click the arrows on the top right of the map to filter data."))
                          )
                          
 )

@@ -2,30 +2,30 @@ ui_included_studies <- tabItem(tabName = "studies-included-summary-dc",
         fluidRow(
           valueBox(
             width=3,
-            subtitle = tags$p("Publications this week", style = "font-size: 120%; color: white;"),
+            subtitle = span("Publications this week", style = "font-size: 120%; color: white;"),
             color = "secondary",
-            value = tags$p(sum(as.numeric(include_by_date$n)[which(include_by_date$date >= Sys.Date()-7)]),
+            value = span(sum(as.numeric(include_by_date$n)[which(include_by_date$date >= Sys.Date()-7)]),
                            style = "font-size: 300%; color: white;"),
             icon = icon("clock", verify_fa = FALSE)),
           valueBox(
             width=3,
-            subtitle = tags$p("Publications in the last year", style = "font-size: 120%; color: white;"),
+            subtitle = span("Publications in the last year", style = "font-size: 120%; color: white;"),
             color = "secondary",
-            value = tags$p(sum(as.numeric(include_by_date$n)[which(include_by_date$date >= Sys.Date()-365)]),
+            value = span(sum(as.numeric(include_by_date$n)[which(include_by_date$date >= Sys.Date()-365)]),
                            style = "font-size: 300%; color: white;"),
             icon = icon("calendar")),
           valueBox(
             width=3,
-            subtitle = tags$p("Total publications", style = "font-size: 120%; color: white;"),
+            subtitle = span("Total publications", style = "font-size: 120%; color: white;"),
             color = "secondary",
-            value = tags$p(sum(as.numeric(include_by_date$n)),
+            value = span(sum(as.numeric(include_by_date$n)),
                            style = "font-size: 300%; color: white;"),
             icon = icon("database", verify_fa = FALSE)),
           valueBox(
             width=3,
-            subtitle = tags$p("Retracted publications", style = "font-size: 150%; color: black;"),
+            subtitle = span("Retracted publications", style = "font-size: 120%; color: black;"),
             color = "danger",
-            value = tags$p(nrow(filter(retraction_tag, is_retracted == TRUE)),
+            value = span(nrow(filter(retraction_tag, is_retracted == TRUE)),
                            style = "font-size: 300%; color: black;"),
             icon = icon("circle-xmark"))
         ),
@@ -36,6 +36,7 @@ ui_included_studies <- tabItem(tabName = "studies-included-summary-dc",
             title = "",
             status = "secondary",
             solidHeader = FALSE,
+            collapsible = FALSE,
             type = "tabs",
             yearBarUI_included_only("included_studies_over_time_bar",
                                     title = "Articles published per year",
@@ -45,6 +46,14 @@ ui_included_studies <- tabItem(tabName = "studies-included-summary-dc",
             
             
             
+          ),
+          plot_interpret_UI("included_interpret",
+                            title = "How to intepret this plot",
+                            p("The bar plot shows the number of publications per year included 
+                              in the NDC-SOLES dataset. We search three bibliographic sources 
+                              each week, and use machine learning to identify relevant publications 
+                              from search results. Read our Workflow page to learn more."),
+                            theme = "primary"
           )
         )
 )

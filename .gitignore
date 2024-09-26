@@ -1,3 +1,15 @@
+#Cogfigure
+configure.R
+
+# Big files/folders
+expanded_search_20230626/
+full_texts
+ndc-soles-pdftotxt
+ndc-soles-xml
+xml_tests
+deploy_app/rsconnect
+deploy_app/fst_files/*
+
 # History files
 .Rhistory
 .Rapp.history

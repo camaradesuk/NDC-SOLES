@@ -1,28 +1,33 @@
 ui_tab_rob <- tabItem(tabName = "data-summary-rob",
                       
-                      bs4Jumbotron(
-                        title = tags$h1("Risk of bias reporting"),
-                        lead = tags$p("This summary shows the overall percentages of publications
-                reporting measures to redue the risk of bias in animal studies. You can
-                also benchmark improvements by viewing the number of publications in each category over time"),
-                status = "primary",
-                btnName = NULL
+                      fluidRow(
+                        box(
+                          title = "Reporting of measures to reduce the risk of bias",
+                          width = 12,
+                          solidHeader = TRUE,
+                          status = "primary",
+                          collapsible = FALSE,
+                          p("Various types of bias can be introduced into animal experiments, which 
+                            reduce the internal validity of an experiment. Measures to reduce the 
+                            risk of bias include blinding (also known as masking), and reporting 
+                            criteria for data exclusions.")
+                        )
                       ),
                 
                 fluidRow(
                   
-                  valueBox(
-                    width=4,
-                    subtitle = tags$p("Randomisation", style = "font-size: 150%; color: white;"),
-                    color = "secondary",
-                    value = tags$p(round(length(rob$uid[which(rob$is_random=="reported")])/
-                                           length(rob$uid[which(!is.na(rob$is_random))])*100,1), "%",
-                                   style = "font-size: 200%; color: white;"),
-                    icon = icon("asterisk")
-                  ),
+                  # valueBox(
+                  #   width=4,
+                  #   subtitle = tags$p("Randomisation", style = "font-size: 150%; color: white;"),
+                  #   color = "secondary",
+                  #   value = tags$p(round(length(rob$uid[which(rob$is_random=="reported")])/
+                  #                          length(rob$uid[which(!is.na(rob$is_random))])*100,1), "%",
+                  #                  style = "font-size: 200%; color: white;"),
+                  #   icon = icon("asterisk")
+                  # ),
                   
                   valueBox(
-                    width=4,
+                    width=6,
                     subtitle = tags$p("Blinded outcome assessment", style = "font-size: 150%; color: white;"),
                     color = "secondary",
                     value = tags$p(round(length(rob$uid[which(rob$is_blind=="reported")])/
@@ -32,7 +37,7 @@ ui_tab_rob <- tabItem(tabName = "data-summary-rob",
                   ),
                   
                   valueBox(
-                    width=4,
+                    width=6,
                     subtitle = tags$p("Conflicts of interest statement", style = "font-size: 150%; color: white;"),
                     color = "secondary",
                     value =tags$p(round(length(rob$uid[which(rob$is_interest=="reported")])/
@@ -73,13 +78,14 @@ ui_tab_rob <- tabItem(tabName = "data-summary-rob",
                     title = "",
                     status = "primary",
                     solidHeader = FALSE,
+                    collapsible = FALSE,
                     type = "tabs",
                     
-                    yearBarUI("random_per_year",
-                              title = "Randomisation over time",
-                              theme = "danger",
-                              table = rob,
-                              spinner_colour = "#76A8C1"),
+                    # yearBarUI("random_per_year",
+                    #           title = "Randomisation over time",
+                    #           theme = "danger",
+                    #           table = rob,
+                    #           spinner_colour = "#76A8C1"),
                     
                     yearBarUI("blind_per_year",
                               title = "Blinding over time",
@@ -113,8 +119,8 @@ ui_tab_rob <- tabItem(tabName = "data-summary-rob",
                                            You can hover your mouse over the bars to see the exact number of publications estimated to be in each category for any given year.
                                            To see only a specific category, double click on the relevant coloured square in the
                                            legend on the top right. To remove any category, click once on any coloured square in the legend.
-                                           The tools and resources used to obtain the data are shown under the x-axis. Note that many publications are
-                                           still missing a risk of bias reporting status for one or more measures due to processing time or lack of available data."),
+                                           The tool used is RobPredictor, Wang, Q., et al (2021), DOI:10.1002/jrsm.1533. Note that some publications may be
+                                           missing a risk of bias reporting status due to lack of available data."),
                                     theme = "primary"
                   )
                 )

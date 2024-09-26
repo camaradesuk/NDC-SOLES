@@ -864,6 +864,7 @@ plot_interpret_UI <- function(id,
       width = 12,
       title = title,
       background = theme,
+      collapsible = FALSE,
       info_text)
     
   )
@@ -903,6 +904,7 @@ search_UI <- function(id, table) {
     
     tabBox(width= 12,
            status = "primary",
+           collapsible = FALSE,
            id = ns("search_tabs"),
            side = "left",
            
@@ -1010,6 +1012,7 @@ search_UI <- function(id, table) {
     
     box(width= 12,
         maximizable = TRUE,
+        collapsible = FALSE,
         status = "primary",
         title = "Citations in database",
         

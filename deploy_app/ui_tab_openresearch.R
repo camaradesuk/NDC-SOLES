@@ -1,40 +1,46 @@
 # Transparency info tab UI--------------------------------------------------------------------------------------------------------------------------
 ui_tab_openresearch <- tabItem(tabName = "data-summary-openresearch",
-        
-        bs4Jumbotron(
-          title = tags$h1("Open research practices"),
-          lead = tags$p("Open research practices help build collaboration and ensure transparency in research. This summary shows the overall percentages of publications
-                engaging with open access publication, and sharing of data and code. You can
-                also benchmark improvements by viewing the number of publications over time."),
-          status = "primary",
-          btnName = NULL
+                               
+        fluidRow(
+          box(
+            title = "Open research practices",
+            solidHeader = TRUE,
+            width = 12,
+            status = "primary",
+            collapsible = FALSE,
+            p("Open research practices help build collaboration and ensure transparency in 
+              research. Publishing open access allows readers free access to research findings, 
+              and there are multiple open access publishing options. Sharing data means others 
+              can build upon scientific findings, and sharing analysis code allows verification 
+              of findings.")
+          )
         ),
         
         fluidRow(
           
           valueBox(
             width=4,
-            subtitle = tags$h2("Published open access", style = "color: white;"),
+            subtitle = span("Published open access", style = "color: white;"),
             color = "secondary",
-            value = tags$p(round(length(oa_tag$uid[which(oa_tag$is_oa==TRUE)])/length(oa_tag$uid)*100,1), "%",
+            value = span(round(length(oa_tag$uid[which(oa_tag$is_oa==TRUE)])/length(oa_tag$uid)*100,1), "%",
                            style = "font-size: 300%; color: white;"),
             icon = icon("lock-open")
           ),
           
           valueBox(
             width=4,
-            subtitle = tags$h2("Publications shared data", style = "color: white;"),
+            subtitle = span("Publications shared data", style = "color: white;"),
             color = "secondary",
-            value = tags$p(round(length(transparency$uid[which(transparency$is_open_data==TRUE)])/length(transparency$uid)*100,1), "%",
+            value = span(round(length(transparency$uid[which(transparency$is_open_data==TRUE)])/length(transparency$uid)*100,1), "%",
                            style = "font-size: 300%; color: white;"),
             icon = icon("bar-chart", verify_fa = FALSE)
           ),
           
           valueBox(
             width=4,
-            subtitle = tags$h2("Publications shared code", style = "color: white;"),
+            subtitle = span("Publications shared code", style = "color: white;"),
             color = "secondary",
-            value = tags$p(round(length(transparency$uid[which(transparency$is_open_code==TRUE)])/length(transparency$uid)*100,1), "%",
+            value = span(round(length(transparency$uid[which(transparency$is_open_code==TRUE)])/length(transparency$uid)*100,1), "%",
                            style = "font-size: 300%; color: white;"),
             icon = icon("code")
           )
@@ -48,6 +54,7 @@ ui_tab_openresearch <- tabItem(tabName = "data-summary-openresearch",
           title = "",
           status = "secondary",
           solidHeader = FALSE,
+          collapsible = FALSE,
           type = "tabs",
           
           yearBarUI("oa_pubs_per_year",
@@ -81,14 +88,14 @@ ui_tab_openresearch <- tabItem(tabName = "data-summary-openresearch",
                           title = tags$p("How To Interpret This Plot"),
                           
                           div(
-                            tags$p("Each bar plot shows the number of publications in each category over time.
+                            p("Each bar plot shows the number of publications in each category over time.
                     Navigate between tabs to see different open research practices.
                     You can hover your mouse over the bars to see the exact number of publications estimated to be in each category for any given year.
                     To see only a specific category, double click on the relevant coloured square in the
                     legend on the top right. To remove any category, click once on any coloured square in the legend.
-                    The tools and resources used to obtain the data are shown under the x-axis. Note that many publications are
-                    still missing a status for one or more open research practices due to processing time or lack of available data."),
-                    tags$a("Find out more about open access types on the Georgia State University Research Guides webpage.", href = 'https://research.library.gsu.edu/c.php?g=115588&p=754380', style = "color: #FFFFFF;"),
+                    Open access information comes from OpenAlex. The tool used for open code and open data tagging is ODDPub, Riedel, N., et al (2020), DOI:10.5334/dsj-2020-042. Note that some publications may be
+                                           missing a risk of bias reporting status due to lack of available data."),
+                    tags$a(strong("Find out more about open access types on the Georgia State University Research Guides webpage."), href = 'https://research.library.gsu.edu/c.php?g=115588&p=754380', style = "color: #FFFFFF;"),
                     ),
                     theme = "primary")
         

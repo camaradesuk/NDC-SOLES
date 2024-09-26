@@ -6,6 +6,7 @@ ui_tab_about <- tabItem(tabName = "about",
                               title = span("About NDC-SOLES", style="color:white"),
                               status = "secondary",
                               solidHeader = TRUE,
+                              collapsible = FALSE,
                               p("Read our full methods in our ",
                                 strong(tags$a(href="https://osf.io/gftzp/", "project protocol.")), "Thank you to Tamsin Baxter, Sarah Bendova, Sarah Giachetti, Chloe Henley, Nawon Kim, Malcolm Macleod, Jessica Pierce, Fiona Ramage, and Eleni Tsoukala for providing data annotation to help train our machine-learning tools."),
                               p("The NDC-SOLES Project is funded by a Simons Initiative for the Developing Brain (SIDB) PhD studentship.",
@@ -22,6 +23,7 @@ ui_tab_about <- tabItem(tabName = "about",
                               title = span("CAMARADES", style="color:white"),
                               status="secondary",
                               solidHeader = TRUE,
+                              collapsible = FALSE,
                               p("The", tags$a(href="https://www.ed.ac.uk/clinical-brain-sciences/research/camarades", "CAMARADES"), "(Collaborative Approach to Meta-Analysis and Review of
                       Animal Data from Experimental Studies) group specialise in performing", strong("systematic review and meta-analysis"), "of data
                       from experimental studies.
@@ -35,6 +37,7 @@ ui_tab_about <- tabItem(tabName = "about",
                             title = span("Give us your feedback", style="color:white"),
                             status = "secondary",
                             solidHeader = TRUE,
+                            collapsible = FALSE,
                             p("We’re working to continually improve the NDC-SOLES app. Give us your feedback via this ",
                               strong(tags$a(href="https://forms.gle/bTPoiB9G7Yorpyxc9", "short survey.")))),
                         
@@ -42,6 +45,7 @@ ui_tab_about <- tabItem(tabName = "about",
                         box(width = 6,
                             title = "Using NDC-SOLES data",
                             background="primary",
+                            collapsible = FALSE,
                             p("All data and information are provided under a
                       Creative Commons Attribution 4.0 International license (CC BY 4.0)"),
                       p("If you have used the NDC-SOLES data for a research project or review, please cite our SOLES paper:
