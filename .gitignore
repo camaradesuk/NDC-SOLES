@@ -8,7 +8,7 @@ ndc-soles-pdftotxt
 ndc-soles-xml
 xml_tests
 deploy_app/rsconnect
-deploy_app/fst_files/*
+screening/output
 
 # History files
 .Rhistory
