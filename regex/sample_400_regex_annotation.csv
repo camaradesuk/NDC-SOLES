@@ -1,0 +1,401 @@
+uid,relevance,gene_not_listed,model_gene,species,sex,tests
+scopus-85139170604,No (not primary research),,,,,
+wos-000319109800101,No (not genetic model),SPR,,,,
+pubmed-36568983,Yes,,CHD7,Zebrafish,Not reported,None
+pubmed-39334399,Yes,,SHANK2,Mouse,Not reported,None
+pubmed-34782621,Yes,,ASH1L,Mouse,Male and female,Other Electrophysiology; EEG Recording; Social Preference Test; Self Grooming; Open Field Test
+pubmed-28217086,No (not genetic model),TS65DN,,,,
+wos-001129526200002,Yes,,SHANK3,Mouse,Male and female,Reciprocal Interaction Test; Open Field Test
+pubmed-27231709,No (not genetic model),,,,,
+pubmed-36413568,No (not animal study),,,,,
+pubmed-33762687,No (not animal study),,,,,
+pubmed-37206664,Yes,,SCN1A,Mouse,Male and female,Seizure Induction; Open Field Test; Rotarod; Y Maze
+pubmed-32694577,No (not animal study),,,,,
+pubmed-32561780,No (not animal study),,,,,
+pubmed-33737669,No (not genetic model),,,,,
+pubmed-38704506,No (not animal study),,,,,
+pubmed-35173267,No (not animal study),,,,,
+pubmed-35365601,Yes,,MECP2,Mouse,Male only,Open Field Test; Rotarod; Elevated Plus Maze; Light Dark Transition Test; Novel Object Preference Test; Three Chamber Test; Morris Water Maze
+pubmed-23912628,No (not animal study),,,,,
+pubmed-28841651,No (not animal study),,,,,
+pubmed-33159179,Yes,,DNMT3A,Mouse,Not reported,None
+pubmed-33939689,No (not animal study),,,,,
+pubmed-35301425,No (not genetic model),BMAL1,,,,
+wos-001204737300001,No (not animal study),,,,,
+pubmed-37401095,No (not genetic model),KLF7,,,,
+wos-001184929400001,No (not animal study),,,,,
+pubmed-34791268,Yes,,FMR1,Mouse,Male only,Object Location Memory; Passive Avoidance; Light Dark Transition Test; Three Chamber Test
+pubmed-37238675,Yes,,MEF2C,Zebrafish,Not reported,Swimming Activity
+wos-000904982000006,No (not animal study),,,,,
+scopus-85138903049,Yes,,FMR1,Mouse,Male only,EEG Recording
+pubmed-38750585,No (not genetic model),SEMA5A,,,,
+pubmed-22257369,Yes,,FMR1,Mouse,Male only,Erasmus Ladder
+pubmed-36878905,Yes,,CHD8,Non-human primate,Male only,None
+pubmed-27625594,No (not genetic model),WDR13,,,,
+scopus-85120045241,No (not genetic model),SMG6,,,,
+pubmed-22719219,Yes,,TCF7L2,Mouse,Male only,None
+pubmed-31273213,No (not genetic model),SMARCB1,,,,
+scopus-84864307495,No (not animal study),,,,,
+pubmed-35830857,No (not animal study),,,,,
+pubmed-34671237,No (not genetic model),DLX,,,,
+pubmed-37658228,No (not genetic model),,,,,
+wos-000419945400029,Yes,,FMR1,Mouse,Female only,None
+pubmed-29163060,No (not genetic model),,,,,
+pubmed-24039873,No (not genetic model),TLR4,,,,
+pubmed-22479578,No (not genetic model),PDYN,,,,
+pubmed-31388001,No (not genetic model),ANKS1B,,,,
+scopus-85070093370,No (not animal study),,,,,
+pubmed-37568603,Yes,,PTEN,Mouse,Male and female,None
+pubmed-30699340,No (not animal study),,,,,
+pubmed-25502776,No (not genetic model),CALSTABIN2,,,,
+scopus-85075971981,No (not genetic model),HIST1H4J,,,,
+pubmed-34132815,No (not genetic model),DLX5/6,,,,
+pubmed-32988374,Yes,,MECP2,Rat,Female only,Speech Discrimination Test; Automated Lever Pressing Task; Three Chamber Test; Marble Burying; Spontaneous Alteration Task
+pubmed-24550777,Yes,,MECP2,Mouse,Male only,Other Electrophysiology
+pubmed-32012899,No (not genetic model),,,,,
+wos-001184322600001,No (not genetic model),SON,,,,
+pubmed-37956053,Yes,,RAI1,Mouse,Male and female,Food Intake Measurement; Other Electrophysiology; Vertical Rearing
+pubmed-33396736,Yes,,TSC2; SHANK3,Mouse,Male and female,Sleep Duration
+pubmed-32398858,Yes,,ARID1B,Mouse,Male and female,Three Chamber Test; Self Grooming; Open Field Test; Elevated Plus Maze; Tail Suspension Test; Forced Swim Test; Novel Object Recognition; Rotarod; Morris Water Maze
+pubmed-35697381,No (not genetic model),LETM1,,,,
+pubmed-35177588,No (not genetic model),B6.Del16(+/Bdh1-Tfrc),,,,
+scopus-85065442960,No (not animal study),,,,,
+pubmed-35603013,No (not genetic model),,,,,
+pubmed-32467234,No (not animal study),,,,,
+pubmed-30923190,No (not genetic model),,,,,
+pubmed-26247364,No (not animal study),,,,,
+wos-000448902700001,No (not genetic model),RAC1,,,,
+scopus-85187952161,No (not genetic model),,,,,
+pubmed-33010171,No (not animal study),,,,,
+pubmed-31561466,No (not animal study),,,,,
+pubmed-24312033,Yes,,FMR1,Mouse,Male only,Open Field Test; Home Cage Activity; Five Choice Serial Reaction Time Task
+pubmed-35670902,Yes,,MECP2,Mouse,Female only,Open Field Test; Three Chamber Test; Novel Object Recognition; Contextual or Cue Fear Conditioning
+pubmed-22532851,Yes,,MECP2,Mouse,Not reported,None
+scopus-84880799926,No (not animal study),,,,,
+pubmed-25981743,Yes,,"SHANK""; TBR1",Mouse,Male only,Three Chamber Test; Repetitive Behaviours; Open Field Test; Other Electrophysiology
+pubmed-39112449,No (not genetic model),,,,,
+pubmed-31395947,No (not animal study),,,,,
+pubmed-32294927,No (not genetic model),,,,,
+pubmed-36223387,Yes,,FOXG1,Mouse,Male and female,Rotarod; Open Field Test; Elevated Zero Maze; Gait Analysis; Contextual or Cue Fear Conditioning; Marble Burying; Social Dominance Tube Test; Nesting; Three Chamber Test
+scopus-84954369484,No (not animal study),,,,,
+scopus-85095830501,No (not genetic model),MEKK2,,,,
+pubmed-20711186,No (not animal study),,,,,
+pubmed-23274892,No (not animal study),,,,,
+wos-000540544000016,No (not genetic model),Cyclin D2,,,,
+wos-000468618500001,Yes,,SYN1,Mouse,Male only,Other Electrophysiology
+wos-000376231600001,No (not animal study),,,,,
+wos-000340902200001,No (not genetic model),,,,,
+pubmed-25392929,Yes,,MECP2,Mouse,Male only,Gait Analysis 
+pubmed-23688147,Yes,,GRIN1,Mouse,Male only,Light Dark Transition Test; Open Field Test; Hot Plate Test; Elevated Plus Maze; Social Interaction In Novel Environment; Rotarod; Three Chamber Test; Pre Pulse Inhibition or Acoustic Startle; Forced Swim Test; Gait Analysis; Radial Arm Maze; Contextual or Cue Fear Conditioning; Tail Suspension Test; Social Interaction In Familiar Environment
+pubmed-36672612,No (not genetic model),GHRH,,,,
+pubmed-36914558,Yes,,CHD7,Mouse,Not reported,None
+pubmed-24917197,No (not genetic model),,,,,
+wos-000496470000012,No (not genetic model),KMT2D,,,,
+pubmed-19546859,No (not animal study),,,,,
+pubmed-37833953,No (not genetic model),,,,,
+pubmed-34745222,No (not genetic model),NSF,,,,
+pubmed-33737384,Yes,,MECP2,Mouse,Male only,Open Field Test; Elevated Plus Maze; Three Chamber Test; Social Dominance Tube Test; Pre Pulse Inhibition or Acoustic Startle; Delayed Fear Conditioning; Rotarod
+pubmed-20804628,Yes,,FMR1,Mouse,Male only,None
+pubmed-30137205,No (not genetic model),TAFA,,,,
+pubmed-21403628,No (not primary research),,,,,
+pubmed-26969432,No (not genetic model),BACURD1,,,,
+pubmed-27328812,No (not genetic model),BAZ1A,,,,
+pubmed-32954336,No (not genetic model),,,,,
+pubmed-37816596,Yes,,FMR1,Mouse,Male and female,Go / No Go Visual Discrimination Task; Distractor Task 
+pubmed-25803852,No (not genetic model),PDGFR-β,,,,
+pubmed-31812984,No (not genetic model),2p16.3 deletion,,,,
+pubmed-31211177,No (not genetic model),SCN1B,,,,
+pubmed-28041881,No (not animal study),,,,,
+pubmed-29376887,No (not genetic model),SNORD116,,,,
+pubmed-28191889,No (not animal study),,,,,
+pubmed-23144792,No (not animal study),,,,,
+pubmed-18974885,No (not genetic model),,,,,
+pubmed-26243794,Yes,,FMR1,Rat,Male only,Other Electrophysiology; Spatial Reference Memory Water Maze; Delayed Matching To Place (DMP) Water Maze; Spontaneous Exploration Tasks
+pubmed-20182426,No (not genetic model),,,,,
+pubmed-35241668,Yes,,CHD8,Mouse,Male only,Open Field Test; Light Dark Transition Test; Three Chamber Test; Novel Object Recognition; Reciprocal Interaction Test; Marble Burying; Self Grooming; Forced Swimming Test
+pubmed-31122949,No (not genetic model),DAB1,,,,
+pubmed-21423496,No (not animal study),,,,,
+scopus-84935826796,No (not animal study),,,,,
+pubmed-30337532,No (not genetic model),,,,,
+pubmed-30559955,No (not genetic model),,,,,
+pubmed-29764972,No (not genetic model),GLUN2,,,,
+pubmed-22960932,No (not animal study),,,,,
+pubmed-30979884,No (not animal study),,,,,
+wos-000332389000057,No (not genetic model),SLC7A5,,,,
+pubmed-36835261,No (not genetic model),PRKCA,,,,
+pubmed-28649192,No (not genetic model),TS65DN,,,,
+pubmed-35137321,No (not genetic model),,,,,
+pubmed-24009314,Yes,,MECP2,Mouse,Male and female,Open Field Test; Rotarod; Light Dark Transition Test; Nesting
+pubmed-31680833,Yes,,FMR1,Mouse,Male only,None
+pubmed-35365720,Yes,,CHD8,Mouse,Male only,Elevated Plus Maze; Open Field Test; Three Chamber Test
+pubmed-25147297,Yes,,MECP2,Mouse,Male only,Orienting Reflex Test; Pre Pulse Inhibition or Acoustic Startle; Open Field Test; Other Electrophysiology
+pubmed-32203497,No (not genetic model),,,,,
+pubmed-37424750,No (not genetic model),,,,,
+pubmed-28467426,No (not genetic model),AKT3,,,,
+wos-000340744000001,No (not animal study),,,,,
+pubmed-29849154,No (not animal study),,,,,
+pubmed-30042656,No (not genetic model),RAC1,,,,
+wos-000874896900001,No (not animal study),,,,,
+pubmed-37848409,No (not genetic model),PACS1,,,,
+pubmed-27799067,No (not animal study),,,,,
+pubmed-31627256,No (not animal study),,,,,
+pubmed-34135003,No (not genetic model),CDH11,,,,
+pubmed-30816183,No (not genetic model),,,,,
+wos-000737027400001,No (not primary research),,,,,
+pubmed-33082413,No (not genetic model),KRAS,,,,
+pubmed-24639487,No (not genetic model),COMT,,,,
+wos-000290677500012,No (not genetic model),,,,,
+pubmed-33225276,No (not animal study),,,,,
+pubmed-28974734,No (not genetic model),DEPDC5,,,,
+pubmed-34658803,No (not genetic model),,,,,
+pubmed-28948087,No (not animal study),,,,,
+pubmed-23785489,No (not animal study),,,,,
+scopus-85184278772,No (not genetic model),EEF1A2,,,,
+pubmed-16524466,Yes,,NF1,Mouse,Male and female,None
+pubmed-32010779,No (not genetic model),BRPF1,,,,
+pubmed-37273836,No (not genetic model),SERT,,,,
+wos-000428560600001,Yes,,FMR1,Mouse,Male only,Hebb-Williams Maze
+pubmed-24889507,No (not animal study),,,,,
+pubmed-36192373,Yes,,UBE3A,Mouse,Male and female,Rotarod; Open Field Test; Marble Burying; Nesting; Forced Swim Test
+pubmed-31680851,No (not animal study),,,,,
+pubmed-38474321,No (not genetic model),ENDOB,,,,
+pubmed-25414642,No (not animal study),,,,,
+scopus-85149326894,No (not animal study),,,,,
+pubmed-23209433,Yes,,CELF4,Mouse,Not reported,None
+pubmed-23269898,No (not primary research),,,,,
+pubmed-21693554,No (not genetic model),TS65DN,,,,
+pubmed-33361117,Yes,,MECP2,Mouse,Female only,Foot Slip; Rotarod
+pubmed-35173636,No (not primary research),,,,,
+scopus-85189294332,No (not genetic model),KAT6B,,,,
+pubmed-32463181,No (not genetic model),,,,,
+pubmed-23892605,Yes,,MECP2,Mouse,Female only,Open Field Test; Rotarod; Pre Pulse Inhibition or Acoustic Startle
+pubmed-31671093,No (not animal study),,,,,
+pubmed-38173978,No (not genetic model),16p11.2 deletion,,,,
+pubmed-36845137,Yes,,SHANK3,Mouse,Male and female,ECG Recording
+pubmed-32731855,Yes,,FMR1,Fruit fly,Male and female,None
+pubmed-25418414,No (not genetic model),15q11-13 duplication,,,,
+pubmed-32545699,No (not genetic model),,,,,
+pubmed-36067316,No (not animal study),,,,,
+pubmed-38257177,Yes,,FMR1,Mouse,Male and female,Actigraphy; Rotarod; Passive Avoidance
+pubmed-26469698,No (not genetic model),CDK5R1,,,,
+pubmed-19369296,Yes,,MECP2,Mouse,Male only,None
+pubmed-35978711,No (not primary research),,,,,
+pubmed-33547274,Yes,,FMR1,Mouse,Male and female,Other Electrophysiology; Open Field Test; Novel Object Recognition; Marble Burying; Rotarod
+pubmed-35139868,No (not genetic model),COQ8,,,,
+pubmed-34253921,Yes,,SHANK3,Mouse,Male only,Other Electrophysiology; Reciprocal Interaction Task; Three Chamber Test; Place Preference Avoidance Task; Elevated Zero Maze
+pubmed-32948244,Yes,,UBE3A,Mouse,Male and female,Rotarod; Open Field Test; Marble Burying; Nesting; Forced Swim Test
+pubmed-37852987,No (not genetic model),CNTNAP2,,,,
+pubmed-25870581,No (not primary research),,,,,
+pubmed-31645720,No (not genetic model),,,,,
+pubmed-32138755,No (not animal study),,,,,
+pubmed-26516618,Yes,,FMR1,Mouse,Not reported,None
+pubmed-28733602,No (not animal study),,,,,
+pubmed-33401721,Yes,,FMR1,Mouse,Male only,None
+pubmed-23935992,No (not animal study),,,,,
+pubmed-30312299,No (not genetic model),EXO,,,,
+scopus-85012239694,No (not animal study),,,,,
+pubmed-25477793,No (not genetic model),,,,,
+pubmed-19242545,No (not animal study),,,,,
+pubmed-33093534,Yes,,FMR1,Mouse,Male only,Open Field Test; Activities of Daily Living; Nesting; Marble Burying; Contextual or Cue Fear Conditioning
+wos-000429831200001,No (not animal study),,,,,
+pubmed-33681188,No (not genetic model),,,,,
+pubmed-35916241,No (not genetic model),FIBCD,,,,
+pubmed-33893168,Yes,,FMR1,Mouse,Male and female,Other Electrophysiology
+pubmed-28345660,No (not animal study),,,,,
+scopus-78650956613,No (not genetic model),AKP2,,,,
+pubmed-31780806,No (not genetic model),,,,,
+wos-000349422800014,No (not genetic model),,,,,
+pubmed-34532839,No (not animal study),,,,,
+pubmed-25330104,No (not genetic model),,,,,
+pubmed-21152035,No (not animal study),,,,,
+wos-000522629400015,No (not animal study),,,,,
+scopus-84910151336,No (not genetic model),,,,,
+pubmed-26237367,No (not genetic model),TC1,,,,
+pubmed-33579706,No (not animal study),,,,,
+scopus-85132771000,Yes,,GRIN2B,Mouse,Not reported,Other Electrophysiology
+pubmed-31174389,No (not genetic model),NSUN5,,,,
+scopus-85084567539,No (not animal study),,,,,
+wos-000380781500001,No (not animal study),,,,,
+pubmed-35243414,No (not genetic model),TPM1,,,,
+wos-001204939500001,No (not animal study),,,,,
+pubmed-28652303,No (not animal study),,,,,
+pubmed-31980599,No (not genetic model),KCNK9,,,,
+pubmed-35279205,No (not animal study),,,,,
+pubmed-21423165,Yes,,SHANK3,Mouse,Male and female,Self Grooming; Elevated Zero Maze; Open Field Test; Dark Light Transition Test; Three Chamber Test; Reciprocal Interaction Test; Rotarod; Morris Water Maze; Other Electrophysiology
+pubmed-38582517,No (not genetic model),MEN1,,,,
+pubmed-33306672,No (not animal study),,,,,
+scopus-85058014588,No (not genetic model),KIF6,,,,
+pubmed-30051352,No (not genetic model),TSPYL2,,,,
+pubmed-24821222,No (not animal study),,,,,
+pubmed-39335388,Yes,,FMR1,Mouse,Male only,Seizure Induction; Open Field Test; Elevated Plus Maze; Nose Poke; Social Partition; Delayed Fear Conditioning; Pre Pulse Inhibition or Acoustic Startle
+pubmed-34188957,No (not animal study),,,,,
+wos-001171162100005,No (not animal study),,,,,
+pubmed-22412961,No (not genetic model),GluD1,,,,
+wos-000459330800037,No (not animal study),,,,,
+pubmed-32269286,No (not genetic model),PRMT7,,,,
+pubmed-26928064,Yes,,SHANK3,Mouse,Male and female,Other Electrophysiology
+pubmed-22937247,No (not primary research),,,,,
+pubmed-39090547,Yes,,SHANK3B,Mouse,Male only,Self Grooming; Tail Suspension Test; Forced Swim Test; Open Field Test; Elevated Plus Maze; Incremental Exercise Test; Exercise Training
+pubmed-26283958,No (not genetic model),NLGN1,,,,
+wos-000450705500001,No (not animal study),,,,,
+pubmed-21876543,Yes,,FOXP2,Mouse,Not reported,Rotarod; Other Electrophysiology
+wos-000408355800060,No (not animal study),,,,,
+pubmed-17250763,No (not genetic model),Kv1.1,,,,
+pubmed-33411788,Yes,,SCN1A,Mouse,Male and female,Open Field Test; Elevated Plus Maze; Y Maze; Social Dominance Tube Test; Three Chamber Test
+pubmed-35256745,No (not genetic model),V143L,,,,
+pubmed-35590075,No (not animal study),,,,,
+pubmed-31484070,Yes,,FMR1,Fruit fly,Male only,Other Electrophysiology; Self Grooming
+pubmed-21509596,No (not primary research),,,,,
+pubmed-29016847,No (not genetic model),GRIA3,,,,
+pubmed-22826345,No (not genetic model),R441H,,,,
+pubmed-38627066,Yes,,FMR1,Mouse,Male and female,Other Electrophysiology
+pubmed-25902260,No (not animal study),,,,,
+pubmed-33907211,No (not genetic model),SCRIB,,,,
+pubmed-21303839,No (not genetic model),MBNL2,,,,
+wos-000295419100032,No (not genetic model),,,,,
+scopus-85182016880,No (not genetic model),EZH2,,,,
+pubmed-35456030,Yes,,FMR1,Mouse,Male and female,Nesting; Passive Avoidance
+wos-000531363700015,No (not genetic model),22q11.2 deletion,,,,
+pubmed-32954283,No (not genetic model),,,,,
+pubmed-32848204,No (not animal study),,,,,
+wos-000427299100001,No (not primary research),,,,,
+pubmed-28821725,No (not genetic model),SLC6A4,,,,
+pubmed-38910965,No (not animal study),,,,,
+pubmed-26942102,No (not genetic model),2q23.1 microdeletion,,,,
+pubmed-11178106,No (not animal study),,,,,
+pubmed-29466436,No (not genetic model),HCN2,,,,
+pubmed-32879327,No (not genetic model),,,,,
+pubmed-31703095,No (not genetic model),,,,,
+pubmed-38256159,No (not genetic model),,,,,
+pubmed-36109452,Yes,,CDKL5,Mouse,Male only,Marble Burying; Nesting; Limb Clasping; Open Field Test; Barnes Maze or Reverse Barnes Maze
+pubmed-30356810,Yes,,SHANK3,Mouse,Male and female,OtherElectrophysiology; Three Chamber Test; Direct Social Interaction Test; Ultrasonic Vocalisation; Repetitive Behaviours; Self Grooming; Laboras Test; Open Field Test; Elevated Plus Maze; Light Dark Transition Test
+wos-000551922100001,No (not animal study),,,,,
+pubmed-31130875,No (not animal study),,,,,
+pubmed-36890585,No (not animal study),,,,,
+pubmed-37452008,No (not genetic model),GLT-1,,,,
+pubmed-21092094,No (not genetic model),TRIM28,,,,
+pubmed-28740469,No (not genetic model),,,,,
+pubmed-26111164,No (not genetic model),TS65DN,,,,
+pubmed-34272258,Yes,,PCDH19,Mouse,Male and female,Open Field Test; Elevated Plus Maze; Social Interaction Test
+wos-000305730900023,Yes,,MTOR,Mouse,Male only,None
+pubmed-36688132,Yes,,FMR1,Mouse,Male and female,Spatial Discrimination Training; Acquisition and Reversal Learning; Elevated Plus Maze; Reward Conflict Test
+pubmed-34290367,Yes,,MAGEL2,Mouse,Male and female,Elevated Plus Maze; Open Field Test; New Object Recognition; Three Chamber Test; Other Electrophysiology
+pubmed-28297715,No (not animal study),,,,,
+pubmed-32148659,No (not genetic model),,,,,
+pubmed-35884680,Yes,,SHANK3,Mouse,Male and female,Pre Pulse Inhibition or Acoustic Startle; Orienting Reflex Test; Ear Twitch Reflex; Limb Grasping
+pubmed-34650447,No (not animal study),,,,,
+pubmed-26074764,No (not genetic model),,,,,
+pubmed-27488351,Yes,,DEAF1,Mouse,Male and female,Other Electrophysiology; Elevated Plus Maze; Open Field Test; Light Dark Transition Test; Forced Swim Test; Tail Suspension Test
+pubmed-28242822,Yes,,KCNMA1,Mouse,Male and female,None
+scopus-85101391916,Yes,,NRXN1,Mouse,Male only,Other Electrophysiology
+pubmed-34442802,No (not animal study),,,,,
+pubmed-36551785,No (not genetic model),,,,,
+scopus-85137136584,Yes,,SCN2A,Mouse,Male and female,Other Electrophysiology; EEG Recording; Seizure Induction; Elevated Zero Maze; Light Dark Transition Test; Open Field Text; Rotarod; Three Chamber Test; Olfactory Habituation Test; Marble Burying; Buried Food Test
+pubmed-27812326,Yes,,FMR1,Mouse,Male only,Ultrasonic Vocalisation
+pubmed-29038598,No (not genetic model),16p11.2 hemideletion,,,,
+pubmed-27840422,No (not genetic model),PTPN11,,,,
+pubmed-33892766,No (not genetic model),OPHN1,,,,
+pubmed-31406134,Yes,,SHANK2,Rat,Male only,Circling; Rearing; Time Spent Walking
+pubmed-36808153,No (not genetic model),16p11.2 duplication,,,,
+pubmed-32312822,No (not genetic model),ACTL6B,,,,
+pubmed-28088401,No (not genetic model),OPHN1,,,,
+pubmed-37366052,No (not animal study),,,,,
+pubmed-29201556,Yes,,PTEN,Mouse,Male and female,Ultrasonic Vocalisation
+wos-000384807500012,No (not animal study),,,,,
+wos-001141645800001,No (not animal study),,,,,
+pubmed-36613751,Yes,,UBE3A,Mouse,Male only,None
+scopus-85086316689,No (not primary research),Commentary,,,,
+pubmed-30463906,Yes,,MECP2,Mouse,Male only,None
+pubmed-27773430,No (not animal study),,,,,
+pubmed-36398408,No (not genetic model),,,,,
+pubmed-27666520,No (not genetic model),PRL1; PRL2,,,,
+pubmed-21469092,No (not genetic model),RAC1; RAC3,,,,
+pubmed-35754477,Yes,,FOXG1,Mouse,Male and female,Rotarod; Open Field Test; Elevated Zero Maze; Gait Analysis; Contextual or Cue Fear Conditioning; Marble Burying; Social Dominance Tube Test; Nesting; Three Chamber Test
+pubmed-28710284,No (not animal study),,,,,
+pubmed-18653529,No (not animal study),,,,,
+pubmed-25951243,No (not genetic model),CNTNAP2,,,,
+pubmed-36138431,Yes,,GRIN2B,Zebrafish,Not reported,Other Electrophysiology; Social Behaviour Test; Prey Capture Task
+pubmed-26172394,No (not animal study),,,,,
+pubmed-38378191,Yes,,FOXG1,Zebrafish,Not reported,None
+pubmed-36536454,Yes,,FMR1,Rat,Male only,Other Electrophysiology
+wos-000343662800078,No (not animal study),,,,,
+pubmed-33225275,No (not animal study),,,,,
+pubmed-36976648,No (not animal study),,,,,
+pubmed-25519132,No (not animal study),,,,,
+scopus-85109264501,No (not animal study),,,,,
+wos-001230223700001,No (not animal study),,,,,
+pubmed-24349419,No (not animal study),,,,,
+pubmed-34059669,No (not genetic model),IP3R2,,,,
+pubmed-28683067,No (not genetic model),,,,,
+scopus-85103908280,No (not genetic model),,,,,
+pubmed-35432011,No (not genetic model),,,,,
+pubmed-27217145,No (not genetic model),,,,,
+pubmed-38760361,No (not genetic model),NTN1,,,,
+pubmed-32299058,Yes,,SETD5,Mouse,Male and female,Ultrasonic Vocalisation; Wire Hang Test; Open Field Test; Light Dark Transition Test; Elevated Plus Maze; T Maze; Social Interaction In Novel Environment; Social Preference Test; Barnes Maze or Reverse Barnes Maze; Forced Swim Test; Tail Suspension Test; Contextual or Cue Fear Conditioning; Home Cage Activity
+pubmed-26582266,No (not genetic model),,,,,
+pubmed-23781172,No (not primary research),,,,,
+pubmed-21478165,No (not animal study),,,,,
+pubmed-32147726,No (not animal study),,,,,
+pubmed-28900386,Yes,,FMR1,Mouse,Male only,None
+pubmed-28093507,No (not genetic model),ATRX,,,,
+pubmed-34895132,Yes,,MECP2,Mouse,Female only,Open Field Test; Forced Swim Test; Elevated Plus Maze
+pubmed-34764295,No (not genetic model),ATP9A,,,,
+pubmed-38690732,No (not genetic model),BAP1,,,,
+pubmed-36064580,Yes,,MECP2,Mouse,Male only,Locomotion On A Motorized Wheel Treadmill
+pubmed-37511424,No (not animal study),,,,,
+wos-000423830300004,Yes,,FMR1,Mouse,Not reported,Other Electrophysiology; Active Avoidance
+pubmed-22190039,No (not animal study),,,,,
+pubmed-35052467,Yes,,FOXP1,Mouse,Not reported,Contextual or Cue Fear Conditioning
+pubmed-36699652,Yes,,SHANK3,Mouse,Male and female,Grid Hanging Test; Grip Strength Test; Rotarod; Open Field Test; Barnes Maze or Reverse Barnes Maze; Reciprocal Interaction Test; Marble Burying
+pubmed-24910619,No (not primary research),,,,,
+pubmed-37349472,Yes,,GRIN1,Mouse,Male and female,Other Electrophysiology
+pubmed-29872062,Yes,,PTEN,Mouse,Male only,Elevated Plus Maze; Open Field Test; Morris Water Maze; Passive Avoidance
+pubmed-36311023,Yes,,SHANK3,Mouse,Not reported,None
+pubmed-33607653,No (not animal study),,,,,
+wos-000351277500047,No (not genetic model),Ca(v)3.2,,,,
+pubmed-35909444,No (not genetic model),NECAB2,,,,
+pubmed-25299392,No (not genetic model),XPG,,,,
+scopus-84876839257,No (not animal study),,,,,
+pubmed-30266824,Yes,,CDKL5,Mouse,Male only,None
+pubmed-18213394,No (not animal study),,,,,
+pubmed-25180570,No (not animal study),,,,,
+wos-000269433200009,No (not primary research),,,,,
+pubmed-24236044,No (not animal study),,,,,
+pubmed-34546327,No (not genetic model),MDX,,,,
+pubmed-33523984,Yes,,TSC2,Mouse,Not reported,Rotarod
+pubmed-32976529,No (not genetic model),PON1,,,,
+scopus-85156141276,Yes,,PTEN,Mouse,Male and female,None
+pubmed-33978321,No (not genetic model),WSCR,,,,
+pubmed-27008987,No (not genetic model),EFNB3,,,,
+pubmed-29891949,No (not animal study),,,,,
+pubmed-37208785,No (not genetic model),UBE2H,,,,
+pubmed-23626835,No (not genetic model),,,,,
+pubmed-32234052,No (not genetic model),,,,,
+pubmed-29138358,No (not genetic model),,,,,
+pubmed-32579612,No (not genetic model),,,,,
+pubmed-32879325,Yes,,NLGN3,Mouse,Male only,None
+pubmed-32116566,No (not genetic model),,,,,
+pubmed-35641906,No (not animal study),,,,,
+pubmed-27323901,Yes,,FMR1,Fruit fly,Not reported,Larval Crawling Assay
+scopus-85046891366,No (not genetic model),KDM5C,,,,
+pubmed-32869871,No (not genetic model),Q175,,,,
+pubmed-30333726,No (not genetic model),ARHGEF6,,,,
+pubmed-35671352,Yes,,MECP2,Mouse,Female only,Open Field Test; Rotarod; Social Preference Test; Novel Object Recognition; Contextual or Cue Fear Conditioning
+wos-000361910600018,No (not animal study),,,,,
+pubmed-30598869,Yes,,FMR1,Mouse,Male only,Voluntary Running
+pubmed-26527530,No (not genetic model),MDX,,,,
+pubmed-34873263,No (not genetic model),,,,,
+wos-000405464100067,No (not animal study),,,,,
+pubmed-29291238,Yes,,FMR1,Mouse,Male and female,None
+pubmed-35252209,No (not genetic model),NEUROD1,,,,
+pubmed-38960704,No (not genetic model),PRC2,,,,
+pubmed-29794985,No (not animal study),,,,,
+pubmed-29086765,No (not animal study),,,,,
+pubmed-33139785,Yes,,FMR1,Rat,Male only,Spontaneous Locomotor Activity; EEG Recording
+pubmed-34607601,No (not animal study),,,,,
+pubmed-32555345,Yes,,UBE3A,Mouse,Male only,Other Electrophysiology
+pubmed-35589737,No (not animal study),,,,,
+pubmed-23894354,No (not animal study),,,,,
+scopus-85181237404,No (not genetic model),,,,,
+pubmed-30504823,No (not animal study),,,,,
+wos-000803187600008,No (not animal study),,,,,

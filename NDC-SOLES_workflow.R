@@ -112,7 +112,7 @@ unscreened_set <- get_studies_to_screen(con,
                                         classifier_name = "in_vivo")
 
 # Read in training data for ML
-screening_decisions <- read.csv("screening/labelled_data/ndc_soles_labelled_data_corrected.csv", 
+screening_decisions <- read.csv("screening/labelled_data/ndc_soles_labelled_test_train.csv", 
                                 stringsAsFactors = F)
 
 # Run machine learning and write results to database table
@@ -153,11 +153,9 @@ rob_tag(con, num_cores = 10)
 # Tag for open data and code availability statements and write to database table
 ods_tag(con, path="full_texts")
 
-#oa_tag(con, "emma.wilson@ed.ac.uk") 
-
 # Open Alex
 get_openalex_metadata(con)
+
 get_openalex_update(con)
 
-source("get_institution_coords.R")
 get_ror_coords(con)

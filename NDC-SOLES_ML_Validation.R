@@ -98,7 +98,7 @@ labelled_data_assigned_iteration_processed <- labelled_data_assigned_iteration %
   mutate(LABEL = ifelse(cat != "Train", 99, LABEL),
          REVIEW_ID = "ndc_soles") %>%
   select(REVIEW_ID, ITEM_ID, TITLE, ABSTRACT, LABEL, TEMP_ID, iteration) %>%
-  mutate(TITLE = str_squish(ABSTRACT),
+  mutate(TITLE = str_squish(TITLE),
          ABSTRACT = str_squish(ABSTRACT))
 
 # Set up for ML and run ML =====================================================
