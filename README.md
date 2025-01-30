@@ -11,8 +11,12 @@ Read our full methods for NDC-SOLES in our [project protocol](https://osf.io/gft
 The NDC-SOLES Project is funded by a Simons Initiative for the Developing Brain (SIDB) PhD studentship.
 
 ## Project structure
-**Please note: files in `regex` and `screening` folders may not be fully reproducible as article abstracts have been removed for copyright reasons.**
+**Please note:**
+- **files in `regex` and `screening` folders may not be fully reproducible as article abstracts have been removed for copyright reasons**
+- **data is stored in SQL tables, information to read and write to these tables is NOT provided in this repo**
+- **our machine learning classifier is provided by the EPPI-Centre, University College London, who are in the process of making it open source; in the meantime, the classifier is not available in this repo**
 
+Repository structure:
 - `deploy_app`: files for generating R Shiny App
 - `regex`: data relating to regex validation tasks
 - `screening`: data relating to training machine learning classifier for classification
