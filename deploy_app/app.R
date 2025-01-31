@@ -89,13 +89,13 @@ pico_elements_list <- list(pico_element_1 = list(id = "dropdown_model",
                                                  label1 = "Filter by species:",
                                                  column1 = "name",
                                                  filter_no = 1),
-                           pico_element_3 = list(id = "dropdown_intervention",
-                                                 table = interventions_tagging,
-                                                 label1 = "Filter by intervention:",
+                           pico_element_3 = list(id = "dropdown_sex",
+                                                 table = sex_df,
+                                                 label1 = "Filter by sex:",
                                                  column1 = "name",
                                                  filter_no = 1),
                            pico_element_4 = list(id = "dropdown_outcome",
-                                                 table = outcome_tagging,
+                                                 table = outcome_df,
                                                  label1 = "Filter by outcome:",
                                                  column1 = "name",
                                                  filter_no = 1),
@@ -121,7 +121,7 @@ pico_elements_list <- list(pico_element_1 = list(id = "dropdown_model",
                                                  filter_no = 1),
                            pico_element_9 = list(id = "dropdown_retraction",
                                                  table = retraction_tag %>% 
-                                                   mutate(name = ifelse(is_retracted==FALSE, "Not retracted", "Retracted")),
+                                                   rename(name = is_retracted),
                                                  label1 = "Show or hide retracted articles:",
                                                  column1 = "name",
                                                  filter_no = 1))
@@ -206,7 +206,7 @@ server <- function(input, output, session) {
       layout(
         title = "Top 10 Funders by Number of Publications",
         xaxis = list(title = "Number of Publications"),
-        yaxis = list(title = ""),
+        yaxis = list(title = "", categoryorder = "total ascending"),
         margin = list(l = 200)  # Adjust for long funder names
       )
   })
@@ -217,9 +217,15 @@ server <- function(input, output, session) {
                            column = "name",
                            text = "Tool: custom regex drug dictionary")
   
-  pico_multi_select_Server("interventions",
+  pico_multi_select_Server("species",
                            multi_select = FALSE,
-                           table = interventions_tagging,
+                           table = species_tagging,
+                           column = "name",
+                           text = "Tool: custom regex drug dictionary")
+  
+  pico_multi_select_Server("sex",
+                           multi_select = FALSE,
+                           table = sex_tagging,
                            column = "name",
                            text = "Tool: custom regex drug dictionary")
   
@@ -230,12 +236,12 @@ server <- function(input, output, session) {
                            text = "Tool: custom regex drug dictionary")
   
   
-  yearBarServer("oa_pubs_per_year", table=oa_tag, column="is_oa", display=TRUE, order=c(TRUE, FALSE), text="Source:CrossRef", colours = c("#76A8C1", "grey")) %>%
+  yearBarServer("oa_pubs_per_year", table=oa_tag, column="is_oa", display=c("open", "closed", "unknown"), order=c("open", "closed", "unknown"), text="Source:OpenAlex", colours = c("#76A8C1", "#FFC076", "grey")) %>%
     bindCache(nrow(transparency))
-  yearBarServer("oa_pub_type_per_year", table=oa_tag, column="oa_status", display=c("closed", "hybrid", "bronze", "gold", "green"), order=c("closed", "hybrid", "bronze", "gold", "green"),
-                text="Source:CrossRef", colours = c("red", "lightblue", "orange", "gold", "green")) %>% bindCache(nrow(transparency))
-  yearBarServer("open_data_pubs_per_year", table=transparency, column="is_open_data", display=TRUE, order=c(TRUE, FALSE),  text="Tool: OddPub, Riedel, N, et al. (2020), DOI:10.5334/dsj-2020-042", colours = c("#76A8C1", "grey")) %>% bindCache(nrow(transparency))
-  yearBarServer("open_code_pubs_per_year", table=transparency, column="is_open_code", display=TRUE, order=c(TRUE, FALSE),  text="Tool: OddPub, Riedel, N, et al. (2020), DOI:10.5334/dsj-2020-042", colours = c("#76A8C1", "grey")) %>% bindCache(nrow(transparency))
+  yearBarServer("oa_pub_type_per_year", table=oa_tag, column="oa_status", display=c("hybrid", "bronze", "gold", "green", "diamond", "closed", "unknown"), order=c("hybrid", "bronze", "gold", "green", "diamond", "closed", "unknown"),
+                text="Source:CrossRef", colours = c("pink", "orange", "gold", "green", "blue", "red", "grey")) %>% bindCache(nrow(transparency))
+  yearBarServer("open_data_pubs_per_year", table=transparency, column="is_open_data", display= c("available", "not available", "unknown"), order=c("available", "not available", "unknown"),  text="Tool: OddPub, Riedel, N, et al. (2020), DOI:10.5334/dsj-2020-042", colours = c("#76A8C1", "#FFC076", "grey")) %>% bindCache(nrow(transparency))
+  yearBarServer("open_code_pubs_per_year", table=transparency, column="is_open_code", display= c("available", "not available", "unknown"), order=c("available", "not available", "unknown"),  text="Tool: OddPub, Riedel, N, et al. (2020), DOI:10.5334/dsj-2020-042", colours = c("#76A8C1", "#FFC076", "grey")) %>% bindCache(nrow(transparency))
   
   
   yearBarServer("random_per_year", table=rob, column="is_random", text="Tool: RobPredictor, Wang, Q., et al (2021), DOI:10.1002/jrsm.1533") %>% bindCache(nrow(rob))
@@ -253,10 +259,10 @@ server <- function(input, output, session) {
 
   bubble_react <- reactive({
     data <- data_for_bubble %>%
-      filter(intervention %in% input$select_intervention) %>% 
+      filter(species %in% input$select_species) %>% 
       filter(model %in% input$select_model) %>% 
       filter(outcome %in% input$select_outcome) %>% 
-      group_by(intervention, outcome) %>% 
+      group_by(species, outcome) %>% 
       count()
     
     data$key <- row.names(data)
@@ -268,11 +274,11 @@ server <- function(input, output, session) {
   
   table_react <- reactive({
     table <- data_for_bubble %>%
-      filter(intervention %in% input$select_intervention) %>% 
+      filter(species %in% input$select_species) %>% 
       filter(model %in% input$select_model) %>% 
       filter(outcome %in% input$select_outcome) %>% 
       left_join(included_with_metadata, by = "uid") %>% 
-      select(year, author, title, model, intervention, outcome, doi, url) %>% 
+      select(year, author, title, model, species, outcome, doi, url) %>% 
       mutate(link = ifelse(!is.na(doi), paste0("https://doi.org/", doi), url)) %>%
       arrange(desc(year))
     
@@ -313,18 +319,18 @@ server <- function(input, output, session) {
     }
     
     p <- plot_ly(bubble_react_new,
-                 x = ~intervention, y = ~outcome, size = ~n, 
+                 x = ~species, y = ~outcome, size = ~n, 
                  colors = ~sort(unique(col)), color = ~col, customdata = ~key,
                  type = 'scatter', 
                  marker = list(symbol = 'circle', sizemode = 'diameter', opacity = 0.8,
                                line = list(color = '#FFFFFF', width = 2)),
                  hoverinfo = 'text',
                  textposition = "none",
-                 text = ~paste("Intevention:", intervention,
+                 text = ~paste("Species:", species,
                                "<br>Outcome:", outcome,
                                "<br>Number of Citations:", n)) %>% 
       layout(p, yaxis = list(title = list(text = "Outcome", standoff = 25)),
-             xaxis = list(title = list(text = "Intervention", standoff = 25),
+             xaxis = list(title = list(text = "Species", standoff = 25),
                           tickangle = -20,
                           ticklen = 1),
              hoverlabel = list(bgcolor = "white",
@@ -342,7 +348,7 @@ server <- function(input, output, session) {
     d <- event_data("plotly_click")
 
     selected_studies <- table_react() %>% 
-      filter(intervention %in% d$x,
+      filter(species %in% d$x,
              outcome %in% d$y)
     
     

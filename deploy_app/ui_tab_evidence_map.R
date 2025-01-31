@@ -12,10 +12,10 @@ ui_tab_evidence_map <-    tabItem(tabName = "pico-bubble",
                                                    
                                                    fluidRow(column(width = 4, 
                                                                    pickerInput(
-                                                                     inputId = "select_intervention",
-                                                                     label = "Select a drug:",
-                                                                     choices = sort(unique(data_for_bubble$intervention)),
-                                                                     selected = head(sort(unique(data_for_bubble$intervention)), 15),
+                                                                     inputId = "select_model",
+                                                                     label = "Select a gene model:",
+                                                                     choices = sort(unique(data_for_bubble$model)),
+                                                                     selected = sort(unique(data_for_bubble$model)),
                                                                      multiple = TRUE,
                                                                      options = pickerOptions(noneSelectedText = "Please Select",
                                                                                              virtualScroll = 100,
@@ -41,15 +41,14 @@ ui_tab_evidence_map <-    tabItem(tabName = "pico-bubble",
                                                             ),
                                                             column(width = 4,
                                                                    pickerInput(
-                                                                     inputId = "select_model",
-                                                                     label = "Select a gene symbol:",
-                                                                     choices = sort(unique(data_for_bubble$model)),
-                                                                     selected = sort(unique(data_for_bubble$model)),
+                                                                     inputId = "select_species",
+                                                                     label = "Select a species:",
+                                                                     choices = sort(unique(data_for_bubble$species)),
+                                                                     selected = sort(unique(data_for_bubble$species)),
                                                                      multiple = TRUE,
-                                                                     options = pickerOptions(noneSelectedText = "Please Select",
-                                                                                             virtualScroll = 100,
-                                                                                             actionsBox = TRUE,
-                                                                                             size = 10,
+                                                                     options = list(
+                                                                       `actions-box` = TRUE,
+                                                                       `live-search` = TRUE
                                                                      )
                                                                    )
                                                                    
@@ -66,7 +65,7 @@ ui_tab_evidence_map <-    tabItem(tabName = "pico-bubble",
                                           width = 12,
                                           height = 700,
                                           collapsible = FALSE,
-                                          id = "intervention_outcome",
+                                          id = "species_outcome",
                                           status = "primary",
                                           
                                           
@@ -82,7 +81,7 @@ ui_tab_evidence_map <-    tabItem(tabName = "pico-bubble",
                                         box(
                                           
                                           width = 12,
-                                          id = "intervention_outcome_datatable",
+                                          id = "species_outcome_datatable",
                                           collapsible = FALSE,
                                           status = "primary",
                                           
@@ -96,7 +95,13 @@ ui_tab_evidence_map <-    tabItem(tabName = "pico-bubble",
                                     solidHeader = TRUE,
                                     width = 12,
                                     background = "primary",
-                                    p("Select models, drugs, and outcomes of interest and explore the number 
-                                      of publications mentioning these terms. Hover over the circles for 
-                                      more information.")
+                                    p("Select genes, species, and outcomes of interest and explore the number 
+                                      of publications mentioning these terms. False positives have been filtered out 
+                                      as much as possible but some will remain. Up to 20 terms can be displayed on 
+                                      a plot at once. Genetic models are from SFARI (reflecting genes with a 
+                                      human gene score of 1) or identified through large exome sequencing 
+                                      (Satterstrom et al., 2020: https://doi.org/10.1016/j.cell.2019.12.036). 
+                                      Animal species are from Understanding Animal Research: 
+                                      https://www.understandinganimalresearch.org.uk/using-animals-in-scientific-research/animal-research-species/.
+                                      Hover over the circles for more information.")
                                   ))

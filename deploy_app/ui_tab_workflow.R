@@ -8,10 +8,9 @@ ui_tab_workflow <- tabItem(tabName = "workflow-accordion-dc",
                                title = span("Searching for publications", style = "color: white;"),
                                status = "primary",
                                collapsed = FALSE,
-                               p("We retrieve new publications weekly (typically on Fridays) from PubMed, Web of Science, 
-                                 and SCOPUS using application programming interfaces (APIs). To do this, we use the 
-                                 following R packages: ScopusAPI, RISmed, and rwos."),
-                               p("The last search was run on", strong((include_by_date$date[1]))),
+                               p("We retrieve new publications weekly (typically on Fridays) from PubMed, Web of Science Core Collection, 
+                                 and SCOPUS using application programming interfaces (APIs) via the ScopusAPI, RISmed, and rwos R Packages."),
+                               p("The last search was run on:", strong((include_by_date$date[1]))),
                              p("Duplicate copies of publications (where the same publication is obtained from multiple 
                                databases) are identified and removed using the Automated Systematic Search Deduplicator",
                                tags$a(href="https://www.biorxiv.org/content/10.1101/2021.05.04.442412v1", strong("(ASySD).")),
@@ -25,7 +24,7 @@ ui_tab_workflow <- tabItem(tabName = "workflow-accordion-dc",
                                p("Newly retieved publications from our systematic searches are screened using a trained 
                                  machine learning algorithm. This algorithm is set to perform with", strong("95% recall"), 
                                  " meaning most relevant publications should be picked up. Please be aware that some 
-                                 irrelevant publications may end up in the database.")
+                                 irrelevant publications will still remain in the database.")
                              ),
                              
                              accordionItem(
@@ -36,7 +35,7 @@ ui_tab_workflow <- tabItem(tabName = "workflow-accordion-dc",
                                                        strong("OpenAlex R package")), "to retrieve additional metadata for 
                                  included publications, including funder details, open access article status, author institutions 
                                  and country, article language, OpenAlex tagged disciplines, and retraction information. 
-                                 Additonally, we get map coordinates for institutions from ",
+                                 Additionally, we get map coordinates for institutions from ",
                                  tags$a(href="https://ror.org/", strong("Research Organization Registry.")))
                              ),
                              
@@ -56,9 +55,19 @@ ui_tab_workflow <- tabItem(tabName = "workflow-accordion-dc",
                                title = span("Tagging by experimental details", style = "color:white;"),
                                status = "primary",
                                collapsed = TRUE,
-                               p("We developed custom dictionaries of words, phrases, and synonyms of common animal models, 
-                                 drug names, and experimental procedures, and tag publications which mention these terms. 
-                                 We are still validating the best way to extract this information from publications.")
+                               p("We developed custom dictionaries of words, phrases, and synonyms of (1) genes commonly 
+                                 associated with neurodevelopmental conditions that may be altered in animals to generate models 
+                                 (either from ",
+                                 tags$a(href="https://gene.sfari.org/database/animal-models/genetic-animal-models/", 
+                                       strong("the SFARI gene list with a score of 1")),"or those identified by ",
+                                 tags$a(href="https://doi.org/10.1016/j.cell.2019.12.036", 
+                                        strong("Satterstrom et al, 2020")),"), (2) ",
+                                 tags$a(href="https://www.understandinganimalresearch.org.uk/using-animals-in-scientific-research/animal-research-species/", 
+                                        strong("common animal species")),", (3) sex of animals, and (4) 
+                                 experimental procedures, and tag publications which mention these terms. We have validated 
+                                 optimal approaches to extract this information from publication texts, however please be aware 
+                                 that tagging may be inaccurate if publications texts are unavailable or reporting is poor. False positives 
+                                 may also be picked up.")
                              )
                            )
 )

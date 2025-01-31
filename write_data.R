@@ -66,39 +66,51 @@ dataframes_for_app[["include_by_date"]] <- include_by_date
 # Create pdfs df using full texts
 pdfs <- tbl(con, "full_texts") %>%
   select(status, doi) %>%
+  filter(doi %in% included_with_metadata$doi) %>%
   collect()
 
 dataframes_for_app[["pdfs"]] <- pdfs
 
 # Create open access table
-oa_tag <- tbl(con, "oa_tag") %>%
-  collect() %>%
-  # Duplicate DOIs - conference abstracts
-  left_join(included_small, by = "doi", relationship = "many-to-many") %>%
-  filter(!is.na(is_oa)) %>%
-  mutate(year = as.numeric(year))
+oa_tag <- included_small %>%
+  left_join(dbReadTable(con, "oa_tag"), by = "doi", relationship = "many-to-many") %>%
+  mutate(year = as.numeric(year)) %>%
+  select(-is_oa) %>%
+  mutate(is_oa = ifelse(is.na(oa_status)|oa_status == "Unknown", "unknown", 
+                        ifelse(oa_status == "closed", "closed", "open"))) %>%
+  mutate(oa_status = ifelse(is.na(oa_status)|oa_status == "Unknown", "unknown", oa_status)) %>%
+  filter(!is.na(year))
 
 dataframes_for_app[["oa_tag"]] <- oa_tag
 
 # Create transparency table with open data
-transparency <- tbl(con, "open_data_tag") %>%
-  collect() %>%
-  left_join(included_small, by = "doi", relationship = "many-to-many") %>%
+transparency <- included_small %>%
+  left_join(dbReadTable(con, "open_data_tag"), by = "doi", relationship = "many-to-many") %>%
   mutate(year = as.numeric(year)) %>%
-  filter(!is.na(year)) %>%
-  filter(year != "")
-
-transparency[is.na(transparency)] <- "unknown"
+  mutate(is_open_data = case_when(
+    is_open_data == TRUE ~ "available",
+    is_open_data == FALSE ~ "not available",
+    is.na(is_open_data) ~ "unknown"
+  ),
+  is_open_code = case_when(
+    is_open_code == TRUE ~ "available",
+    is_open_code == FALSE ~ "not available",
+    is.na(is_open_code) ~ "unknown"
+  )) %>%
+  filter(!is.na(year))
 
 dataframes_for_app[["transparency"]] <- transparency
 
-# Create risk of bias table with open data
-rob <- tbl(con, "rob_tag") %>%
-  collect() %>%
-  left_join(included_small, by = "doi") %>%
+# Create risk of bias table
+rob <- included_small %>%
+  left_join(dbReadTable(con, "rob_tag"), by = "doi", relationship = "many-to-many") %>%
   mutate(year = as.numeric(year)) %>%
-  filter(!is.na(year)) %>%
-  filter(year != "")
+  mutate(is_blind = ifelse(is.na(is_blind), "unknown", is_blind),
+         is_exclusion = ifelse(is.na(is_exclusion), "unknown", is_exclusion),
+         is_interest = ifelse(is.na(is_interest), "unknown", is_interest),
+         is_random = ifelse(is.na(is_random), "unknown", is_random),
+         is_welfare = ifelse(is.na(is_welfare), "unknown", is_welfare)) %>%
+  filter(!is.na(year))
 
 dataframes_for_app[["rob"]] <- rob
 
@@ -108,42 +120,61 @@ names <- tbl(con, "pico_dictionary") %>%
   collect() 
 
 pico_tagged <- tbl(con, "pico_tag") %>%
-  select(-strings) %>% 
+  select(-string) %>% 
   arrange(regex_id) %>% 
+  distinct() %>%
   collect()
 
 pico_ontology_full <- tbl(con, "pico_ontology") %>%
   collect() %>% 
   arrange(regex_id) %>%
+  select(-name) %>%
   left_join(names, by = c("regex_id" = "id")) %>%
   inner_join(pico_tagged, relationship = "many-to-many", by = c("regex_id")) %>%
   left_join(included_small, by = "uid") %>%
-  mutate(year = ifelse(is.na(year), "Unknown", year),
-         frequency = as.numeric(frequency)) %>%
+  mutate(year = ifelse(is.na(year), "Unknown", year)) %>%
   filter(!year == "Unknown") %>%
   distinct()
+
+pico_gene_uid <- pico_ontology_full %>% filter(type == "model" & method == "tiab") %>%
+  select(-method) %>% distinct()
+pico_species_uid <- pico_ontology_full %>% filter(type == "species" & method == "tiab") %>%
+  select(-method) %>% distinct()
+
+pico_model_species <- rbind(pico_gene_uid, pico_species_uid) %>%
+  filter(uid %in% pico_gene_uid$uid) %>%
+  filter(uid %in% pico_species_uid$uid) %>%
+  distinct()
+pico_sex_outcome <- pico_ontology_full %>%
+  filter(type == "sex" | type == "outcome") %>%
+  filter(uid %in% pico_gene_uid$uid) %>%
+  filter(uid %in% pico_species_uid$uid) %>%
+  select(-method) %>%
+  distinct()
+
+pico_ontology_full <- rbind(pico_model_species, pico_sex_outcome) %>%
+  distinct()
+
 
 # Included studies uids - used to full join with tagged elements to create "Unknown"
 # pico tags when the studies are yet to be tagged
 included_with_metadata_uid <- included_with_metadata %>% 
   select(uid)
 
-# Create interventions table from pico_ontology_full
-interventions_tagging <- pico_ontology_full %>%
-  filter(type %in% c("drug", "intervention"),
-         method %in% c("tiabkw_regex", "fulltext_regex"),
+# Create sex table from pico_ontology_full
+sex_tagging <- pico_ontology_full %>%
+  filter(type %in% c("sex"),
          uid %in% included_with_metadata$uid) %>%
-  filter(!(method == "fulltext_regex" & frequency < 3)) %>%
   select(-doi) %>%
   distinct()
 
-dataframes_for_app[["interventions_tagging"]] <- interventions_tagging
+dataframes_for_app[["sex_tagging"]] <- sex_tagging
 
 
-interventions_df <- interventions_tagging %>% 
+sex_df <- sex_tagging %>% 
   full_join(included_with_metadata_uid, by = "uid", relationship = "many-to-many") %>% 
-  mutate(name = ifelse(is.na(name), "Unknown Intervention", name),
-         regex_id = ifelse(name == "Unknown Intervention", 9999993, name),
+  mutate(name = ifelse(is.na(name), "Unknown Sex", name),
+         regex_id = ifelse(name == "Unknown Sex", 9999993, name),
          main_category = ifelse(is.na(main_category), "Unknown", main_category)
          
   )
@@ -152,14 +183,12 @@ interventions_df <- interventions_tagging %>%
 #interventions_df["name"] <- as.data.frame(sapply(interventions_df["name"], toTitleCase))
 #interventions_df["main_category"] <- as.data.frame(sapply(interventions_df["main_category"], toTitleCase))
 
-dataframes_for_app[["interventions_df"]] <- interventions_df
+dataframes_for_app[["sex_df"]] <- sex_df
 
 model_tagging <- pico_ontology_full %>%
   filter(type %in% c("model"),
-         method %in% c("tiabkw_regex", "fulltext_regex"),
          uid %in% included_with_metadata$uid) %>%
-  filter(!(method == "fulltext_regex" & frequency < 3)) %>%
-  select(-method, -frequency, -doi) %>% 
+  select(-doi) %>% 
   distinct()
 
 dataframes_for_app[["model_tagging"]] <- model_tagging
@@ -175,10 +204,8 @@ dataframes_for_app[["model_df"]] <- model_df
 
 species_tagging <- pico_ontology_full %>%
   filter(type %in% c("species"),
-         method %in% c("tiabkw_regex", "fulltext_regex"),
          uid %in% included_with_metadata$uid) %>%
-  filter(!(method == "fulltext_regex" & frequency < 3)) %>%
-  select(-method, -frequency, -doi) %>% 
+  select(-doi) %>% 
   distinct()
 
 dataframes_for_app[["species_tagging"]] <- species_tagging
@@ -186,7 +213,7 @@ dataframes_for_app[["species_tagging"]] <- species_tagging
 species_df <- species_tagging %>% 
   full_join(included_with_metadata_uid, by = "uid", relationship = "many-to-many") %>% 
   mutate(name = ifelse(is.na(name), "Unknown Species", name),
-         regex_id = ifelse(name == "Unknown Species", 9999994, name), 
+         regex_id = ifelse(name == "Unknown Species", 9999992, name), 
          main_category = ifelse(name == "Unknown Species", "Unknown", main_category)
   )
 
@@ -195,9 +222,7 @@ dataframes_for_app[["species_df"]] <- species_df
 # Create outcome table from pico_ontology_full
 outcome_tagging <- pico_ontology_full %>%
   filter(type %in% c("outcome"),
-         method %in% c("tiabkw_regex", "fulltext_regex"),
          uid %in% included_with_metadata$uid) %>%
-  filter(!(method == "fulltext_regex" & frequency < 3)) %>%
   select(-doi) %>%
   distinct()
 
@@ -207,7 +232,7 @@ dataframes_for_app[["outcome_tagging"]] <- outcome_tagging
 outcome_df <- outcome_tagging %>% 
   full_join(included_with_metadata_uid, by = "uid", relationship = "many-to-many") %>% 
   mutate(name = ifelse(is.na(name), "Unknown Outcome", name),
-         regex_id = ifelse(name == "Unknown Outcome", 9999992, name),
+         regex_id = ifelse(name == "Unknown Outcome", 9999994, name),
          main_category = ifelse(is.na(main_category), "Unknown", main_category)
          
   )
@@ -219,15 +244,15 @@ outcome_df["name"] <- as.data.frame(sapply(outcome_df["name"], toTitleCase))
 dataframes_for_app[["outcome_df"]] <- outcome_df
 
 
-interventions_df_small <- interventions_df %>%
+sex_df_small <- sex_df %>%
   select(name, uid) %>%
-  filter(!name == "Unknown Intervention") %>%
-  rename(intervention = name) %>%
+  filter(!name == "Unknown Sex") %>%
+  rename(sex = name) %>%
   distinct()
 
-interventions_df_small <- aggregate(intervention ~ uid, interventions_df_small, FUN = paste, collapse = "; ")
+sex_df_small <- aggregate(sex ~ uid, sex_df_small, FUN = paste, collapse = "; ")
 
-dataframes_for_app[["interventions_df_small"]] <- interventions_df_small
+dataframes_for_app[["sex_df_small"]] <- sex_df_small
 
 outcome_df_small <- outcome_df %>%
   select(name, uid) %>%
@@ -260,7 +285,7 @@ species_df_small <- aggregate(species ~ uid, species_df_small, FUN = paste, coll
 dataframes_for_app[["species_df_small"]] <- species_df_small
 
 # Create pico df using aggregated data
-pico <- interventions_df_small %>%
+pico <- sex_df_small %>%
   full_join(model_df_small) %>%
   full_join(outcome_df_small) %>%
   full_join(species_df_small) 
@@ -269,8 +294,8 @@ dataframes_for_app[["pico"]] <- pico
 
 
 data_for_bubble <- included_with_metadata_uid %>% 
-  left_join(interventions_df[, c("uid","name")], by ="uid", relationship = "many-to-many") %>%
-  rename(intervention = name) %>% 
+  left_join(species_df[, c("uid","name")], by ="uid", relationship = "many-to-many") %>%
+  rename(species = name) %>% 
   left_join(outcome_df[, c("uid", "name")], by = "uid", relationship = "many-to-many") %>%
   rename(outcome = name) %>% 
   left_join(model_df[, c("uid", "name")], by = "uid", relationship = "many-to-many") %>% 
@@ -279,73 +304,70 @@ data_for_bubble <- included_with_metadata_uid %>%
 dataframes_for_app[["data_for_bubble"]] <- data_for_bubble
 
 # Create funder tag table
-funder_tag <- tbl(con, "funder_grant_tag") %>%
-  collect() %>%
-  # Duplicate DOIs - more than one funder
-  left_join(included_small, by = "doi", relationship = "many-to-many") %>%
-  mutate(year = as.numeric(year))
+funder_tag <- included_small %>%
+  left_join(dbReadTable(con, "funder_grant_tag"), by = "doi", relationship = "many-to-many") %>%
+  mutate(year = as.numeric(year)) %>%
+  mutate(funder_name = ifelse(is.na(funder_name), "Unknown", funder_name),
+         award_id = ifelse(is.na(award_id), "Unknown", funder_name)) %>%
+  filter(!is.na(year)) %>%
+  select(uid, year, funder_id) %>%
+  distinct()
 
 dataframes_for_app[["funder_tag"]] <- funder_tag
 
 # Create institution tag table
-institution_tag <- tbl(con, "institution_tag") %>%
-  collect() %>%
-  # Duplicate DOIs - more than one institution
-  left_join(included_small, by = "doi", relationship = "many-to-many") %>%
-  mutate(year = as.numeric(year))
-
-ror_coords <- tbl(con, "ror_coords")
-
-institution_tag <- merge(institution_tag, ror_coords, by = "ror", all = TRUE) %>%
+institution_tag <- included_small %>%
+  left_join(dbReadTable(con, "institution_tag"), by = "doi", relationship = "many-to-many") %>%
+  mutate(year = as.numeric(year)) %>%
+  mutate(institution_id = ifelse(is.na(institution_id), "Unknown", institution_id),
+         name = ifelse(is.na(name), "Unknown", name),
+         ror = ifelse(is.na(ror), "Unknown", ror),
+         institution_country_code = ifelse(is.na(institution_country_code), "Unknown", institution_country_code),
+         type = ifelse(is.na(type), "Unknown", type)) %>%
+  left_join(dbReadTable(con, "ror_coords"), by = "ror") %>%
+  mutate(latitude = as.numeric(latitude),
+         longitude = as.numeric(longitude)) %>%
   mutate(lat = latitude,
-         long = longitude)
-
-country_codes <- dbReadTable(con, "country_code")
-
-institution_tag <- merge(institution_tag, country_codes, by = "institution_country_code", all.x = TRUE)
-
-institution_tag[is.na(institution_tag)] <- "Unknown"
-
-institution_tag$latitude <- as.numeric(institution_tag$latitude)
-institution_tag$lat <- as.numeric(institution_tag$lat)
-institution_tag$longitude <- as.numeric(institution_tag$longitude)
-institution_tag$long <- as.numeric(institution_tag$long)
+         long = longitude) %>%
+  left_join(dbReadTable(con, "country_code"), by = "institution_country_code") %>%
+  filter(!is.na(year))
 
 dataframes_for_app[["institution_tag"]] <- institution_tag
 
 # Create retraction tag table
-retraction_tag <- tbl(con, "retraction_tag") %>%
-  collect() %>%
-  # Duplicate DOIs
-  left_join(included_small, by = "doi", relationship = "many-to-many") %>%
-  mutate(year = as.numeric(year))
+retraction_tag <- included_small %>%
+  left_join(dbReadTable(con, "retraction_tag"), by = "doi", relationship == "many-to-many") %>%
+  mutate(year = as.numeric(year)) %>%
+  mutate(is_retracted = case_when(
+    is_retracted == TRUE ~ "Retracted",
+    is_retracted == FALSE ~ "Not retracted",
+    is.na(is_retracted) ~ "Unknown"
+  )) %>%
+  filter(!is.na(year))
 
 dataframes_for_app[["retraction_tag"]] <- retraction_tag
 
 # Create discipline tag table
-discipline_tag <- tbl(con, "discipline_tag") %>%
-  collect() %>%
-  # Duplicate DOIs
-  left_join(included_small, by = "doi", relationship = "many-to-many") %>%
-  mutate(year = as.numeric(year))
+discipline_tag <- included_small %>%
+  left_join(dbReadTable(con, "discipline_tag"), by = "doi", relationship = "many-to-many") %>%
+  mutate(year = as.numeric(year)) %>%
+  filter(!is.na(year))
 
 dataframes_for_app[["discipline_tag"]] <- discipline_tag
 
 # Create article type tag table
-article_tag <- tbl(con, "article_type") %>%
-  collect() %>%
-  # Duplicate DOIs
-  left_join(included_small, by = "doi", relationship = "many-to-many") %>%
-  mutate(year = as.numeric(year))
+article_tag <- included_small %>%
+  left_join(dbReadTable(con, "article_type"), by = "doi", relationship = "many-to-many") %>%
+  mutate(year = as.numeric(year)) %>%
+  filter(!is.na(doi))
 
 dataframes_for_app[["article_tag"]] <- article_tag
 
 # Create citation count tag table
-citation_count_tag <- tbl(con, "citation_count_tag") %>%
-  collect() %>%
-  # Duplicate DOIs
-  left_join(included_small, by = "doi", relationship = "many-to-many") %>%
-  mutate(year = as.numeric(year))
+citation_count_tag <- included_small %>%
+  left_join(dbReadTable(con, "citation_count_tag"), by = "doi", relationship = "many-to-many") %>%
+  mutate(year = as.numeric(year)) %>%
+  filter(!is.na(year))
 
 dataframes_for_app[["citation_count_tag"]] <- citation_count_tag
 

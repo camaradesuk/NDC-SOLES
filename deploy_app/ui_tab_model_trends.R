@@ -19,12 +19,21 @@ ui_tab_model_trends  <- tabItem(tabName = "data-trends-model",
                                                         theme = "danger",
                                                         spinner_colour = "#76A8C1"),
                                    
-                                   pico_multi_select_UI(id = "interventions",
+                                   pico_multi_select_UI(id = "species",
                                                         multi_select = FALSE,
-                                                        table = interventions_tagging,
-                                                        column = interventions_tagging$name,
-                                                        label1 = "Select a drug: (20 selections max)",
-                                                        title = "DrugBank drugs",
+                                                        table = species_tagging,
+                                                        column = species_tagging$name,
+                                                        label1 = "Select a species:",
+                                                        title = "Animal species",
+                                                        theme = "danger",
+                                                        spinner_colour = "#76A8C1"),
+                                   
+                                   pico_multi_select_UI(id = "sex",
+                                                        multi_select = FALSE,
+                                                        table = sex_tagging,
+                                                        column = sex_tagging$name,
+                                                        label1 = "Select a sex:",
+                                                        title = "Animal sex",
                                                         theme = "danger",
                                                         spinner_colour = "#76A8C1"),
                                    
@@ -46,16 +55,13 @@ ui_tab_model_trends  <- tabItem(tabName = "data-trends-model",
                                     solidHeader = TRUE,
                                     background = "primary",
                                     p("This bar plots display the number of publications tagged as mentioning 
-                                      the selected term or it's synonym. Up to 20 terms can be displayed on 
+                                      the selected term or it's synonym. False positives have been filtered out 
+                                      as much as possible but some will remain. Up to 20 terms can be displayed on 
                                       a plot at once. Genetic models are from SFARI (reflecting genes with a 
                                       human gene score of 1) or identified through large exome sequencing 
-                                      (Satterstrom et al., 2020). Drug names come from ", 
-                                      tags$a(href = "https://go.drugbank.com/releases/latest#full", span("DrugBank"), style = "color: black;"),
-                                      " and are available via a ",
-                                      tags$a(href = "https://creativecommons.org/licenses/by/4.0/", 
-                                             span("Creative Commoms by Attribution (CC-BY)", style = "color: black;")," license. 
-                                      Outcomes were selected from review papers.")
-                                  )
+                                      (Satterstrom et al., 2020: https://doi.org/10.1016/j.cell.2019.12.036). 
+                                      Animal species are from Understanding Animal Research: 
+                                      https://www.understandinganimalresearch.org.uk/using-animals-in-scientific-research/animal-research-species/.")
                                 )
 )
 )

@@ -58,8 +58,8 @@ yearBarUI <- function(id, title = "", theme = "", spinner_colour = "#76A8C1", ta
 #' @param colours Colors for the chart elements.
 #'
 #' @export
-yearBarServer <- function(id, table, column, order = c("reported", "not reported"), 
-                          display="reported", text="", colours = c("#76A8C1", "grey")){
+yearBarServer <- function(id, table, column, order = c("reported", "not reported", "unknown"), 
+                          display="reported", text="", colours = c("#76A8C1", "#FFC076", "grey")){
   moduleServer(
     id,
     function(input, output, session) {
@@ -607,7 +607,7 @@ pico_multi_select_UI <- function(id,
         inputId = ns("select_cat_picker"),
         label = label1,
         choices = sort(unique(column)),
-        selected = head(sort(unique(column[!column %in% c("Unknown Model", "Unknown Species", "Unknown Intervention", "Unknown Outcome")])), 10),
+        selected = head(sort(unique(column[!column %in% c("Unknown Model", "Unknown Species", "Unknown Sex", "Unknown Outcome")])), 10),
         multiple = TRUE,
         options = pickerOptions(noneSelectedText = "Please Select",
                                 virtualScroll = 100,
@@ -801,7 +801,7 @@ pico_multi_select_Server  <- function(id,
                     colors = color_mapping,
                     hoverinfo = 'text',
                     textposition = "none",
-                    text = ~paste("<b>Main Category:</b> ", column,
+                    text = ~paste("<b>Tag:</b> ", column,
                                   #"<br><b>Type:</b> ", column2,
                                   "<br><b>Number of Publications:</b>", n,
                                   "<br><b>Year:</b>", year)
@@ -1514,12 +1514,14 @@ search_Server <- function(id,
             arrange(desc(year))
           
           combined_pico_table <- unique(combined_pico_table)
-          selected_studies$title <- paste0("<a href='",selected_studies$link, "' target='_blank'>",selected_studies$title,"</a>")
           selected_studies <- selected_studies %>%
+            mutate(title = ifelse(!is.na(doi) & doi != "", 
+                                  paste0("<a href='", link, "' target='_blank'>", title, "</a>"), 
+                                  title)) %>%
             select(year, author, journal, title, uid) %>%
             left_join(combined_pico_table, by="uid") %>%
             distinct() %>% 
-            select(year, author, title, model, species, intervention, outcome, uid)
+            select(year, author, title, model, species, sex, outcome, uid)
           
           selected_studies <- as.data.frame(selected_studies) %>%
             ungroup()
@@ -1548,7 +1550,7 @@ search_Server <- function(id,
               
               # Only keep the rows that have a matching "uid"
               selected_studies <- selected_studies %>%
-                semi_join(new_table, by = "uid")
+                right_join(new_table, by = "uid", relationship = "many-to-many")
             }
           }
           
@@ -1575,12 +1577,14 @@ search_Server <- function(id,
           arrange(desc(year))
         
         combined_pico_table <- unique(combined_pico_table)
-        selected_studies$title <- paste0("<a href='",selected_studies$link, "' target='_blank'>",selected_studies$title,"</a>")
         selected_studies <- selected_studies %>%
+          mutate(title = ifelse(!is.na(doi) & doi != "", 
+                                paste0("<a href='", link, "' target='_blank'>", title, "</a>"), 
+                                title)) %>%
           select(year, author, journal, title, uid) %>%
           left_join(combined_pico_table, by="uid") %>%
           distinct() %>% 
-          select(year, author, title, model, species, intervention, outcome, uid)
+          select(year, author, title, model, species, sex, outcome, uid)
         
         selected_studies <- as.data.frame(selected_studies) %>%
           ungroup()
@@ -1656,7 +1660,7 @@ search_Server <- function(id,
           # If there is a search query with filters added
           if(values$submit_filters == "clicked" & values$search_query == "NOT BLANK"){
             
-            paste0("Your translated search query tells the application to find AD-SOLES papers with a regex match to ", translated_query,
+            paste0("Your translated search query tells the application to find NDC-SOLES papers with a regex match to ", translated_query,
                    " in the title, abstract, and keywords fields. This search is NOT sensitive to case.",
                    " Your search and additional filters identified a total of ", length(filter_results()$uid), " studies")
           }
@@ -1664,7 +1668,7 @@ search_Server <- function(id,
           # If there is a search query with no filters added
           else if (values$submit_filters == "" & values$search_query == "NOT BLANK") {
             
-            paste0("Your translated search query tells the application to find AD-SOLES papers with a regex match to ",
+            paste0("Your translated search query tells the application to find NDC-SOLES papers with a regex match to ",
                    translated_query,
                    " in the title OR abstract OR keywords fields. This search is NOT sensitive to case.",
                    " Your search identified a total of ", length(filter_results()$uid), " studies with no additional filters.")
@@ -1762,9 +1766,9 @@ search_Server <- function(id,
       
       search_results_download <- reactive({
         
-        # tbl(con, "unique_citations"), filter, collect
         results <- citations_for_download %>%
-          filter(uid %in% !!search_results()$uid)
+          filter(uid %in% !!filter_results()$uid) %>%
+          mutate("abstract" = "")
         
         
       })
@@ -1773,12 +1777,11 @@ search_Server <- function(id,
         
         # tbl(con, "unique_citations"), filter, collect
         results <- citations_for_download %>%
-          filter(uid %in% !!search_results()$uid)
+          filter(uid %in% !!filter_results()$uid)
         
         results <- results %>%
           rename(Authors = author,
                  Title = title,
-                 Abstract = abstract,
                  Url = url,
                  Year = year,
                  DOI= doi,
@@ -1788,7 +1791,8 @@ search_Server <- function(id,
                  ReferenceType = "",
                  Keywords = keywords,
                  CustomId = uid,
-                 PdfRelativePath = paste0(uid, ".pdf")) %>%
+                 PdfRelativePath = paste0(uid, ".pdf"),
+                 Abstract = "") %>%
           select(Title,
                  Authors,
                  PublicationName,
@@ -1821,22 +1825,23 @@ search_Server <- function(id,
         
         # tbl(con, "unique_citations"), filter, collect
         results <- citations_for_download %>%
-          filter(uid %in% !!search_results()$uid)
+          filter(uid %in% !!filter_results()$uid)
         
         results <- results %>%
           filter(uid %in% search_results()$uid) %>%
-          mutate("Reference Type" = "Journal Article") %>%
-          mutate("ISBN/ISSN" = NA,
-                 "pages" = NA,
-                 "volume" = NA,
-                 "number" = NA) %>%
+          mutate("Reference Type" = "Journal Article",
+                 "pages" = "",
+                 "volume" = "",
+                 "number" = "") %>%
+          mutate(isbn = gsub("\\r\\n|\\r|\\n", "", isbn)) %>%
           rename("Custom 1" = uid,
-                 "Secondary Title" = journal) %>%
+                 "Secondary Title" = journal,
+                 "ISBN/ISSN" = isbn) %>%
           select("Reference Type", "author", "year",
                  "Secondary Title", "doi", "title",
-                 "pages", "volume", "number", "abstract",
+                 "pages", "volume", "number",
                  "Custom 1", "ISBN/ISSN") %>%
-          mutate(abstract = gsub("\\r\\n|\\r|\\n", "", abstract))
+          mutate("abstract" = "")
         
         names(results) <- toTitleCase(names(results))
         
