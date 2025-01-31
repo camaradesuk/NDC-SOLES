@@ -22,7 +22,7 @@ con <- dbConnect(RPostgres::Postgres(),
 dataframes_for_app <- list()
 
 # Create unique_citations table
-unique_citations <- tbl(con, "unique_citations") %>% 
+unique_citations <- tbl(con, "unique_citations") %>%  
   select(date, uid, title, journal, year, doi, uid, url, author, abstract, keywords, isbn)
 
 #create included tbl
@@ -310,7 +310,7 @@ funder_tag <- included_small %>%
   mutate(funder_name = ifelse(is.na(funder_name), "Unknown", funder_name),
          award_id = ifelse(is.na(award_id), "Unknown", funder_name)) %>%
   filter(!is.na(year)) %>%
-  select(uid, year, funder_id) %>%
+  select(uid, year, funder_name) %>%
   distinct()
 
 dataframes_for_app[["funder_tag"]] <- funder_tag
