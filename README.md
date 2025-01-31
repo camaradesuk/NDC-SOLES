@@ -19,11 +19,13 @@ The NDC-SOLES Project is funded by a Simons Initiative for the Developing Brain 
 Repository structure:
 - `deploy_app`: files for generating R Shiny App
 - `regex`: data relating to regex validation tasks
-- `screening`: data relating to training machine learning classifier for classification
+- `screening_no_abstract`: data relating to training machine learning classifier for classification, without abstract data shared
 - `NDC-SOLES_Additional_Dedup_20241007.R`: code for additional removal of duplicates from the NDC-SOLES dataset
 - `NDC-SOLES_ML_Backlog.R`: code for tagging unique citations using machine learning classifier after classifier validation
 - `NDC-SOLES_ML_Error_Correction.R`: code for performing error correction prior to machine learning validation
 - `NDC-SOLES_ML_Validation.`: code for running k-fold cross validation on machine learning classifier
+- `NDC-SOLES_Number_Analysis`: code for analysing number of records tagged for thesis project
 - `NDC-SOLES_Regex.R`: code for developing and validating regular expressions approaches for named entity recognition
+- `NDC-SOLES_Regex_All.R`: code for running regexes on whole dataset
 - `NDC-SOLES_workflow.R`: workflow that is run weekly to retrieve and tag new citations
 - `write_data.R`: code to write data for app
