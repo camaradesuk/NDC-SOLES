@@ -25,7 +25,7 @@ ui_included_studies <- tabItem(tabName = "studies-included-summary-dc",
             width=3,
             subtitle = span("Retracted publications", style = "font-size: 120%; color: black;"),
             color = "danger",
-            value = span(nrow(filter(retraction_tag, is_retracted == TRUE)),
+            value = span(nrow(filter(retraction_tag, is_retracted == "Retracted")),
                            style = "font-size: 300%; color: black;"),
             icon = icon("circle-xmark"))
         ),
