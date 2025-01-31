@@ -6,6 +6,9 @@ library(soles)
 # CRAN R packages
 library(dplyr)
 library(DBI)
+library(wordcloud)
+library(RColorBrewer)
+library(wordcloud2)
 
 # Set database connection
 con <- dbConnect(RPostgres::Postgres(),
@@ -77,6 +80,16 @@ pico_count_model <- pico_tag_count %>% filter(type == "model")
 pico_count_species <- pico_tag_count %>% filter(type == "species")
 pico_count_sex <- pico_tag_count %>% filter(type == "sex")
 pico_count_outcome <- pico_tag_count %>% filter(type == "outcome")
+# Word clouds
+wordcloud(words = pico_count_model$name, freq = pico_count_model$n, min.freq = 10,           
+          max.words=200, random.order=FALSE, rot.per=0,            
+          colors=brewer.pal(8, "Dark2"))
+wordcloud(words = pico_count_species$name, freq = pico_count_species$n, min.freq = 10,           
+          max.words=200, random.order=FALSE, rot.per=0,            
+          colors=brewer.pal(8, "Dark2"))
+wordcloud(words = pico_count_outcome$name, freq = pico_count_outcome$n, min.freq = 10,           
+          max.words=200, random.order=FALSE, rot.per=0,            
+          colors=brewer.pal(8, "Dark2"))
 # Count records
 pico_record_count <- pico_tag %>%
   select(uid, type) %>%
@@ -132,6 +145,20 @@ discipline_tag <- dbReadTable(con, "discipline_tag") %>%
   filter(main_discipline != "Unknown") %>%
   filter(score >= 0.4)
 discipline_tag_unique <- length(unique(discipline_tag$uid))
+# Word clouds
+dat_discipline_level0 <- discipline_tag %>% filter(level == 0) %>% select(main_discipline, uid) %>% count(main_discipline)
+wordcloud(words = dat_discipline_level0$main_discipline, freq = dat_discipline_level0$n, min.freq = 10,           
+          max.words=200, random.order=FALSE, rot.per=0,            
+          colors=brewer.pal(8, "Dark2"))
+dat_discipline_level1 <- discipline_tag %>% filter(level == 1) %>% select(main_discipline, uid) %>% count(main_discipline)
+wordcloud(words = dat_discipline_level1$main_discipline, freq = dat_discipline_level1$n, min.freq = 10,           
+          max.words=200, random.order=FALSE, rot.per=0,            
+          colors=brewer.pal(8, "Dark2"))
+dat_discipline_level2 <- discipline_tag %>% filter(level == 2) %>% select(main_discipline, uid) %>% count(main_discipline)
+wordcloud(words = dat_discipline_level2$main_discipline, freq = dat_discipline_level2$n, min.freq = 100,           
+          max.words=200, random.order=FALSE, rot.per=0,            
+          colors=brewer.pal(8, "Dark2"))
+
 
 # Get open access data
 openaccess_tag <- dbReadTable(con, "oa_tag") %>%
