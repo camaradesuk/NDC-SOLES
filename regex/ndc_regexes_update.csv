@@ -1,0 +1,224 @@
+﻿name,regex,type,subtype,status
+Active Avoidance,(?i)\bactive[- ](place )?avoidance\b,Experimental Test,Rodent Behaviour,Same
+Barnes Maze or Reverse Barnes Maze,(?i)\bbarnes[- ]maze\b,Experimental Test,Rodent Behaviour,Same
+Chemotaxis,(?i)\bchemotaxis\b,Experimental Test,Roundworm Behaviour,Same
+Cold Plate Test,(?i)\bcold[- ]plate\b,Experimental Test,Rodent Behaviour,Same
+Fear Conditioning,(?i)\bfear[- ]conditioning\b,Experimental Test,Rodent Behaviour,Edited Name
+Digging or Burrowing,(?i)\bdigging\b|\bburrowing\b,Experimental Test,Rodent Behaviour,Same
+EEG Recording,(?i)\bEEG recordings?\b|\belectroencephalogram recordings?\b,Experimental Test,Electrophysiology,Same
+Elevated Plus Maze,(?i)\belevated[- ]plus[- ]maze\b,Experimental Test,Rodent Behaviour,Same
+Elevated Zero Maze,(?i)\b(zero|0)[- ]maze\b,Experimental Test,Rodent Behaviour,Same
+Erasmus Ladder,(?i)\berasmus[- ]ladder\b,Experimental Test,Rodent Behaviour,Edited
+Forced Swim Test,(?i)\bforced[- ]swim(ming)?[- ](test(ing)?|task|assay)\b,Experimental Test,Rodent Behaviour,Edited
+Gait Analysis,(?i)\bgait[- ]analysis\b,Experimental Test,Rodent Behaviour,Same
+Limb Grasping,(?i)\b(hind|fore[- ])?limb (grasp|clasp)(s|ing)?\b,Experimental Test,Rodent Behaviour,Same
+Hot Plate Test,(?i)\bhot[- ]plate\b,Experimental Test,Rodent Behaviour,Same
+Larval Crawling Assay,(?i)\b(larval )?crawling[- ](assay|test(ing)?|task|pattern|behaviour)s?\b,Experimental Test,Fruit Fly Behaviour,Edited
+Light Dark Transition Test,(?i)\blight(-| |\/| and )dark (transition )?(test(ing)?|task|box|chamber)e?s?\b,Experimental Test,Rodent Behaviour,Edited
+Marble Burying,(?i)\bmarble[- ]burying,Experimental Test,Rodent Behaviour,Same
+Morris Water Maze,(?i)\bmorris[- ]water[- ]maze\b,Experimental Test,Rodent Behaviour,Edited
+Nesting,(?i)\bnesting\b|\bnest[ - ]building\b,Experimental Test,Rodent Behaviour,New
+Novel Object Preference Test,(?i)\bnovel[- ]object preference\b,Experimental Test,Rodent Behaviour,Same
+Novel Object Recognition,(?i)\bnovel[- ]object recognition\b,Experimental Test,Rodent Behaviour,Same
+Novel Tank Dive Test,(?i)\bnovel tank dive (test(ing)?|task|assay)\b,Experimental Test,Zebrafish Behaviour,Edited
+Open Field Test,(?i)\bopen[- ]field\b,Experimental Test,Rodent Behaviour,Same
+Orienting Reflex Test,(?i)\brighting[- ]reflex\b|\borienting[- ]reflex\b,Experimental Test,Rodent Behaviour,New
+Other Electrophysiology,(?i)\belectrophysiology\b|\belectrophysiological\b,Experimental Test,Electrophysiology,Same
+Passive Avoidance,(?i)\bpassive[- ](place )?avoidance\b,Experimental Test,Rodent Behaviour,Same
+Pheromone Avoidance,(?i)\bpheromone avoidance\b,Experimental Test,Roundworm Behaviour,Same
+Pre Pulse Inhibition or Acoustic Startle,(?i)\bpre[- ]pulse inhibition\b|\bacoustic startle\b|\bauditory startle\b|\bstartle response\b,Experimental Test,Rodent Behaviour,Edited
+Prey Capture Task,(?i)\bprey[- ]capture (feeding )?(task|test(ing)?)\b,Experimental Test,Rodent Behaviour,Edited
+Radial Arm Maze,(?i)\bradial[- ]arm[- ]maze\b,Experimental Test,Rodent Behaviour,Edited
+Rotarod,(?i)\brotarod\b,Experimental Test,Rodent Behaviour,Same
+Seizure Induction,(?i)\bseizure[- ]induction\b|\binduction of seizures\b|\bseizures induced\b,Experimental Test,Seizure,Edited
+Self Grooming,(?i)\b(self[- ])?grooming\b,Experimental Test,General Behaviour,Same
+Shoaling Test,(?i)\bshoaling[- ](test(ing)|task)\b,Experimental Test,Zebrafish Behaviour,Same
+Sleep Duration,(?i)\bsleep duration\b|\bduration of sleep\b|\bduration ((animals|mice|rats|rodents) were )?asleep\b,Experimental Test,General Behaviour,Same
+Social Dominance Tube Test,(?i)\bsocial dominance tube[- ]test\b|\btube[- ]test for social dominance\b,Experimental Test,Rodent Behaviour,Edited
+Social Preference Test,(?i)\bsocial( interaction and )?preference (test(ing)?|task|assay)\b,Experimental Test,Rodent Behaviour,Edited
+Spontaneous Seizures,(?i)\bspontaneous seizures?\b,Experimental Test,Seizure,Same
+Swimming Activity,(?i)\bswimming activity\b|\btime spent swimming\b,Experimental Test,Zebrafish Behaviour,Same
+T Maze,(?i)\bt[- ]maze\b,Experimental Test,Rodent Behaviour,Same
+Tail Flick Test,(?i)\btail flicks?\b,Experimental Test,Rodent Behaviour,Same
+Tail Suspension Test,(?i)\btail[- ]suspension\b,Experimental Test,Rodent Behaviour,Same
+Three Chamber Test,(?i)\b(3|three)[- ]chamber( social| sociability)?( approach| interaction| preference)? (test(ing)?|task|assay)?s?\b,Experimental Test,Rodent Behaviour,Edited
+Ultrasonic Vocalisation,(?i)\bultra-?sonic[- ]vocali(s|z)ations?\b,Experimental Test,Rodent Behaviour,Same
+Von Frey Test,(?i)\bvon[- ]frey (filaments?|test(ing)?|assay)\b,Experimental Test,Rodent Behaviour,Edited
+Worm Maze,(?i)\bworm[- ]maze\b,Experimental Test,Roundworm Behaviour,Same
+Y Maze,(?i)\by[- ]maze\b,Experimental Test,Rodent Behaviour,Same
+Male,(?i)\bmales?\b,Animal Sex,,Same
+Female,(?i)\bfemales?\b,Animal Sex,,Same
+Both sexes,(?i)\bboth sexes\b,Animal Sex,,Same
+Mouse,(?i)\bmouse\b|\bmice\b|\bmurine\b,Animal Species,,Same
+Rat,(?i)\brats?\b,Animal Species,,Same
+Roundworm,(?i)\bcaenorhabditis elegans\b|\bc\.elegans\b|\broundworms?\b|\bnematodes?\b,Animal Species,,Same
+Fruitfly,(?i)\bdrosophila\b|\bfruit(|-| )fl(y|ies)\b,Animal Species,,Same
+Zebrafish,(?i)\bdanio rerio\b|\bzebra(|-| )fish(es)?\b,Animal Species,,Same
+Armadillo,(?i)\barmadillos?\b|\bdasypus novemcinctus\b|\bchlamyphorus truncatus\b,Animal Species,,New
+Cat,(?i)\bcats?\b|\bfelis catus\b,Animal Species,,New
+Chicken,(?i)\bchickens?\b|\bgallus gallus\b,Animal Species,,New
+Dog,(?i)\bdogs?\b|\bmongrels?\b|\bbeagles?\b|\bCanis lupus familiaris\b|\bCanis familiaris\b,Animal Species,,New
+Feret,(?i)\bferrets?\b|\bMustela putorius furo\b|\bMustela furo\b,Animal Species,,New
+Frog,(?i)\bfrogs?\b|\bzenopus\b,Animal Species,,New
+Guinea pig,(?i)\bguinea[- ]?pigs?\b|\bavia porcellus\b,Animal Species,,New
+Hamster,(?i)\bhamsters?\b|\bCricetinae\b,Animal Species,,New
+Horse,(?i)\bhorses?\b|\bequids\b|\bEquus caballus\b,Animal Species,,New
+Kangaroo,(?i)\bkangaroos?\b|\bMacropodidae\b,Animal Species,,New
+Llama,(?i)\bllamas?\b|\bLama glama\b,Animal Species,,New
+Non-human primate,(?i)\bprimates?\b|\bmoneys?\b,Animal Species,,New
+Octopus,(?i)\boctopus(es)?\b|\boctopi\b|\boctopoda\b,Animal Species,,New
+Opossum,(?i)\bopossums?\b|\bDidelphidae\b,Animal Species,,New
+Pig,(?i)\bpig(let)?s?\b|\bSus scrofa\b,Animal Species,,New
+Rabbit,(?i)\brabbits?\b|\bOryctolagus cuniculus\b,Animal Species,,New
+Sheep,(?i)\bsheeps?\b|\bewes?\b|\bOvis aries\b,Animal Species,,New
+Squid,(?i)squids?\b|\bDecapodiformes\b,Animal Species,,New
+ADNP,(?i)\bADNP\b|\bActivity Dependent Neuroprotector Homeobox\b|\bHelsmoortel(-| )Van der Aa syndrome\b,Model Gene,,Edited
+ALDH5A1,(?i)\bALDH5A1\b|\bAldehyde Dehydrogenase 5 Family Member(-| )A1\b,Model Gene,,Edited
+ANK2,(?i)\bANK2\b|\bAnkyrin(-| )2\b,Model Gene,,Edited
+ANKRD11,(?i)\bANKRD11\b|\bAnkyrin Repeat Domain Containing(-| )11\b|KBG syndrome\b,Model Gene,,Edited
+AP2S1,(?i)\bAP2S1\b|\bAdaptor Related Protein Complex 2 Subunit Sigma(-| )1\b,Model Gene,,Edited
+ARID1B,(?i)\bARID1B\b|\bAT(-| )Rich Interaction Domain(-| )1B\b|\bCoffin(-| )Siris syndrome\b,Model Gene,,Edited
+ARX,(?i)\bARX\b|\bAristaless Related Homeobox\b,Model Gene,,Edited
+ASH1L,(?i)\bASH1L\b|\bASH1(-| )Like Histone Lysine Methyltransferase\b,Model Gene,,Edited
+ASXL3,(?i)\bASXL3\b|\bASXL Transcriptional Regulator(-| )3\b|\bBainbridge(-| )Ropers syndrome\b,Model Gene,,Edited
+AUTS2,(?i)\bAUTS2\b|\bActivator Of Transcription And Developmental Regulator AUTS2\b,Model Gene,,Edited
+BCKDK,(?i)\bBCKDK\b|\bBranched Chain Keto Acid Dehydrogenase Kinase\b,Model Gene,,Edited
+BCL11A,(?i)\bBCL11A\b|\bBCL11 Transcription Factor A\b|\bDias(-| )Logan syndrome\b,Model Gene,,Edited
+CACNA1C,(?i)\bCACNA1C\b|\bCalcium Voltage(-| )Gated Channel Subunit Alpha1 ?C \b|\bTimothy syndrome\b,Model Gene,,Edited
+CACNA1E,(?i)\bCACNA1E\b|\bCalcium Voltage-Gated Channel Subunit Alpha1 ?E\b,Model Gene,,Edited
+CACNA2D3,(?i)\bCACNA2D3\b|\bCalcium Voltage-Gated Channel Auxiliary Subunit Alpha ?2 ?delta ?3\b,Model Gene,,Edited
+CAPRIN1,(?i)\bCAPRIN1\b|\bCell Cycle Associated Protein(-| )1\b,Model Gene,,Edited
+CDKL5,(?i)\bCDKL5\b|\bCyclin Dependent Kinase(-| )Like(-| )5\b,Model Gene,,Edited
+CELF4,(?i)\bCELF4\b|\bCUGBP Elav-Like Family Member(-| )4\b,Model Gene,,Edited
+CHD2,(?i)\bCHD2\b|\bChromodomain Helicase DNA Binding Protein(-| )2\b,Model Gene,,Edited
+CHD7,(?i)\bCHD7\b|\bChromodomain Helicase DNA Binding Protein(-| )7\b|\bCHARGE syndrome\b,Model Gene,,Edited
+CHD8,(?i)\bCHD8\b|\bChromodomain Helicase DNA Binding Protein(-| )8\b,Model Gene,,Edited
+CIC,(?i)\bCIC\b|\bCapicua Transcriptional Repressor\b,Model Gene,,Edited
+CORO1A,(?i)\bCORO1A\b|\bCoronin(-| )1A\b,Model Gene,,Edited
+CREBBP,(?i)\bCREBBP\b|\bCREB Binding Protein\b|\bRubinstein(-| )Taybi syndrome\b|\bMenke(-| )Hennekam syndrome\b,Model Gene,,Edited
+CTNNB1,(?i)\bCTNNB1\b|\bCatenin Beta(-| )1\b,Model Gene,,Edited
+CUL3,(?i)\bCUL3\b|\bCullin(-| )3\b,Model Gene,,Edited
+DDX3X,(?i)\bDDX3X\b|\bDEAD(-| )Box Helicase 3 X(-| )Linked\b,Model Gene,,Edited
+DEAF1,(?i)\bDEAF1\b|\bDEAF1 Transcription Factor\b,Model Gene,,Edited
+DHCR7,(?i)\bDHCR7\b|\b7(-| |)Dehydrocholesterol Reductase\b|\bSmith(-| )Lemli(-| )Opitz syndrome\b,Model Gene,,Edited
+DIP2A,(?i)\bDIP2A\b|\bDisco Interacting Protein 2 Homolog(-| )A\b,Model Gene,,Edited
+DLG4,(?i)\bDLG4\b|\bDiscs Large MAGUK Scaffold Protein(-| )4\b,Model Gene,,Edited
+DMPK,(?i)\bDMPK\b|\bDM1 Protein Kinase\b,Model Gene,,Edited
+DNMT3A,(?i)\bDNMT3A\b|\bDNA Methyltransferase 3 ?Alpha\b|\bTatton(-| )Brown(-| )Rahman syndrome\b,Model Gene,,Edited
+DPYSL2,(?i)\bDPYSL2\b|\bDihydropyrimidinase(-| )Like(-| )2\b,Model Gene,,Edited
+DSCAM,(?i)\bDSCAM\b|\bDS Cell Adhesion Molecule\b,Model Gene,,Edited
+DYNC1H1,(?i)\bDYNC1H1\b|\bDynein Cytoplasmic 1 Heavy Chain(-| )1\b,Model Gene,,Edited
+DYRK1A,(?i)\bDYRK1A\b|\bDual Specificity Tyrosine Phosphorylation Regulated Kinase(-| )1A\b,Model Gene,,Edited
+EIF3G,(?i)\bEIF3G\b|\bEukaryotic Translation Initiation Factor ?3 ?Subunit ?G\b,Model Gene,,Edited
+ELAVL3,(?i)\bELAVL3\b|\bELAV(-| )Like RNA Binding Protein(-| )3\b,Model Gene,,Edited
+FMR1,(?i)\bFMR1\b|\bFragile X Messenger Ribonucleoprotein(-| )1\b|\bFragile X Mental Retardation(-| )1\b|\bFragile X syndrome\b,Model Gene,,Edited
+FOXG1,(?i)\bFOXG1\b|\bForkhead Box G1\b,Model Gene,,Edited
+FOXP1,(?i)\bFOXP1\b|\bForkhead Box P1\b,Model Gene,,Edited
+FOXP2,(?i)\bFOXP2\b|\bForkhead Box P2\b,Model Gene,,Edited
+GABRB2,(?i)\bGABRB2\b|\bGamma(-| )Aminobutyric Acid Type A Receptor Subunit Beta2\b,Model Gene,,Edited
+GABRB3,(?i)\bGABRB3\b|\bGamma(-| )Aminobutyric Acid Type A Receptor Subunit Beta3\b,Model Gene,,Edited
+GFAP,(?i)\bGFAP\b|\bGlial Fibrillary Acidic Protein\b,Model Gene,,Edited
+GIGYF1,(?i)\bGIGYF1\b|\bGRB10 Interacting GYF Protein(-| )1\b,Model Gene,,Edited
+GNAI1,(?i)\bGNAI1\b|\bG Protein Subunit Alpha(-| )I1\b,Model Gene,,Edited
+GRIA2,(?i)\bGRIA2\b|\bGlutamate Ionotropic Receptor AMPA Type Subunit(-| )2\b,Model Gene,,Edited
+GRIN1,(?i)\bGRIN1\b|\bGlutamate Ionotropic Receptor NMDA Type Subunit(-| )1\b,Model Gene,,Edited
+GRIN2B,(?i)\bGRIN2B\b|\bGlutamate Ionotropic Receptor NMDA Type Subunit(-| )2B\b,Model Gene,,Edited
+HDLBP,(?i)\bHDLBP\b|\bHigh Density Lipoprotein Binding Protein\b|\b2q37.3 microdeletion syndrome\b,Model Gene,,Edited
+HECTD4,(?i)\bHECTD4\b|\bHECT Domain E3 Ubiquitin Protein Ligase(-| )4\b,Model Gene,,Edited
+HNRNPU,(?i)\bHNRNPU\b|\bHeterogeneous Nuclear Ribonucleoprotein U\b,Model Gene,,Edited
+IQSEC2,(?i)\bIQSEC2\b|\bIQ Motif And Sec7 Domain ArfGEF(-| )2\b,Model Gene,,Edited
+IRF2BPL,(?i)\bIRF2BPL\b|\bInterferon Regulatory Factor 2 Binding Protein(-| )Like\b,Model Gene,,Edited
+KCNMA1,(?i)\bKCNMA1\b|\bPotassium Calcium-Activated Channel Subfamily M Alpha(-| )1\b,Model Gene,,Edited
+KCNQ3,(?i)\bKCNQ3\b|\bPotassium Voltage-Gated Channel Subfamily Q Member\b,Model Gene,,Edited
+KDM5B,(?i)\bKDM5B\b|\bLysine Demethylase(-| )5B\b,Model Gene,,Edited
+KDM6B,(?i)\bKDM6B\b|\bLysine Demethylase(-| )6B\b,Model Gene,,Edited
+KIAA0232,(?i)\bKIAA0232\b,Model Gene,,Edited
+KMT2A,(?i)\bKMT2A\b|\bLysine Methyltransferase(-| )2A\b|\bWiedemann(-| )Steiner syndrome\b,Model Gene,,Edited
+KMT2C,(?i)\bKMT2C\b|\bLysine Methyltransferase(-| )2C\b,Model Gene,,Edited
+KMT2E,(?i)\bKMT2E\b|\bLysine Methyltransferase(-| )2E\b|\bO'?Donnell(-| )Luria(-| )Rodan syndrome\b,Model Gene,,Edited
+KMT5B,(?i)\bKMT5B\b|\bLysine Methyltransferase(-| )5B\b,Model Gene,,Edited
+LDB1,(?i)\bLDB1\b|\bLIM Domain Binding(-| )1\b,Model Gene,,Edited
+LRRC4C,(?i)\bLRRC4C\b|\bLeucine Rich Repeat Containing(-| )4C\b,Model Gene,,Edited
+MAGEL2,(?i)\bMAGEL2\b|\bMAGE Family Member(-| )L2\b|\bSchaaf(-| )Yang syndrome\b|\bChitayat(-| )Hall syndrome\b,Model Gene,,Edited
+MAP1A,(?i)\bMAP1A\b|\bMicrotubule Associated Protein(-| )1A\b,Model Gene,,Edited
+MBD5,(?i)\bMBD5\b|\bMethyl(-| |)CpG Binding Domain Protein(-| )5\b|\b2q23.1 microdeletion syndrome\b,Model Gene,,Edited
+MBOAT7,(?i)\bMBOAT7\b|\bMembrane Bound O(-| )Acyltransferase Domain Containing(-| )7\b,Model Gene,,Edited
+MECP2,"(?i)\bMECP2\b|\bMethyl(-| |)CpG Binding Protein(-| )2\b|\bRett syndrome, MECP2 duplication syndrome\b",Model Gene,,Edited
+MED13L,(?i)\bMED13L\b|\bMediator Complex Subunit(-| )13L\b,Model Gene,,Edited
+MEF2C,(?i)\bMEF2C\b|\bMyocyte Enhancer Factor(-| )2C\b,Model Gene,,Edited
+MKX,(?i)\bMKX\b|\bMohawk Homeobox\b,Model Gene,,Edited
+MTOR,(?i)\bMTOR\b|\bMechanistic Target Of Rapamycin Kinase\b|\bSmith(-| )Kingsmore syndrome\b,Model Gene,,Edited
+MYT1L,(?i)\bMYT1L\b|\bMyelin Transcription Factor 1(-| )Like\b,Model Gene,,Edited
+NACC1,(?i)\bNACC1\b|\bNucleus Accumbens Associated(-| )1\b,Model Gene,,Edited
+NBEA,(?i)\bNBEA\b|\bNeurobeachin\b,Model Gene,,Edited
+NCOA1,(?i)\bNCOA1\b|\bNuclear Receptor Coactivator(-| )1\b,Model Gene,,Edited
+NEXMIF,(?i)\bNEXMIF\b|\bNeurite Extension And Migration Factor \b,Model Gene,,Edited
+NF1,(?i)\bNF1\b|\bNeurofibromin(-| )1\b,Model Gene,,Edited
+NLGN2,(?i)\bNLGN2\b|\bNeuroligin(-| )2\b,Model Gene,,Edited
+NLGN3,(?i)\bNLGN3\b|\bNeuroligin(-| )3\b,Model Gene,,Edited
+NLGN4X,(?i)\bNLGN4X\b|\bNeuroligin(-| )4 X(-| )Linked\b,Model Gene,,Edited
+NR3C2,(?i)\bNR3C2\b|\bNuclear Receptor Subfamily 3 Group ?C Member 2\b,Model Gene,,Edited
+NRXN1,(?i)\bNRXN1\b|\bNeurexin(-| )1\b,Model Gene,,Edited
+NRXN2,(?i)\bNRXN2\b|\bNeurexin(-| )2\b,Model Gene,,Edited
+NSD1,(?i)\bNSD1\b|\bNuclear Receptor Binding SET Domain Protein(-| )1\b|\bSotos syndrome\b,Model Gene,,Edited
+NUP155,(?i)\bNUP155\b|\bNucleoporin(-| )155\b,Model Gene,,Edited
+PAX5,(?i)\bPAX5\b|\bPaired Box(-| )5\b,Model Gene,,Edited
+PCDH19,(?i)\bPCDH19\b|\bProtocadherin(-| )19\b,Model Gene,,Edited
+PHF12,(?i)\bPHF12\b|\bPHD Finger Protein(-| )12\b,Model Gene,,Edited
+PHF2,(?i)\bPHF2\b|\bPHD Finger Protein(-| )2\b,Model Gene,,Edited
+PHF21A,(?i)\bPHF21A\b|\bPHD Finger Protein 21A\b|\bPotocki(-| )Shaffer syndrome\b,Model Gene,,Edited
+POGZ,(?i)\bPOGZ\b|\bPogo Transposable Element Derived With ZNF Domain\b|\bWhite(-| )Sutton syndrome\b,Model Gene,,Edited
+PPP1R9B,(?i)\bPPP1R9B\b|\bProtein Phosphatase 1 Regulatory Subunit ?9B\b,Model Gene,,Edited
+PPP2R5D,(?i)\bPPP2R5D\b|\bProtein Phosphatase 2 Regulatory Subunit B ?Delta\b,Model Gene,,Edited
+PPP5C,(?i)\bPPP5C\b|\bProtein Phosphatase 5 Catalytic Subunit\b,Model Gene,,Edited
+PRR12,(?i)\bPRR12\b|\bProline Rich(-| )12\b,Model Gene,,Edited
+PTCHD1,(?i)\bPTCHD1\b|\bPatched Domain Containing(-| )1\b,Model Gene,,Edited
+PTEN,(?i)\bPTEN\b|\bPhosphatase And Tensin Homolog\b|\bCowden syndrome\b|\bPTEN hamartoma tumor syndrome\b,Model Gene,,Edited
+PTK7,(?i)\bPTK7\b|\bProtein Tyrosine Kinase(-| )7\b,Model Gene,,Edited
+RAI1,(?i)\bRAI1\b|\bRetinoic Acid(-| )Induced(-| )1 \b|\bSmith(-| )Magenis syndrome\b|\bPotocki-(-| )Lupski syndrome\b,Model Gene,,Edited
+RELN,(?i)\bRELN\b|\bReelin\b,Model Gene,,Edited
+RFX3,(?i)\bRFX3\b|\bRegulatory Factor(-| )X3\b,Model Gene,,Edited
+RIMS1,(?i)\bRIMS1\b|\bRegulating Synaptic Membrane Exocytosis(-| )1\b,Model Gene,,Edited
+RORB,(?i)\bRORB\b|\bRAR Related Orphan Receptor B\b|\b9q21.13 microdeletion syndrome\b,Model Gene,,Edited
+SATB1,(?i)\bSATB1\b|\bSATB Homeobox(-| )1\b,Model Gene,,Edited
+SCN1A,(?i)\bSCN1A\b|\bSodium Voltage(-| )Gated Channel Alpha Subunit(-| )1\b,Model Gene,,Edited
+SCN2A,(?i)\bSCN2A\b|\bSodium Voltage(-| )Gated Channel Alpha Subunit(-| )2\b,Model Gene,,Edited
+SCN8A,(?i)\bSCN8A\b|\bSodium Voltage(-| )Gated Channel Alpha Subunit(-| )8\b,Model Gene,,Edited
+SETD5,(?i)\bSETD5\b|\bSET Domain Containing(-| )5\b,Model Gene,,Edited
+SHANK2,(?i)\bSHANK2\b|\bSH3 And Multiple Ankyrin Repeat Domains(-| )2\b,Model Gene,,Edited
+SHANK3,(?i)\bSHANK3\b|\bSH3 And Multiple Ankyrin Repeat Domains(-| )3\b|\bPhelan(-| )McDermid syndrome\b,Model Gene,,Edited
+SIN3A,(?i)\bSIN3A\b|\bSIN3 Transcription Regulator Family Member(-| )A\b|\bWitteveen(-| )Kolk syndrome\b,Model Gene,,Edited
+SKI,(?i)\bSKI\b|\bSKI Proto(-| )Oncogene\b,Model Gene,,Edited
+SLC6A1,(?i)\bSLC6A1\b|\bSolute Carrier Family 6 Member(-| ) 1\b,Model Gene,,Edited
+SLC9A6,(?i)\bSLC9A6\b|\bSolute Carrier Family 9 Member(-| )A6\b|\bChristianson syndrome\b,Model Gene,,Edited
+SMARCC2,"(?i)\bSMARCC2\b|\bSWI.SNF Related, Matrix Associated, Actin Dependent Regulator Of Chromatin Subfamily C Member(-| )2\b",Model Gene,,Edited
+SPAST,(?i)\bSPAST\b|\bSpastin\b,Model Gene,,Edited
+SRPR,(?i)\bSRPR\b|\bSRP Receptor Subunit Alpha\b,Model Gene,,Edited
+STXBP1,(?i)\bSTXBP1\b|\bSyntaxin Binding Protein(-| )1\b,Model Gene,,Edited
+SUV420H1,(?i)\bSUV420H1\b|\bLysine Methyltransferase(-| )5B\b,Model Gene,,Edited
+SYN1,(?i)\bSYN1\b|\bSYNI\b|\bSynapsin(-| )1\b|\bSynapsin(-| )I\b,Model Gene,,Edited
+SYNGAP1,(?i)\bSYNGAP1\b|\bSynaptic Ras GTPase Activating Protein(-| )1\b|\bSYNGAP\b,Model Gene,,Edited
+TAOK1,(?i)\bTAOK1\b|\bTAO Kinase(-| )1\b,Model Gene,,Edited
+TBL1XR1,(?i)\bTBL1XR1\b|\bTBL1X.Y Related(-| )1\b|\bPierpont syndrome\b,Model Gene,,Edited
+TBR1,(?i)\bTBR1\b|\bT-Box Brain Transcription Factor(-| )1\b,Model Gene,,Edited
+TCF20,(?i)\bTCF20\b|\bTranscription Factor(-| )20\b,Model Gene,,Edited
+TCF4,(?i)\bTCF4\b|\bTranscription Factor(-| )4\b|\bPitt(-| )Hopkins syndrome\b,Model Gene,,Edited
+TCF7L2,(?i)\bTCF7L2\b|\bTranscription Factor(-| )7(-| )Like(-| )2\b,Model Gene,,Edited
+TEK,(?i)\bTEK\b|\bTEK Receptor Tyrosine Kinase\b,Model Gene,,Edited
+TLK2,(?i)\bTLK2\b|\bTousled Like Kinase(-| )2\b,Model Gene,,Edited
+TM9SF4,(?i)\bTM9SF4\b|\bTransmembrane 9 Superfamily Member(-| )4\b,Model Gene,,Edited
+TRAF7,(?i)\bTRAF7\b|\bTNF Receptor Associated Factor(-| )7\b,Model Gene,,Edited
+TRIM23,(?i)\bTRIM23\b|\bTripartite Motif Containing(-| )23\b,Model Gene,,Edited
+TRIO,(?i)\bTRIO\b|\bTrio Rho Guanine Nucleotide Exchange Factor\b,Model Gene,,Edited
+TRIP12,(?i)\bTRIP12\b|\bThyroid Hormone Receptor Interactor(-| )12\b|\bClark(-| )Baraitser syndrome\b,Model Gene,,Edited
+TSC1,(?i)\bTSC1\b|\bTSC Complex Subunit(-| )1\b,Model Gene,,Edited
+TSC2,(?i)\bTSC2\b|\bTSC Complex Subunit(-| )2\b,Model Gene,,Edited
+TSHZ3,(?i)\bTSHZ3\b|\bTeashirt Zinc Finger Homeobox(-| )3\b,Model Gene,,Edited
+UBAP2L,(?i)\bUBAP2L\b|\bUbiquitin Associated Protein(-| )2(-| )Like\b,Model Gene,,Edited
+UBE3A,(?i)\bUBE3A\b|\bUbiquitin Protein Ligase(-| )E3A\b|\bAngelman syndrome\b,Model Gene,,Edited
+UBR1,(?i)\bUBR1\b|\bUbiquitin Protein Ligase E3 Component N(-| )Recognin(-| )1\b,Model Gene,,Edited
+UPF3B,(?i)\bUPF3B\b|\bUPF3B Regulator Of Nonsense Mediated MRNA Decay\b,Model Gene,,Edited
+VEZF1,(?i)\bVEZF1\b|\bVascular Endothelial Zinc Finger(-| )1\b,Model Gene,,Edited
+WAC,(?i)\bWAC\b|\bWW Domain Containing Adaptor With Coiled(-| )Coil\b|\bDeSanto(-| )Shinawi syndrome\b,Model Gene,,Edited
+WDFY3,(?i)\bWDFY3\b|\bWD Repeat And FYVE Domain Containing(-| )\b,Model Gene,,Edited
+ZMYND8,(?i)\bZMYND8\b|\bZinc Finger MYND-Type Containing(-| )8\b,Model Gene,,Edited
