@@ -26,6 +26,9 @@ library(openalexR)
 library(parallel)
 library(lubridate)
 
+# Extra functions
+source("functions/run_ml_at_threshold.R")
+
 # Set database connection
 con <- dbConnect(RPostgres::Postgres(),
                  dbname = Sys.getenv("ndc_soles_dbname"),
@@ -109,16 +112,18 @@ dbWriteTable(con, "unique_citations", new_citations_unique, append=TRUE)
 unscreened_set <- get_studies_to_screen(con, 
                                         classify_NA = TRUE, 
                                         project_name = "ndc-soles",
-                                        classifier_name = "in_vivo")
+                                        classifier_name = "in-vivo")
 
 # Read in training data for ML
-screening_decisions <- read.csv("screening/labelled_data/ndc_soles_labelled_test_train.csv", 
-                                stringsAsFactors = F)
+screening_decisions <- read.csv("screening/validation/labelled_data_assigned_iteration.csv", 
+                                stringsAsFactors = F) %>%
+  filter(iteration == 4,
+         cat == "Train") %>%
+  select(ITEM_ID, LABEL, REVIEW_ID, KEYWORDS, Cat, ABSTRACT, TITLE)
 
 # Run machine learning and write results to database table
-run_ml(con, project_name="ndc-soles", classifier_name="in_vivo", 
-       screening_decisions, unscreened_set)
-
+run_ml_at_threshold(con, project_name="ndc-soles", classifier_name="in-vivo", 
+                    screening_decisions, unscreened_set, threshold = 0.39)
 
 # ------------------------------------------------------------------------------
 # Retrieve Full Text Documents
