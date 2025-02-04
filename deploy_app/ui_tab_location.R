@@ -35,7 +35,7 @@ ui_tab_location <- tabItem(tabName = "data-summary-location",
                            width=4,
                            subtitle = span("Publications tagged with institution", style = "color: white;"),
                            color = "secondary",
-                           value = span(round(length(unique(institution_tag$name[which(institution_tag$name!="Unknown")]))/nrow(included_with_metadata)*100,1), "%",
+                           value = span(round(length(institution_tag$name[which(institution_tag$name!="Unknown")])/nrow(included_with_metadata)*100,1), "%",
                                           style = "font-size: 300%; color: white;"),
                            icon = icon("bar-chart", verify_fa = FALSE)
                          )

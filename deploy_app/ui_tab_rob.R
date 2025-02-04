@@ -21,7 +21,7 @@ ui_tab_rob <- tabItem(tabName = "data-summary-rob",
                   #   subtitle = tags$p("Randomisation", style = "font-size: 150%; color: white;"),
                   #   color = "secondary",
                   #   value = tags$p(round(length(rob$uid[which(rob$is_random=="reported")])/
-                  #                          length(rob$uid[which(!is.na(rob$is_random))])*100,1), "%",
+                  #                          nrow(included_with_metadata)*100,1), "%",
                   #                  style = "font-size: 200%; color: white;"),
                   #   icon = icon("asterisk")
                   # ),
@@ -31,7 +31,7 @@ ui_tab_rob <- tabItem(tabName = "data-summary-rob",
                     subtitle = tags$p("Blinded outcome assessment", style = "font-size: 150%; color: white;"),
                     color = "secondary",
                     value = tags$p(round(length(rob$uid[which(rob$is_blind=="reported")])/
-                                           length(rob$uid[which(!is.na(rob$is_blind))])*100,1), "%",
+                                           nrow(included_with_metadata)*100,1), "%",
                                    style = "font-size: 200%; color: white;"),
                     icon = icon("eye-slash", verify_fa = FALSE)
                   ),
@@ -41,7 +41,7 @@ ui_tab_rob <- tabItem(tabName = "data-summary-rob",
                     subtitle = tags$p("Conflicts of interest statement", style = "font-size: 150%; color: white;"),
                     color = "secondary",
                     value =tags$p(round(length(rob$uid[which(rob$is_interest=="reported")])/
-                                          length(rob$uid[which(!is.na(rob$is_interest))])*100,1), "%",
+                                          nrow(included_with_metadata)*100,1), "%",
                                   style = "font-size: 200%; color: white;"),
                     icon = icon("money-check-alt")
                   )
@@ -54,7 +54,7 @@ ui_tab_rob <- tabItem(tabName = "data-summary-rob",
                     subtitle = tags$p("Welfare approval", style = "font-size: 150%; color: white;"),
                     color = "secondary",
                     value = tags$p(round(length(rob$uid[which(rob$is_welfare == "reported")])/
-                                           length(rob$uid[which(!is.na(rob$is_welfare))])*100,1), "%",
+                                           nrow(included_with_metadata)*100,1), "%",
                                    style = "font-size: 200%; color: white;"),
                     icon = icon("paw")
                   ),
@@ -64,7 +64,7 @@ ui_tab_rob <- tabItem(tabName = "data-summary-rob",
                     subtitle = tags$p("Exclusion criteria", style = "font-size: 150%; color: white;"),
                     color = "secondary",
                     value = tags$p(round(length(rob$uid[which(rob$is_exclusion == "reported")])/
-                                           length(rob$uid[which(!is.na(rob$is_exclusion))])*100,1), "%",
+                                           nrow(included_with_metadata)*100,1), "%",
                                    style = "font-size: 200%; color: white;"),
                     icon = icon("ban")
                   )

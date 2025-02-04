@@ -27,7 +27,7 @@ ui_tab_funder <- tabItem(tabName = "data-summary-funder",
                   width=6,
                   subtitle = span("Publications tagged with funder", style = "color: white;"),
                   color = "secondary",
-                  value = span(round(length(unique(funder_tag$funder_name[which(funder_tag$funder_name!="Unknown")]))/nrow(included_with_metadata)*100,1), "%",
+                  value = span(round(nrow(filter(funder_tag, funder_name != "Unknown") %>% select(uid) %>% distinct())/nrow(included_with_metadata)*100,1), "%",
                                  style = "font-size: 300%; color: white;"),
                   icon = icon("bar-chart", verify_fa = FALSE)
                 )
