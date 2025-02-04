@@ -28,6 +28,7 @@ library(lubridate)
 
 # Extra functions
 source("functions/run_ml_at_threshold.R")
+ource("functions/get_xml.R")
 
 # Set database connection
 con <- dbConnect(RPostgres::Postgres(),
