@@ -36,7 +36,7 @@ get_xml <- function(con, path = "xml_texts"){
   # Use CrossRef to get PMCID from DOI
   for (i in 1:length(doi)){
     # Get the PMID from Crossref
-    tryCatch(result <- rcrossref::id_converter(doi[1]))
+    tryCatch(result <- rcrossref::id_converter(doi[i]))
     # Get the results from the list
     result_df <- result$records
     # Check retrieved
@@ -51,6 +51,9 @@ get_xml <- function(con, path = "xml_texts"){
     # Sleep for 2 seconds
     Sys.sleep(2)
   }
+  
+  # Make sure doi lower case
+  pmcid$doi <- tolower(pmcid$doi)
   
   # Save data and make vector
   xml_texts <- pmcid
