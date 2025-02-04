@@ -131,6 +131,7 @@ run_ml_at_threshold(con, project_name="ndc-soles", classifier_name="in-vivo",
 
 # Retrieve full texts, save files to folder, and update database table
 get_ft(con, path="full_texts")
+get_xml(con, path = "xml_texts")
 
 # ------------------------------------------------------------------------------
 # Tag Study Characteristics Using RegEx
