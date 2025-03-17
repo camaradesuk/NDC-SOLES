@@ -1174,6 +1174,7 @@ search_Server <- function(id,
         do.call(tagList, dynamic_dropdowns)
       })
       
+      
       # Creates list for dropdown menus reactivity
       pico_element_list <- list()
       pico_element_list <- lapply(pico_data, function(pico_item) {
@@ -1542,10 +1543,12 @@ search_Server <- function(id,
           
           input$submit_filters
           
+          
           # If number of pico dataframes for dropdowns is > 0 then...
           if (length(pico_table_list) > 0) {
             
             for (i in (1:length(pico_table_list))){
+              
               
               # Loop through each dataframe and filter
               new_table <- pico_table_list[[i]] %>%
@@ -1554,7 +1557,7 @@ search_Server <- function(id,
               
               # Only keep the rows that have a matching "uid"
               selected_studies <- selected_studies %>%
-                right_join(new_table, by = "uid", relationship = "many-to-many")
+                semi_join(new_table, by = "uid")
             }
           }
           
