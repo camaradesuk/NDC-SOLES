@@ -26,12 +26,18 @@ library(openalexR)
 library(parallel)
 library(lubridate)
 library(readtext)
+library(stringr)
+library(europepmc)
+library(xml2)
+library(tidypmc)
+library(quanteda)
 
 # Extra functions
 source("functions/run_ml_at_threshold.R")
 source("functions/get_xml.R")
 source("functions/clean_ft.R")
 source("functions/convert_pdf_txt.R")
+source("functions/run_regex_ner.R")
 
 # Set database connection
 con <- dbConnect(RPostgres::Postgres(),
@@ -127,7 +133,8 @@ screening_decisions <- read.csv("screening/validation/labelled_data_assigned_ite
 
 # Run machine learning and write results to database table
 run_ml_at_threshold(con, project_name="ndc-soles", classifier_name="in-vivo", 
-                    screening_decisions, unscreened_set, threshold = 0.39)
+                    screening_decisions = screening_decisions, 
+                    unscreened_set = unscreened_set, threshold = 0.39)
 
 # ------------------------------------------------------------------------------
 # Retrieve Full Text Documents
@@ -142,15 +149,7 @@ get_xml(con, path = "xml_texts")
 # ------------------------------------------------------------------------------
 # Tag Study Characteristics Using RegEx
 # ------------------------------------------------------------------------------
-pico_tag(con, tag_type = "species", tag_method = "tiabkw", ignore_case = TRUE, extract_strings = TRUE)
-pico_tag(con, tag_type = "model", tag_method = "tiabkw", ignore_case = TRUE, extract_strings = TRUE)
-pico_tag(con, tag_type = "intervention", tag_method = "tiabkw", ignore_case = TRUE, extract_strings = FALSE)
-pico_tag(con, tag_type = "outcome", tag_method = "tiabkw", ignore_case = TRUE, extract_strings = TRUE)
-
-pico_tag(con, tag_type = "species", tag_method = "fulltext", ignore_case = TRUE, extract_strings = TRUE)
-pico_tag(con, tag_type = "model", tag_method = "fulltext", ignore_case = TRUE, extract_strings = TRUE)
-pico_tag(con, tag_type = "intervention", tag_method = "fulltext", ignore_case = TRUE, extract_strings = FALSE)
-pico_tag(con, tag_type = "outcome", tag_method = "fulltext", ignore_case = TRUE, extract_strings = TRUE)
+run_regex_ner(con)
 
 # ------------------------------------------------------------------------------
 # Tag Risk of Bias Reporting Using Qianying's Tool
