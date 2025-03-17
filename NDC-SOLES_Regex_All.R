@@ -114,3 +114,29 @@ for (i in 1:nrow(regex_dictionary_update)){
     inc_pdf_result <- rbind(inc_pdf_result, pdf_match)
   }
 }
+
+# Read in regex ontology
+regex_ontology <- dbReadTable(con, "pico_ontology") %>%
+  select(name, regex_id)
+
+# Format data
+inc_tiab_result <- inc_tiab_result %>%
+  left_join(regex_ontology, by = "name") %>%
+  mutate(method = "tiab") %>%
+  select(uid = docname, regex_id, string = keyword, method)
+
+inc_xml_result <- inc_xml_result %>%
+  left_join(regex_ontology, by = "name") %>%
+  mutate(method = "fultltext_xml") %>%
+  select(uid = doc_id, regex_id, string = text, method)
+
+inc_pdf_result <- inc_pdf_result %>%
+  left_join(regex_ontology, by = "name") %>%
+  mutate(method = "fultltext_pdf") %>%
+  select(uid = docname, regex_id, string = keyword, method)
+
+# Combine data
+inc_results <- rbind(inc_tiab_result, inc_xml_result, inc_pdf_result)
+
+# Write to database
+dbWriteTable(con, "pico_tag", inc_results, append = T)
