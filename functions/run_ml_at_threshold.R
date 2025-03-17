@@ -24,7 +24,7 @@ run_ml_at_threshold <- function(con, project_name="ndc-soles", classifier_name="
   
   # Merge labelled and unlabelled data
   ml_data <- rbind(screening_decisions, unscreened_set) %>%
-    mutate(TEMP_ID = 1:nrow(ml_data))
+    mutate(TEMP_ID = row_number())
   
   # Write unscreened data to tsv
   write_tsv(ml_data, paste0("screening/output/ml_run_",date,".tsv"))
