@@ -42,6 +42,4 @@ clean_ft <- function(con, path = "full_texts"){
   file_txt_remove <- data.frame(file_txt) %>% filter(!file_txt %in% full_texts_clean$path_txt)
   file.remove(file_pdf_remove$file_pdf)
   file.remove(file_txt_remove$file_txt)
-  
-  #
 }
