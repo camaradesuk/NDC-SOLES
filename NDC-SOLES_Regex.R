@@ -432,7 +432,8 @@ set_1_results_metrics_annotation <- set_1_results_long %>%
   mutate(recall = TP / (TP + FN),
          specificity = TN / (TN + FP),
          precision = TP / (TP + FP),
-         F1 = (2 * precision * recall) / (precision + recall))
+         F1 = 2 * ((precision * recall) / (precision + recall)),
+         F2 = (1 + 2^2) * ((precision * recall) / ((2^2 * precision) + recall)))
   
 # Get metrics at publication level
 set_1_results_metrics_publication <- set_1_results_long %>%
@@ -458,7 +459,8 @@ set_1_results_metrics_publication <- set_1_results_long %>%
   mutate(recall = TP / (TP + FN),
          specificity = TN / (TN + FP),
          precision = TP / (TP + FP),
-         F1 = (2 * precision * recall) / (precision + recall))
+         F1 = (2 * precision * recall) / (precision + recall),
+         F2 = (1 + 2^2) * ((precision * recall) / ((2^2 * precision) + recall)))
 
 # Get false negatives for update
 set_1_results_long_FN <- set_1_results_long %>%
@@ -667,7 +669,8 @@ set_1_results_update_metrics_annotation <- rbind(
   mutate(recall = TP / (TP + FN),
          specificity = TN / (TN + FP),
          precision = TP / (TP + FP),
-         F1 = (2 * precision * recall) / (precision + recall))
+         F1 = (2 * precision * recall) / (precision + recall),
+         F2 = (1 + 2^2) * ((precision * recall) / ((2^2 * precision) + recall)))
 
 # Get metrics at publication level 
 set_1_results_update_metrics_publication <- rbind(
@@ -705,7 +708,8 @@ set_1_results_update_metrics_publication <- rbind(
   mutate(recall = TP / (TP + FN),
          specificity = TN / (TN + FP),
          precision = TP / (TP + FP),
-         F1 = (2 * precision * recall) / (precision + recall))
+         F1 = (2 * precision * recall) / (precision + recall),
+         F2 = (1 + 2^2) * ((precision * recall) / ((2^2 * precision) + recall)))
 
 # Write data
 write.csv(set_1_results_update_collected, "regex/output/set_1_update/set_1_results_update_collected.csv", row.names = F)
@@ -867,7 +871,8 @@ set_1_results_update_gene_species_metrics_annotation <- rbind(
   mutate(recall = TP / (TP + FN),
          specificity = TN / (TN + FP),
          precision = TP / (TP + FP),
-         F1 = (2 * precision * recall) / (precision + recall))
+         F1 = (2 * precision * recall) / (precision + recall),
+         F2 = (1 + 2^2) * ((precision * recall) / ((2^2 * precision) + recall)))
 
 # Write data
 write.csv(set_1_results_update_gene_species_collected, "regex/output/set_1_update_gene_species/set_1_results_update_gene_species_collected.csv", row.names = F)
@@ -1021,7 +1026,8 @@ set_1_results_update_gene_species_metrics_annotation <- rbind(
   mutate(recall = TP / (TP + FN),
          specificity = TN / (TN + FP),
          precision = TP / (TP + FP),
-         F1 = (2 * precision * recall) / (precision + recall))
+         F1 = (2 * precision * recall) / (precision + recall),
+         F2 = (1 + 2^2) * ((precision * recall) / ((2^2 * precision) + recall)))
 
 # Write data
 write.csv(set_1_results_update_gene_species_collected, "regex/output/set_1_update_gene_species_format/set_1_results_update_gene_species_collected.csv", row.names = F)
@@ -1162,7 +1168,8 @@ set_1_results_update_gene_species_filter_metrics_annotation <- rbind(
   mutate(recall = TP / (TP + FN),
          specificity = TN / (TN + FP),
          precision = TP / (TP + FP),
-         F1 = (2 * precision * recall) / (precision + recall))
+         F1 = (2 * precision * recall) / (precision + recall),
+         F2 = (1 + 2^2) * ((precision * recall) / ((2^2 * precision) + recall)))
 
 # Write data
 write.csv(set_1_results_update_gene_species_filter_collected, "regex/output/set_1_update_gene_species_filter/set_1_results_update_gene_species_filter_collected.csv", row.names = F)
@@ -1314,7 +1321,8 @@ set_1_results_update_sex_metrics_annotation <- rbind(
   mutate(recall = TP / (TP + FN),
          specificity = TN / (TN + FP),
          precision = TP / (TP + FP),
-         F1 = (2 * precision * recall) / (precision + recall))
+         F1 = (2 * precision * recall) / (precision + recall),
+         F2 = (1 + 2^2) * ((precision * recall) / ((2^2 * precision) + recall)))
 
 # Write data
 write.csv(set_1_results_update_sex_collected, "regex/output/set_1_update_sex/set_1_results_update_sex_collected.csv", row.names = F)
@@ -1596,7 +1604,8 @@ set_2_results_metrics_annotation <- rbind(
   mutate(recall = TP / (TP + FN),
          specificity = TN / (TN + FP),
          precision = TP / (TP + FP),
-         F1 = (2 * precision * recall) / (precision + recall))
+         F1 = (2 * precision * recall) / (precision + recall),
+         F2 = (1 + 2^2) * ((precision * recall) / ((2^2 * precision) + recall)))
 
 # Get metrics at publication level 
 set_2_results_metrics_publication <- rbind(
@@ -1634,7 +1643,8 @@ set_2_results_metrics_publication <- rbind(
   mutate(recall = TP / (TP + FN),
          specificity = TN / (TN + FP),
          precision = TP / (TP + FP),
-         F1 = (2 * precision * recall) / (precision + recall))
+         F1 = (2 * precision * recall) / (precision + recall),
+         F2 = (1 + 2^2) * ((precision * recall) / ((2^2 * precision) + recall)))
 
 # Write data
 write.csv(set_2_results_collected, "regex/output/set_2_update/set_2_results_update_collected.csv", row.names = F)
