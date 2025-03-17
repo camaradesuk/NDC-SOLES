@@ -288,7 +288,9 @@ dataframes_for_app[["species_df_small"]] <- species_df_small
 pico <- sex_df_small %>%
   full_join(model_df_small) %>%
   full_join(outcome_df_small) %>%
-  full_join(species_df_small) 
+  full_join(species_df_small) %>%
+  full_join(included_small) %>%
+  select(-doi, -year)
 
 dataframes_for_app[["pico"]] <- pico
 
@@ -351,7 +353,10 @@ dataframes_for_app[["retraction_tag"]] <- retraction_tag
 discipline_tag <- included_small %>%
   left_join(dbReadTable(con, "discipline_tag"), by = "doi", relationship = "many-to-many") %>%
   mutate(year = as.numeric(year)) %>%
-  filter(!is.na(year))
+  filter(!is.na(year)) %>%
+  mutate(main_discipline = ifelse(is.na(main_discipline), "Unknown", main_discipline),
+         score = ifelse(is.na(score), "Unknown", score),
+         level = ifelse(is.na(level), "Unknown", level))
 
 dataframes_for_app[["discipline_tag"]] <- discipline_tag
 
@@ -359,7 +364,10 @@ dataframes_for_app[["discipline_tag"]] <- discipline_tag
 article_tag <- included_small %>%
   left_join(dbReadTable(con, "article_type"), by = "doi", relationship = "many-to-many") %>%
   mutate(year = as.numeric(year)) %>%
-  filter(!is.na(doi))
+  filter(!is.na(year)) %>%
+  select(-is_paratext, -type) %>%
+  mutate(language = ifelse(is.na(language), "Unknown", language))
+  
 
 dataframes_for_app[["article_tag"]] <- article_tag
 
