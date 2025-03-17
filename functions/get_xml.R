@@ -43,6 +43,10 @@ get_xml <- function(con, path = "xml_texts"){
     if("status" %in% colnames(result_df)){
       result_error <- data.frame(pmcid = NA, pmid = NA, doi = doi[i])
       pmcid <- rbind(pmcid, result_error)
+    }else if("pmid" %in% colnames(result_df) == FALSE){
+      result_df$pmid <- NA
+      result_df <- result_df %>% select(pmcid, pmid, doi)
+      pmcid <- rbind(pmcid, result_df)
     }else{
       # Bind to results to the existing dataframe
       result_df <- result_df %>% select(pmcid, pmid, doi)
@@ -57,6 +61,8 @@ get_xml <- function(con, path = "xml_texts"){
   
   # Save data and make vector
   xml_texts <- pmcid
+  pmcid <- pmcid %>%
+    filter(!is.na(pmcid))
   pmcid <- pmcid$pmcid
   
   # Initiate results dataframe
