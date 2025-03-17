@@ -124,7 +124,55 @@ pico_elements_list <- list(pico_element_1 = list(id = "dropdown_model",
                                                    rename(name = is_retracted),
                                                  label1 = "Show or hide retracted articles:",
                                                  column1 = "name",
-                                                 filter_no = 1))
+                                                 filter_no = 1),
+                           pico_element_10 = list(id = "dropdown_openaccess",
+                                                  table = oa_tag %>% 
+                                                    rename(name = oa_status),
+                                                  label1 = "Filter by open access type:",
+                                                  column1 = "name",
+                                                  filter_no = 1),
+                           pico_element_11 = list(id = "dropdown_opendata",
+                                                  table = transparency %>% 
+                                                    rename(name = is_open_data),
+                                                  label1 = "Filter by data availablity:",
+                                                  column1 = "name",
+                                                  filter_no = 1),
+                           pico_element_12 = list(id = "dropdown_opencode",
+                                                  table = transparency %>% 
+                                                    rename(name = is_open_code),
+                                                  label1 = "Filter by code availablity:",
+                                                  column1 = "name",
+                                                  filter_no = 1),
+                           pico_element_13 = list(id = "dropdown_random",
+                                                  table = rob %>% 
+                                                    rename(name = is_random),
+                                                  label1 = "Filter by reporting random allocation of animals to groups:",
+                                                  column1 = "name",
+                                                  filter_no = 1),
+                           pico_element_14 = list(id = "dropdown_blind",
+                                                  table = rob %>% 
+                                                    rename(name = is_blind),
+                                                  label1 = "Filter by reporting blinded outcome assessment:",
+                                                  column1 = "name",
+                                                  filter_no = 1),
+                           pico_element_15 = list(id = "dropdown_coi",
+                                                  table = rob %>% 
+                                                    rename(name = is_interest),
+                                                  label1 = "Filter by reporting conflicts of interest statement:",
+                                                  column1 = "name",
+                                                  filter_no = 1),
+                           pico_element_16 = list(id = "dropdown_welfare",
+                                                  table = rob %>% 
+                                                    rename(name = is_welfare),
+                                                  label1 = "Filter by reporting animal welfare approval statement:",
+                                                  column1 = "name",
+                                                  filter_no = 1),
+                           pico_element_17 = list(id = "dropdown_exclusion",
+                                                  table = rob %>% 
+                                                    rename(name = is_exclusion),
+                                                  label1 = "Filter by reporting animal exclusion statement:",
+                                                  column1 = "name",
+                                                  filter_no = 1))
 
 
 # UI ------------------------------
@@ -244,11 +292,11 @@ server <- function(input, output, session) {
   yearBarServer("open_code_pubs_per_year", table=transparency, column="is_open_code", display= c("available", "not available", "unknown"), order=c("available", "not available", "unknown"),  text="Tool: OddPub, Riedel, N, et al. (2020), DOI:10.5334/dsj-2020-042", colours = c("#76A8C1", "#FFC076", "grey")) %>% bindCache(nrow(transparency))
   
   
-  yearBarServer("random_per_year", table=rob, column="is_random", text="Tool: RobPredictor, Wang, Q., et al (2021), DOI:10.1002/jrsm.1533") %>% bindCache(nrow(rob))
-  yearBarServer("blind_per_year", table=rob, column="is_blind", text="Tool: RobPredictor, Wang, Q., et al (2021), DOI:10.1002/jrsm.1533") %>% bindCache(nrow(rob))
-  yearBarServer("coi_per_year", table=rob, column="is_interest", text="Tool: RobPredictor, Wang, Q., et al (2021), DOI:10.1002/jrsm.1533") %>% bindCache(nrow(rob))
-  yearBarServer("exclusion_per_year", table=rob, column="is_exclusion", text="Tool: RobPredictor, Wang, Q., et al (2021), DOI:10.1002/jrsm.1533") %>% bindCache(nrow(rob))
-  yearBarServer("welfare_per_year", table=rob, column="is_welfare", text="Tool: RobPredictor, Wang, Q., et al (2021), DOI:10.1002/jrsm.1533") %>% bindCache(nrow(rob))
+  yearBarServer("random_per_year", table=rob, column="is_random", display = c("reported", "not reported", "unknown"), order = c("reported", "not reported", "unknown"), colours = c("#76A8C1", "#FFC076", "grey"), text="Tool: RobPredictor, Wang, Q., et al (2021), DOI:10.1002/jrsm.1533") %>% bindCache(nrow(rob))
+  yearBarServer("blind_per_year", table=rob, column="is_blind", display = c("reported", "not reported", "unknown"), order = c("reported", "not reported", "unknown"), colours = c("#76A8C1", "#FFC076", "grey"), text="Tool: RobPredictor, Wang, Q., et al (2021), DOI:10.1002/jrsm.1533") %>% bindCache(nrow(rob))
+  yearBarServer("coi_per_year", table=rob, column="is_interest", display = c("reported", "not reported", "unknown"), order = c("reported", "not reported", "unknown"), colours = c("#76A8C1", "#FFC076", "grey"), text="Tool: RobPredictor, Wang, Q., et al (2021), DOI:10.1002/jrsm.1533") %>% bindCache(nrow(rob))
+  yearBarServer("exclusion_per_year", table=rob, column="is_exclusion", display = c("reported", "not reported", "unknown"), order = c("reported", "not reported", "unknown"), colours = c("#76A8C1", "#FFC076", "grey"), text="Tool: RobPredictor, Wang, Q., et al (2021), DOI:10.1002/jrsm.1533") %>% bindCache(nrow(rob))
+  yearBarServer("welfare_per_year", table=rob, column="is_welfare", display = c("reported", "not reported", "unknown"), order = c("reported", "not reported", "unknown"), colours = c("#76A8C1", "#FFC076", "grey"), text="Tool: RobPredictor, Wang, Q., et al (2021), DOI:10.1002/jrsm.1533") %>% bindCache(nrow(rob))
   
   search_Server("search_results",
                 pico_data = pico_elements_list,
