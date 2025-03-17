@@ -197,7 +197,8 @@ for (i in 1:5){
                          unlist() %>%
                          unname()) %>%
     mutate(precision = tp / (tp + fp),
-           f1 = (2 * precision * recall)/(precision + recall))
+           f1 = (2 * precision * recall)/(precision + recall),
+           f2 = ((5 * precision * recall)/((4 * precision) * recall)))
 
   # Combine with full dataset
   results <- rbind(results, result)
@@ -245,7 +246,8 @@ for (i in 1:5){
                            fp = nrow(filter(iteration_validate, decision == 0 & ml_decision == 1)),
                            fn = nrow(filter(iteration_validate, decision == 1 & ml_decision == 0))) %>%
     mutate(precision = tp / (tp + fp),
-           f1 = (2 * precision * recall)/(precision + recall))
+           f1 = (2 * precision * recall)/(precision + recall),
+           f2 = ((5 * precision * recall)/((4 * precision) * recall)))
   
   results_val <- rbind(results_val, result_val)
 }
