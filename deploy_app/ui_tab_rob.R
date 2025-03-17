@@ -9,22 +9,22 @@ ui_tab_rob <- tabItem(tabName = "data-summary-rob",
                           collapsible = FALSE,
                           p("Various types of bias can be introduced into animal experiments, which 
                             reduce the internal validity of an experiment. Measures to reduce the 
-                            risk of bias include blinding (also known as masking), and reporting 
-                            criteria for data exclusions.")
+                            risk of bias include blinding (also known as masking), and reporting whether or not 
+                            any animals were excluded from analyses.")
                         )
                       ),
                 
                 fluidRow(
                   
-                  # valueBox(
-                  #   width=4,
-                  #   subtitle = tags$p("Randomisation", style = "font-size: 150%; color: white;"),
-                  #   color = "secondary",
-                  #   value = tags$p(round(length(rob$uid[which(rob$is_random=="reported")])/
-                  #                          nrow(included_with_metadata)*100,1), "%",
-                  #                  style = "font-size: 200%; color: white;"),
-                  #   icon = icon("asterisk")
-                  # ),
+                  valueBox(
+                    width=6,
+                    subtitle = tags$p("Randomisation", style = "font-size: 150%; color: white;"),
+                    color = "secondary",
+                    value = tags$p(round(length(rob$uid[which(rob$is_random=="reported")])/
+                                           nrow(included_with_metadata)*100,1), "%",
+                                   style = "font-size: 200%; color: white;"),
+                    icon = icon("asterisk")
+                  ),
                   
                   valueBox(
                     width=6,
@@ -34,24 +34,24 @@ ui_tab_rob <- tabItem(tabName = "data-summary-rob",
                                            nrow(included_with_metadata)*100,1), "%",
                                    style = "font-size: 200%; color: white;"),
                     icon = icon("eye-slash", verify_fa = FALSE)
-                  ),
-                  
-                  valueBox(
-                    width=6,
-                    subtitle = tags$p("Conflicts of interest statement", style = "font-size: 150%; color: white;"),
-                    color = "secondary",
-                    value =tags$p(round(length(rob$uid[which(rob$is_interest=="reported")])/
-                                          nrow(included_with_metadata)*100,1), "%",
-                                  style = "font-size: 200%; color: white;"),
-                    icon = icon("money-check-alt")
                   )
                 ),
                 
                 fluidRow(
                   
                   valueBox(
-                    width=6,
-                    subtitle = tags$p("Welfare approval", style = "font-size: 150%; color: white;"),
+                    width=4,
+                    subtitle = tags$p("Conflicts of interest statement", style = "font-size: 150%; color: white;"),
+                    color = "secondary",
+                    value =tags$p(round(length(rob$uid[which(rob$is_interest=="reported")])/
+                                          nrow(included_with_metadata)*100,1), "%",
+                                  style = "font-size: 200%; color: white;"),
+                    icon = icon("money-check-alt")
+                  ),
+                  
+                  valueBox(
+                    width=4,
+                    subtitle = tags$p("Welfare approval statement", style = "font-size: 150%; color: white;"),
                     color = "secondary",
                     value = tags$p(round(length(rob$uid[which(rob$is_welfare == "reported")])/
                                            nrow(included_with_metadata)*100,1), "%",
@@ -60,8 +60,8 @@ ui_tab_rob <- tabItem(tabName = "data-summary-rob",
                   ),
                   
                   valueBox(
-                    width=6,
-                    subtitle = tags$p("Exclusion criteria", style = "font-size: 150%; color: white;"),
+                    width=4,
+                    subtitle = tags$p("Animal exclusions statement", style = "font-size: 150%; color: white;"),
                     color = "secondary",
                     value = tags$p(round(length(rob$uid[which(rob$is_exclusion == "reported")])/
                                            nrow(included_with_metadata)*100,1), "%",
@@ -81,11 +81,11 @@ ui_tab_rob <- tabItem(tabName = "data-summary-rob",
                     collapsible = FALSE,
                     type = "tabs",
                     
-                    # yearBarUI("random_per_year",
-                    #           title = "Randomisation over time",
-                    #           theme = "danger",
-                    #           table = rob,
-                    #           spinner_colour = "#76A8C1"),
+                    yearBarUI("random_per_year",
+                              title = "Randomisation over time",
+                              theme = "danger",
+                              table = rob,
+                              spinner_colour = "#76A8C1"),
                     
                     yearBarUI("blind_per_year",
                               title = "Blinding over time",
@@ -100,7 +100,7 @@ ui_tab_rob <- tabItem(tabName = "data-summary-rob",
                               spinner_colour = "#76A8C1"),
                     
                     yearBarUI("exclusion_per_year",
-                              title = "Exclusions over time",
+                              title = "Exclusion statements over time",
                               theme = "danger",
                               table = rob,
                               spinner_colour = "#76A8C1"),
